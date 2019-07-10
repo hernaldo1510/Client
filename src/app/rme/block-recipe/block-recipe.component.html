@@ -1,0 +1,157 @@
+<h4>Busque el medicamento o principio activo</h4>
+<input
+  class="form-control input-lg"
+  placeholder="medicamento o principio activo"
+  [(ngModel)]="asyncSelected"
+  [typeaheadAsync]="true"
+  [typeahead]="dataSource"
+  (typeaheadOnSelect)="typeaheadOnSelect($event)"
+  (typeaheadLoading)="changeTypeaheadLoading($event)"
+  (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+  [typeaheadScrollable]="true"
+  [typeaheadOptionsInScrollableView]="5"
+  [typeaheadHideResultsOnBlur]="false"
+  typeaheadMinLength="3"
+  typeaheadWaitMs="1000"
+  typeaheadOptionField="name"
+/>
+<pg-progress
+  type="bar"
+  indeterminate="false"
+  color="complete"
+  class="m-0 mt--3"
+  *ngIf="typeaheadLoading"
+></pg-progress>
+<div class="alert alert-warning" *ngIf="typeaheadNoResults">
+  No encontramos resultados
+</div>
+<div class="p-2">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" *ngFor="let item of receta | async; index as i">
+      <div class="d-flex">
+        <div class="w-100">
+          <h5 class="mb-0 mt-0">{{ item.medication.name }}</h5>
+        </div>
+        <div class="flex-shrink-1">
+          <button
+            type="button"
+            class="close"
+            aria-label="Close"
+            (click)="delMedication(i)"
+          >
+            <span aria-hidden="true">
+              <fa-icon [icon]="['far', 'trash-alt']" size="xs"></fa-icon>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label for="posologiaValue_{{ i }}">Posología:</label>
+            <div class="row">
+              <div class="col-4 pr-1">
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="item.posology.value"
+                  id="posologyValue_{{ i }}"
+                  name="posologyValue_{{ i }}"
+                />
+              </div>
+              <div class="col-8 pl-1">
+                <!-- {{item.medication.composition.medicationForm.desc}} -->
+                <select class="custom-select" [(ngModel)]="item.posology.unit">
+                  <option
+                    [ngValue]="item"
+                    *ngFor="
+                      let item of item.medication.composition.medicationForm
+                    "
+                    >{{ item.desc }}</option
+                  >
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-group">
+            <label for="frecuencyValue_{{ i }}">Cada (Horas):</label>
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="item.frecuency.value"
+              id="frecuencyValue_{{ i }}"
+              name="frecuencyValue_{{ i }}"
+            />
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="durationValue_{{ i }}">Duración:</label>
+            <div class="">
+              <div class="row">
+                <div class="col-3 pr-1" *ngIf="item.duration.unit == 'Diario'">
+                  <input
+                    type="number"
+                    class="form-control"
+                    [(ngModel)]="item.duration.value"
+                    id="durationValue_{{ i }}"
+                    name="durationValue_{{ i }}"
+                  />
+                </div>
+                <div
+                  class="pl-1"
+                  [ngClass]="{
+                    'col-9': item.duration.unit == 'Diario',
+                    'col-12': item.duration.unit != 'Diario'
+                  }"
+                >
+                  <div
+                    class="btn-group full-width"
+                    btnRadioGroup
+                    [(ngModel)]="item.duration.unit"
+                  >
+                    <label
+                      class="btn btn-primary"
+                      btnRadio="{{ item.code }}"
+                      tabindex="0"
+                      role="button"
+                      *ngFor="let item of durationType"
+                      >{{ item.label }}</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <div class="form-group">
+            <label for="dateStart_{{ i }}">Inicio Tratamiento:</label>
+            <input
+              type="date"
+              class="form-control"
+              id="dateStart_{{ i }}"
+              name="dateStart_{{ i }}"
+            />
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="form-group">
+            <label for="observations_{{ i }}">Observaciones:</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="item.observations"
+              id="observations_{{ i }}"
+              name="observations_{{ i }}"
+            />
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

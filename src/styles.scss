@@ -1,1 +1,103 @@
 /* You can add global styles to this file, and also import other style files */
+.mt--3 {
+  margin-top: -3px !important;
+}
+
+.dropdown-menu {
+  min-width: 100% !important;
+}
+typeahead-container {
+  width: 100% !important;
+}
+
+.custom-select {
+  height: 35px;
+}
+
+.custom-select-sm {
+  height: 32px;
+}
+
+.b-grey-light {
+  border-color: #ccc;
+}
+
+.btn-primary,
+.btn-primary:focus {
+  color: #ffffff !important;
+  background-color: #8b52a0;
+  border-color: #8b52a0;
+}
+.btn-primary-outline {
+  background-color: transparent;
+  color: #8b52a0 !important;
+  border-color: #8b52a0;
+  transition: border-color 0.1s linear 0s, color 0.1s linear 0s,
+    background-color 0.1s linear 0s, opacity 0.2s linear 0s !important;
+}
+
+.btn-primary-outline:hover,
+.btn-primary-outline:focus,
+.btn-primary-outline:active,
+.btn-primary-outline.active,
+.open > .dropdown-toggle.btn-primary-outline {
+  color: #fff !important;
+  background-color: #8b52a0;
+  border-color: #8b52a0;
+}
+
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #fff !important;
+  background-color: #584b8d !important;
+  border-color: #584b8d !important;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #8b52a0 !important;
+  border-color: #8b52a0 !important;
+}
+
+.btn-primary.hover,
+.btn-primary:hover,
+.open .dropdown-toggle.btn-primary {
+  background-color: #6f4180 !important;
+  border-color: #6f4180 !important;
+  color: #ffffff !important;
+}
+
+.btn-primary.active,
+.btn-primary:active,
+.btn-primary.active:focus,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.open .dropdown-toggle.btn-primary {
+  background-color: #533160 !important;
+  border-color: #533160 !important;
+  color: #ffffff !important;
+}
+
+.input-group-text {
+  line-height: 1.2;
+}

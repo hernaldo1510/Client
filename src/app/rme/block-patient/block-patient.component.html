@@ -1,0 +1,29 @@
+<pgcard
+  [Loading]="!patient"
+  [ShowMessage]="patient && patient == -1"
+  [Message]="message"
+  Maximize="false"
+  Refresh="false"
+  ProgressType="bar"
+  MinimalHeader="true"
+>
+  <ng-template #CardTitle>Paciente</ng-template>
+  <ng-template #CardExtraControls></ng-template>
+  <div *ngIf="patient && patient != -1">
+    <h4 class="my-0">{{ patient.firstName + ' ' + patient.lastName }}</h4>
+    <div class="mb-2">
+      <span class="badge badge-info m-r-5">{{ patient.run }}</span>
+      <span class="badge badge-info m-r-5">{{ patient.age }} años</span>
+      <span class="badge badge-info">{{ patient.genre }} </span>
+    </div>
+    <div>
+      <input
+        type="email"
+        class="form-control input-sm mt-1"
+        name="correo"
+        [(ngModel)]="patient.email"
+        placeholder="Email"
+      />
+    </div>
+  </div>
+</pgcard>

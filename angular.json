@@ -7,12 +7,6 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -20,17 +14,36 @@
             "outputPath": "dist/rme",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/app/@pages/styles",
+                "src/pages_ui/scss"
+              ]
+            },
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
+              "src/assets/plugins/bootstrap/css/bootstrap.min.css",
+              "src/assets/plugins/font-awesome/css/font-awesome.min.css",
+              "src/assets/plugins/codrops-stepsform/css/component.css",
               "src/styles.scss"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": [
+              "node_modules/scrollreveal/dist/scrollreveal.js",
+              "node_modules/echarts/dist/echarts.min.js",
+              "src/app/@pages/assets/javascript/pages.js",
+              "node_modules/masonry-layout/dist/masonry.pkgd.min.js",
+              "node_modules/isotope-layout/dist/isotope.pkgd.min.js",
+              "node_modules/imagesloaded/imagesloaded.pkgd.js",
+              "src/assets/plugins/modernizr.custom.js",
+              "src/assets/plugins/codrops-stepsform/js/classie.js",
+              "src/assets/plugins/codrops-stepsform/js/stepsForm.js",
+              "src/assets/plugins/skycons/skycons.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -136,5 +149,14 @@
       }
     }
   },
-  "defaultProject": "rme"
+  "defaultProject": "rme",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "styleext": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
+    }
+  }
 }

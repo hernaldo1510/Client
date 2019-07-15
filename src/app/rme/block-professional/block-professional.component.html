@@ -1,0 +1,37 @@
+<pgcard
+  [Loading]="!professional"
+  [ShowMessage]="professional && professional == -1"
+  [Message]="message"
+  Maximize="false"
+  Refresh="false"
+  ProgressType="bar"
+  MinimalHeader="true"
+>
+  <ng-template #CardTitle>Profesional</ng-template>
+  <ng-template #CardExtraControls></ng-template>
+  <div *ngIf="professional && professional != -1">
+    <h4 class="my-0">
+      {{ professional?.firstName + ' ' + professional?.lastName }}
+    </h4>
+    <div class="mb-2">
+      <span class="badge badge-info m-r-5">{{ professional.email }}</span>
+    </div>
+    <div>
+      <div class="w-100">
+        <select
+          name="especialidad"
+          id="especialidad"
+          class="custom-select"
+          [(ngModel)]="professional.specialitiesSel"
+        >
+          <option
+            [ngValue]="item"
+            *ngFor="let item of professional.specialities"
+
+            >{{ item.name }}</option
+          >
+        </select>
+      </div>
+    </div>
+  </div>
+</pgcard>

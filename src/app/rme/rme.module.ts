@@ -14,6 +14,7 @@ import { RmeRoutingModule } from './rme-routing.module';
 import { SharedModule } from '@app/@pages/components/shared.module';
 import { BlockPatientComponent } from './block-patient/block-patient.component';
 import { pgCardModule } from '@app/@pages/components/card/card.module';
+import { BlockProfessionalComponent } from './block-professional/block-professional.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,6 @@ import { pgCardModule } from '@app/@pages/components/card/card.module';
     ProgressModule,
     FontAwesomeModule
   ],
-  declarations: [NewComponent, BlockRecipeComponent, BlockFrequentMedComponent, BlockPatientComponent]
+  declarations: [NewComponent, BlockRecipeComponent, BlockFrequentMedComponent, BlockPatientComponent, BlockProfessionalComponent]
 })
 export class RmeModule { }

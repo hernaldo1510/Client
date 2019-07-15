@@ -58,11 +58,22 @@ export class RmeService {
     // console.log(medAux, medAux.composition.medicationForm, medAux.composition.medicationFormSelected);
     let formSel: any;
     if (medAux.composition.medicationFormSelected !== undefined) {
-      formSel = medAux.composition.medicationForm.find(e => e.id === medAux.composition.medicationFormSelected.id);
+      formSel = medAux.composition.medicationForm.find(
+        e => e.id === medAux.composition.medicationFormSelected.id
+      );
     } else {
       formSel = medAux.composition.medicationForm[0];
     }
     // console.log(medAux.composition.medicationForm.find(e => e.id === medAux.composition.medicationFormSelected.id));
+
+    const d = new Date();
+    const startTreatmentAux =
+      d.getFullYear() +
+      '-' +
+      ('0' + (d.getMonth() + 1)).slice(-2) +
+      '-' +
+      ('0' + d.getDate()).slice(-2);
+
     const med: Medication = {
       medication: medAux,
       duration: { unit: this.durationType[0].code, value: '' },
@@ -71,10 +82,11 @@ export class RmeService {
         unit: formSel,
         value: ''
       },
-      observations: ''
+      observations: '',
+      startTreatment: startTreatmentAux
     };
 
-    console.log(med);
+    // console.log(med);
 
     const currentValue = this.medList$.value;
     const updatedValue = [...currentValue, med];
@@ -118,9 +130,12 @@ export class RmeService {
       appointmentId: this.appointmentId,
       creation_day: creationDateAux,
       patient: this.patient$.getValue(),
-      professional: this.professional$.getValue(),
+      professional: {...this.professional$.getValue()},
       indications: []
     };
+
+    data.professional.specialities = [data.professional.specialitiesSel];
+    delete data.professional.specialitiesSel;
 
     if (!this.appointmentId) {
       delete data.appointmentId;

@@ -20,7 +20,7 @@ export class BlockFrequentMedComponent implements OnInit {
     this.medicationHighFrequency$ = this.apiRme.medicationHighFrequency;
     this.medicationHighFrequency$.subscribe(res => {
       this.isLoading = false;
-      console.log(res);
+      // console.log(res);
       this.medicationHighFrequency = res;
     });
   }

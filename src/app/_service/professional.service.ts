@@ -22,10 +22,10 @@ export class ProfessionalService {
         )
         .pipe(
           map((res: any) => {
-            if (!isArray(res.speciality)) {
-              res.specialities = [{ name: res.speciality }];
-              delete res.speciality;
-            }
+            // if (!isArray(res.speciality)) {
+            //   res.specialities = [{ name: res.speciality }];
+            //   delete res.speciality;
+            // }
             return res;
           })
         )

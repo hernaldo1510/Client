@@ -13,4 +13,5 @@ export interface Medication {
         value: string
     };
     observations: string;
+    startTreatment: string;
 }

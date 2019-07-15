@@ -29,10 +29,20 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item" *ngFor="let item of receta | async; index as i">
       <div class="d-flex">
-        <div class="w-100">
-          <h5 class="mb-0 mt-0">{{ item.medication.name }}</h5>
+        <div class="flex-fill form-inline">
+          <h5 class="mb-0 mt-0 w-100">
+            {{ item.medication.name }} /
+            <input
+              type="text"
+              class="form-control form-control-sm input-sm inline w-50"
+              [(ngModel)]="item.recomendation"
+              id="recomendation_{{ i }}"
+              name="recomendation_{{ i }}"
+              placeholder="Recomendación"
+            />
+          </h5>
         </div>
-        <div class="flex-shrink-1">
+        <div class="ml-auto">
           <button
             type="button"
             class="close"
@@ -136,6 +146,7 @@
               class="form-control"
               id="dateStart_{{ i }}"
               name="dateStart_{{ i }}"
+              [(ngModel)]="item.startTreatment"
             />
           </div>
         </div>

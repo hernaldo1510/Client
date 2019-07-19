@@ -1,0 +1,175 @@
+<li class="list-group-item">
+  <div class="d-flex">
+    <div class="flex-fill form-inline">
+      <h5 class="mb-0 mt-0 inline">
+        <span class="semi-bold">{{ item.medication.name | titlecase }}</span>
+        <span *ngIf="item.commercialRecomendation" class="m-0 small light"> / {{item.commercialRecomendation.name | titlecase}} <button class="btn btn-rounded btn-xs" (click)="item.commercialRecomendation = false"><fa-icon [icon]="['fas', 'times']"></fa-icon></button></span>
+      </h5>
+      
+    </div>
+    <div class="ml-1">
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="delMedication(i)"
+        class="btn btn-rounded"
+      >
+        <span aria-hidden="true">
+          <fa-icon [icon]="['far', 'trash-alt']"></fa-icon>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div class="row my-2" *ngIf="!item.commercialRecomendation">
+    <div class="col-12">
+      <input
+        class="form-control form-control-sm input-sm inline w-100"
+        placeholder="Recomendación"
+        [(ngModel)]="asyncSelectedRecomendation"
+        [typeaheadAsync]="true"
+        [typeahead]="dataSourceRecomendation"
+        (typeaheadOnSelect)="typeaheadOnSelectRecomendation($event, i)"
+        (typeaheadLoading)="changeTypeaheadLoadingRecomendation($event)"
+        (typeaheadNoResults)="changeTypeaheadNoResultsRecomendation($event)"
+        [typeaheadScrollable]="true"
+        [typeaheadOptionsInScrollableView]="5"
+        [typeaheadHideResultsOnBlur]="false"
+        typeaheadMinLength="3"
+        typeaheadWaitMs="1000"
+        typeaheadOptionField="name"
+      />
+      <pg-progress
+        type="bar"
+        indeterminate="false"
+        color="complete"
+        class="m-0 mt--3"
+        *ngIf="typeaheadLoadingRecomendation"
+      ></pg-progress>
+      <div class="alert alert-warning" *ngIf="typeaheadNoResultsRecomendation">
+          No encontramos resultados
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="form-group">
+        <label for="posologiaValue_{{ i }}">Posología:</label>
+        <div class="row">
+          <div class="col-4 pr-1">
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="item.posology.value"
+              id="posologyValue_{{ i }}"
+              name="posologyValue_{{ i }}"
+            />
+          </div>
+          <div class="col-8 pl-1">
+            <!-- {{item.medication.composition.medicationForm.desc}} -->
+            <select class="custom-select" [(ngModel)]="item.posology.unit">
+              <option
+                [ngValue]="item"
+                *ngFor="
+                  let item of item.medication.composition.medicationForm
+                "
+                >{{ item.desc }}</option
+              >
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="form-group">
+        <label for="frecuencyValue_{{ i }}">Cada (Horas):</label>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="item.frecuency.value"
+          id="frecuencyValue_{{ i }}"
+          name="frecuencyValue_{{ i }}"
+        />
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="durationValue_{{ i }}">Duración:</label>
+        <div class="">
+          <div class="row">
+            <div class="col-3 pr-1" *ngIf="item.duration.unit == 'Diario'">
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="item.duration.value"
+                id="durationValue_{{ i }}"
+                name="durationValue_{{ i }}"
+              />
+            </div>
+            <div
+              class="pl-1"
+              [ngClass]="{
+                'col-9': item.duration.unit == 'Diario',
+                'col-12': item.duration.unit != 'Diario'
+              }"
+            >
+              <div
+                class="btn-group full-width"
+                btnRadioGroup
+                [(ngModel)]="item.duration.unit"
+              >
+                <label
+                  class="btn btn-primary"
+                  btnRadio="{{ item.code }}"
+                  tabindex="0"
+                  role="button"
+                  *ngFor="let item of durationType"
+                  >{{ item.label }}</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <div class="form-group">
+        <label for="dateStart_{{ i }}">Inicio Tratamiento:</label>
+        <!-- <input
+          type="date"
+          class="form-control"
+          id="dateStart_{{ i }}"
+          name="dateStart_{{ i }}"
+          [(ngModel)]="item.indicationStartDate"
+        /> -->
+        <input
+          class="form-control"
+          #datepickerMDY="bsDatepicker"
+          bsDatepicker
+          [(ngModel)]="item.indicationStartDate"
+          [minDate]="minDate"
+          [bsConfig]="{
+            dateInputFormat: 'DD/MM/YYYY',
+            containerClass: 'theme-dark-blue',
+            showWeekNumbers: false,
+            selectFromOtherMonth: true
+          }"
+        />
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="form-group">
+        <label for="observations_{{ i }}">Observaciones:</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="item.observations"
+          id="observations_{{ i }}"
+          name="observations_{{ i }}"
+        />
+      </div>
+    </div>
+  </div>
+</li>

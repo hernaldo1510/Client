@@ -70,7 +70,7 @@ export class RmeService {
         value: ''
       },
       observations: '',
-      commercialRecomendation: {name: 'lala', id: 1},
+      commercialRecomendation: false,
       indicationStartDate: d
     };
 

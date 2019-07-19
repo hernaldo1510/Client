@@ -15,6 +15,7 @@ import { SharedModule } from '@app/@pages/components/shared.module';
 import { BlockPatientComponent } from './block-patient/block-patient.component';
 import { pgCardModule } from '@app/@pages/components/card/card.module';
 import { BlockProfessionalComponent } from './block-professional/block-professional.component';
+import { BlockMedicationRecipeComponent } from './block-medication-recipe/block-medication-recipe.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,6 @@ import { BlockProfessionalComponent } from './block-professional/block-professio
     ProgressModule,
     FontAwesomeModule
   ],
-  declarations: [NewComponent, BlockRecipeComponent, BlockFrequentMedComponent, BlockPatientComponent, BlockProfessionalComponent]
+  declarations: [NewComponent, BlockRecipeComponent, BlockFrequentMedComponent, BlockPatientComponent, BlockProfessionalComponent, BlockMedicationRecipeComponent]
 })
 export class RmeModule { }

@@ -21,10 +21,10 @@ export class BlockMedicationRecipeComponent implements OnInit {
   @Input() item: any;
   @Input() index: number;
 
-  asyncSelectedRecomendation: string;
-  typeaheadLoadingRecomendation: boolean;
-  typeaheadNoResultsRecomendation: boolean;
-  dataSourceRecomendation: Observable<any>;
+  asyncSelectedRecommendation: string;
+  typeaheadLoadingRecommendation: boolean;
+  typeaheadNoResultsRecommendation: boolean;
+  dataSourceRecommendation: Observable<any>;
   minDate = new Date();
   frecuencyUnit = [];
   durationType = [];
@@ -41,24 +41,24 @@ export class BlockMedicationRecipeComponent implements OnInit {
     this.frecuencyUnit = this.apiRme.frecuencyUnit;
     this.durationType = this.apiRme.durationType;
     this.posologyType = this.apiRme.posologyType;
-    this.dataSourceRecomendation = Observable.create((observer: any) => {
-      observer.next(this.asyncSelectedRecomendation);
+    this.dataSourceRecommendation = Observable.create((observer: any) => {
+      observer.next(this.asyncSelectedRecommendation);
     }).pipe(
       mergeMap((token: string) => this.apiMed.getByComercialName$(token))
     );
   }
 
-  changeTypeaheadLoadingRecomendation(e: boolean): void {
-    this.typeaheadLoadingRecomendation = e;
+  changeTypeaheadLoadingRecommendation(e: boolean): void {
+    this.typeaheadLoadingRecommendation = e;
   }
 
-  typeaheadOnSelectRecomendation(e: TypeaheadMatch): void {
-    this.asyncSelectedRecomendation = '';
-    this.apiRme.setComercialRecomendation(this.index, e.item);
+  typeaheadOnSelectRecommendation(e: TypeaheadMatch): void {
+    this.asyncSelectedRecommendation = '';
+    this.apiRme.setComercialRecommendation(this.index, e.item);
   }
 
-  changeTypeaheadNoResultsRecomendation(event: boolean): void {
-    this.typeaheadNoResultsRecomendation = event;
+  changeTypeaheadNoResultsRecommendation(event: boolean): void {
+    this.typeaheadNoResultsRecommendation = event;
   }
 
   delMedication() {

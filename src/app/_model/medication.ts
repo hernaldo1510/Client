@@ -14,5 +14,5 @@ export interface Medication {
     };
     observations: string;
     indicationStartDate: Date;
-    commercialRecomendation: any;
+    commercialRecommendation: any;
 }

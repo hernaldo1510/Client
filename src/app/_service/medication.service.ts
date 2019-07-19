@@ -87,7 +87,6 @@ export class MedicationService {
         )
         .pipe(
           map((res: any) => {
-            console.log(res);
             return res;
           })
         )

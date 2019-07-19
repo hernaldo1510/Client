@@ -53,11 +53,13 @@ export class RmeService {
     let formSel: any;
     if (medAux.composition.medicationFormSelected !== undefined) {
       formSel = medAux.composition.medicationForm.find(
-        e => e.id === medAux.composition.medicationFormSelected.id
+        (e: any) => e.id === medAux.composition.medicationFormSelected.id
       );
     } else {
       formSel = medAux.composition.medicationForm[0];
     }
+
+    delete medAux.checked;
 
     const d = new Date();
 
@@ -70,7 +72,7 @@ export class RmeService {
         value: ''
       },
       observations: '',
-      commercialRecomendation: false,
+      commercialRecommendation: false,
       indicationStartDate: d
     };
 
@@ -85,8 +87,8 @@ export class RmeService {
     this.medList$.next(currentValue);
   }
 
-  setComercialRecomendation(i: number, r: any) {
-    this.medList$.getValue()[i].commercialRecomendation = r;
+  setComercialRecommendation(i: number, r: any) {
+    this.medList$.getValue()[i].commercialRecommendation = r;
   }
 
   setMedicationHighFrequency(data: any) {
@@ -149,7 +151,7 @@ export class RmeService {
         duration: m.duration.value,
         durationUnit: 'Días',
         observation: m.observations,
-        commercialRecomendation: m.commercialRecomendation,
+        commercialRecommendation: m.commercialRecommendation,
         indicationStartDate: dStartAux
       };
       data.indications.push(med);
@@ -163,19 +165,14 @@ export class RmeService {
         //   data
         // )
         .post(
-          `https://3mcqzhr3x4.execute-api.us-east-1.amazonaws.com/rme-dev/${
-            environment.rme
-          }`,
+          `${environment.baseUrl}${environment.rme}`,
           data
         )
         .pipe(
           map((res: any) => {
-            // console.log(res);
             return res;
           })
         )
-        // solo para pruebas
-        // .pipe(delay(2000))
         .pipe(catchError(error => this._handleError(error)))
     );
   }

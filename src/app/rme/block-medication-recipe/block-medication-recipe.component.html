@@ -3,7 +3,7 @@
     <div class="flex-fill form-inline">
       <h5 class="mb-0 mt-0 inline">
         <span class="semi-bold">{{ item.medication.name | titlecase }}</span>
-        <span *ngIf="item.commercialRecomendation" class="m-0 small light"> / {{item.commercialRecomendation.name | titlecase}} <button class="btn btn-rounded btn-xs" (click)="item.commercialRecomendation = false"><fa-icon [icon]="['fas', 'times']"></fa-icon></button></span>
+        <span *ngIf="item.commercialRecommendation" class="m-0 small light"> / {{item.commercialRecommendation.name | titlecase}} <button class="btn btn-rounded btn-xs" (click)="item.commercialRecommendation = false"><fa-icon [icon]="['fas', 'times']"></fa-icon></button></span>
       </h5>
       
     </div>
@@ -12,7 +12,7 @@
         type="button"
         class="close"
         aria-label="Close"
-        (click)="delMedication(i)"
+        (click)="delMedication()"
         class="btn btn-rounded"
       >
         <span aria-hidden="true">
@@ -21,17 +21,17 @@
       </button>
     </div>
   </div>
-  <div class="row my-2" *ngIf="!item.commercialRecomendation">
+  <div class="row my-2" *ngIf="!item.commercialRecommendation">
     <div class="col-12">
       <input
         class="form-control form-control-sm input-sm inline w-100"
         placeholder="Recomendación"
-        [(ngModel)]="asyncSelectedRecomendation"
+        [(ngModel)]="asyncSelectedRecommendation"
         [typeaheadAsync]="true"
-        [typeahead]="dataSourceRecomendation"
-        (typeaheadOnSelect)="typeaheadOnSelectRecomendation($event, i)"
-        (typeaheadLoading)="changeTypeaheadLoadingRecomendation($event)"
-        (typeaheadNoResults)="changeTypeaheadNoResultsRecomendation($event)"
+        [typeahead]="dataSourceRecommendation"
+        (typeaheadOnSelect)="typeaheadOnSelectRecommendation($event, i)"
+        (typeaheadLoading)="changeTypeaheadLoadingRecommendation($event)"
+        (typeaheadNoResults)="changeTypeaheadNoResultsRecommendation($event)"
         [typeaheadScrollable]="true"
         [typeaheadOptionsInScrollableView]="5"
         [typeaheadHideResultsOnBlur]="false"
@@ -44,9 +44,9 @@
         indeterminate="false"
         color="complete"
         class="m-0 mt--3"
-        *ngIf="typeaheadLoadingRecomendation"
+        *ngIf="typeaheadLoadingRecommendation"
       ></pg-progress>
-      <div class="alert alert-warning" *ngIf="typeaheadNoResultsRecomendation">
+      <div class="alert alert-warning" *ngIf="typeaheadNoResultsRecommendation">
           No encontramos resultados
         </div>
     </div>
@@ -54,15 +54,16 @@
   <div class="row">
     <div class="col-4">
       <div class="form-group">
-        <label for="posologiaValue_{{ i }}">Posología:</label>
+        <label for="posologiaValue">Posología:</label>
         <div class="row">
           <div class="col-4 pr-1">
             <input
               type="number"
               class="form-control"
               [(ngModel)]="item.posology.value"
-              id="posologyValue_{{ i }}"
-              name="posologyValue_{{ i }}"
+              id="posologyValue"
+              name="posologyValue"
+              required
             />
           </div>
           <div class="col-8 pl-1">
@@ -82,19 +83,19 @@
     </div>
     <div class="col-2">
       <div class="form-group">
-        <label for="frecuencyValue_{{ i }}">Cada (Horas):</label>
+        <label for="frecuencyValue">Cada (Horas):</label>
         <input
           type="number"
           class="form-control"
           [(ngModel)]="item.frecuency.value"
-          id="frecuencyValue_{{ i }}"
-          name="frecuencyValue_{{ i }}"
+          id="frecuencyValue"
+          name="frecuencyValue"
         />
       </div>
     </div>
     <div class="col-6">
       <div class="form-group">
-        <label for="durationValue_{{ i }}">Duración:</label>
+        <label for="durationValue">Duración:</label>
         <div class="">
           <div class="row">
             <div class="col-3 pr-1" *ngIf="item.duration.unit == 'Diario'">
@@ -102,8 +103,8 @@
                 type="number"
                 class="form-control"
                 [(ngModel)]="item.duration.value"
-                id="durationValue_{{ i }}"
-                name="durationValue_{{ i }}"
+                id="durationValue"
+                name="durationValue"
               />
             </div>
             <div
@@ -136,12 +137,12 @@
   <div class="row">
     <div class="col-3">
       <div class="form-group">
-        <label for="dateStart_{{ i }}">Inicio Tratamiento:</label>
+        <label for="dateStart">Inicio Tratamiento:</label>
         <!-- <input
           type="date"
           class="form-control"
-          id="dateStart_{{ i }}"
-          name="dateStart_{{ i }}"
+          id="dateStart"
+          name="dateStart"
           [(ngModel)]="item.indicationStartDate"
         /> -->
         <input
@@ -161,13 +162,13 @@
     </div>
     <div class="col-9">
       <div class="form-group">
-        <label for="observations_{{ i }}">Observaciones:</label>
+        <label for="observations">Observaciones:</label>
         <input
           type="text"
           class="form-control"
           [(ngModel)]="item.observations"
-          id="observations_{{ i }}"
-          name="observations_{{ i }}"
+          id="observations"
+          name="observations"
         />
       </div>
     </div>

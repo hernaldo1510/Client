@@ -11,6 +11,6 @@ export const environment = {
   medicationComercialName: 'findByComercialName',
   medicationActiveIngredient: 'findByActiveIngredient',
   frecuencyUnit: ['Horas'],
-  durationType: [{code: 'Diario', label: 'Dias'}, {code: 'Permanent', label: 'Permanente'}, {code: 'SOS', label: 'SOS'}],
+  durationType: [{code: 'Diario', label: 'Dias'}, {code: 'Permanente', label: 'Permanente'}, {code: 'SOS', label: 'SOS'}],
   posologyType: ['Comprimidos', 'Gotas', 'MG']
 };

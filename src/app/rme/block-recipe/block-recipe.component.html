@@ -30,29 +30,54 @@
     <li class="list-group-item" *ngFor="let item of receta | async; index as i">
       <div class="d-flex">
         <div class="flex-fill form-inline">
-          <h5 class="mb-0 mt-0 w-100">
-            {{ item.medication.name }} /
-            <input
-              type="text"
-              class="form-control form-control-sm input-sm inline w-50"
-              [(ngModel)]="item.recomendation"
-              id="recomendation_{{ i }}"
-              name="recomendation_{{ i }}"
-              placeholder="Recomendación"
-            />
+          <h5 class="mb-0 mt-0 inline">
+            <span class="semi-bold">{{ item.medication.name | titlecase }}</span>
+            <span *ngIf="item.commercialRecomendation" class="m-0 small light"> / {{item.commercialRecomendation.name | titlecase}} <button class="btn btn-rounded btn-xs" (click)="item.commercialRecomendation = false"><fa-icon [icon]="['fas', 'times']"></fa-icon></button></span>
           </h5>
+          
         </div>
-        <div class="ml-auto">
+        <div class="ml-1">
           <button
             type="button"
             class="close"
             aria-label="Close"
             (click)="delMedication(i)"
+            class="btn btn-rounded"
           >
             <span aria-hidden="true">
-              <fa-icon [icon]="['far', 'trash-alt']" size="xs"></fa-icon>
+              <fa-icon [icon]="['far', 'trash-alt']"></fa-icon>
             </span>
           </button>
+        </div>
+      </div>
+      <div class="row my-2" *ngIf="!item.commercialRecomendation">
+        <div class="col-12">
+          <input
+            class="form-control form-control-sm input-sm inline w-100"
+            placeholder="Recomendación"
+            [(ngModel)]="asyncSelectedRecomendation"
+            [typeaheadAsync]="true"
+            [typeahead]="dataSourceRecomendation"
+            (typeaheadOnSelect)="typeaheadOnSelectRecomendation($event, i)"
+            (typeaheadLoading)="changeTypeaheadLoadingRecomendation($event)"
+            (typeaheadNoResults)="changeTypeaheadNoResultsRecomendation($event)"
+            [typeaheadScrollable]="true"
+            [typeaheadOptionsInScrollableView]="5"
+            [typeaheadHideResultsOnBlur]="false"
+            typeaheadMinLength="3"
+            typeaheadWaitMs="1000"
+            typeaheadOptionField="name"
+          />
+          <pg-progress
+            type="bar"
+            indeterminate="false"
+            color="complete"
+            class="m-0 mt--3"
+            *ngIf="typeaheadLoadingRecomendation"
+          ></pg-progress>
+          <div class="alert alert-warning" *ngIf="typeaheadNoResultsRecomendation">
+              No encontramos resultados
+            </div>
         </div>
       </div>
       <div class="row">
@@ -141,12 +166,25 @@
         <div class="col-3">
           <div class="form-group">
             <label for="dateStart_{{ i }}">Inicio Tratamiento:</label>
-            <input
+            <!-- <input
               type="date"
               class="form-control"
               id="dateStart_{{ i }}"
               name="dateStart_{{ i }}"
-              [(ngModel)]="item.startTreatment"
+              [(ngModel)]="item.indicationStartDate"
+            /> -->
+            <input
+              class="form-control"
+              #datepickerMDY="bsDatepicker"
+              bsDatepicker
+              [(ngModel)]="item.indicationStartDate"
+              [minDate]="minDate"
+              [bsConfig]="{
+                dateInputFormat: 'DD/MM/YYYY',
+                containerClass: 'theme-dark-blue',
+                showWeekNumbers: false,
+                selectFromOtherMonth: true
+              }"
             />
           </div>
         </div>

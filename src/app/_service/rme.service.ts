@@ -50,12 +50,6 @@ export class RmeService {
   }
 
   addMedication(medAux: any) {
-    // const medNew = {
-    //   name: medAux.name,
-    //   snomedId: medAux.snomedId
-    // };
-
-    // console.log(medAux, medAux.composition.medicationForm, medAux.composition.medicationFormSelected);
     let formSel: any;
     if (medAux.composition.medicationFormSelected !== undefined) {
       formSel = medAux.composition.medicationForm.find(
@@ -64,15 +58,8 @@ export class RmeService {
     } else {
       formSel = medAux.composition.medicationForm[0];
     }
-    // console.log(medAux.composition.medicationForm.find(e => e.id === medAux.composition.medicationFormSelected.id));
 
     const d = new Date();
-    const startTreatmentAux =
-      d.getFullYear() +
-      '-' +
-      ('0' + (d.getMonth() + 1)).slice(-2) +
-      '-' +
-      ('0' + d.getDate()).slice(-2);
 
     const med: Medication = {
       medication: medAux,
@@ -83,10 +70,9 @@ export class RmeService {
         value: ''
       },
       observations: '',
-      startTreatment: startTreatmentAux
+      commercialRecomendation: {name: 'lala', id: 1},
+      indicationStartDate: d
     };
-
-    // console.log(med);
 
     const currentValue = this.medList$.value;
     const updatedValue = [...currentValue, med];
@@ -97,6 +83,10 @@ export class RmeService {
     const currentValue = this.medList$.value;
     const deleted = currentValue.splice(i, 1);
     this.medList$.next(currentValue);
+  }
+
+  setComercialRecomendation(i: number, r: any) {
+    this.medList$.getValue()[i].commercialRecomendation = r;
   }
 
   setMedicationHighFrequency(data: any) {
@@ -125,12 +115,12 @@ export class RmeService {
       d.getFullYear();
 
     const data = {
-      id: +d,
+      id: '' + Date.now(),
       preview: pw,
       appointmentId: this.appointmentId,
       creation_day: creationDateAux,
       patient: this.patient$.getValue(),
-      professional: {...this.professional$.getValue()},
+      professional: { ...this.professional$.getValue() },
       indications: []
     };
 
@@ -143,6 +133,12 @@ export class RmeService {
 
     this.medList$.getValue().forEach(m => {
       m.medication.composition.medicationFormSelected = m.posology.unit;
+      const dStartAux =
+        ('0' + m.indicationStartDate.getDate()).slice(-2) +
+        '/' +
+        ('0' + (m.indicationStartDate.getMonth() + 1)).slice(-2) +
+        '/' +
+        m.indicationStartDate.getFullYear();
       const med = {
         medication: m.medication,
         units: m.posology.value,
@@ -152,7 +148,9 @@ export class RmeService {
         frecuencyUnit: 'Horas',
         duration: m.duration.value,
         durationUnit: 'Días',
-        observation: m.observations
+        observation: m.observations,
+        commercialRecomendation: m.commercialRecomendation,
+        indicationStartDate: dStartAux
       };
       data.indications.push(med);
     });

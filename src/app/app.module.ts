@@ -58,9 +58,9 @@ import {
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faTrashAlt, faWindowClose } from '@fortawesome/free-regular-svg-icons';
 import { faTimes, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-library.add(faTrashAlt, faTimes, faChevronLeft);
+library.add(faTrashAlt, faTimes, faChevronLeft, faWindowClose);
 
 // Pages Globaly required Components - Optional
 import { pgTabsModule } from './@pages/components/tabs/tabs.module';
@@ -77,6 +77,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { BlankCorporateComponent } from './@pages/layouts/blank-corporate/blank-corporate.component';
 import { BlankSimplywhiteComponent } from './@pages/layouts/blank-simplywhite/blank-simplywhite.component';
 import { BlankCasualComponent } from './@pages/layouts/blank-casual/blank-casual.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -137,7 +138,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     pgTabsModule,
     PerfectScrollbarModule,
     pgSwitchModule,
-    QuillModule
+    QuillModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     QuickviewService,

@@ -13,5 +13,6 @@ export interface Medication {
         value: string
     };
     observations: string;
-    startTreatment: string;
+    indicationStartDate: Date;
+    commercialRecomendation: any;
 }

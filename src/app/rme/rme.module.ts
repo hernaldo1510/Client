@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { ButtonsModule, TypeaheadModule, ModalModule } from 'ngx-bootstrap';
+import { ButtonsModule, TypeaheadModule, ModalModule, BsDatepickerModule} from 'ngx-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { ProgressModule } from '@app/_blocks/progress/progress.module';
@@ -24,6 +24,7 @@ import { BlockProfessionalComponent } from './block-professional/block-professio
     TypeaheadModule.forRoot(),
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     SharedModule,
     pgCardModule,
     ProgressModule,

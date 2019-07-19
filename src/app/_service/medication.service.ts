@@ -23,7 +23,7 @@ export class MedicationService {
     return (
       this.http
         .get(
-          `${environment.baseUrl}/${
+          `${environment.baseUrl}${
             environment.medication
           }/${environment.medicationHighFrequency}?professionalId=${id}`
         )
@@ -52,7 +52,7 @@ export class MedicationService {
     return (
       this.http
         .get(
-          `${environment.baseUrl}/${
+          `${environment.baseUrl}${
             environment.medication
           }/${environment.medicationActiveIngredient}?active_ingredient=${name}`
         )
@@ -81,13 +81,14 @@ export class MedicationService {
     return (
       this.http
         .get(
-          `${environment.baseUrl}/${
+          `${environment.baseUrl}${
             environment.medication
-          }/${environment.medicationComercialName}?comercial_name=${name}`
+          }/${environment.medicationComercialName}?comercialName=${name}`
         )
         .pipe(
           map((res: any) => {
-            return res.body;
+            console.log(res);
+            return res;
           })
         )
         // solo para pruebas

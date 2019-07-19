@@ -46,7 +46,7 @@
           Vista previa
         </button>
         <button class="btn btn-primary" (click)="save(false)">
-          Guardar y Firmar
+          Firmar y Enviar
         </button>
       </div>
     </div>
@@ -109,8 +109,12 @@
       </div>
       <div class="modal-footer py-2" *ngIf="preview">
         <div class="w-100 d-flex flex-row">
-          <button class="btn btn-primary" (click)="save(false)" [disabled]="isLoadingModal">
-            Guardar y Firmar
+          <button
+            class="btn btn-primary"
+            (click)="save(false)"
+            [disabled]="isLoadingModal"
+          >
+            Firmar y Enviar
           </button>
         </div>
       </div>

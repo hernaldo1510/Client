@@ -8,6 +8,7 @@ import {
   Input,
   ViewEncapsulation
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RootLayout } from '../root/root.component';
 import { RmeService } from '@app/_service/rme.service';
 import { Router } from '@angular/router';
@@ -296,16 +297,24 @@ export class CondensedComponent extends RootLayout implements OnInit {
 
   professional: Observable<any>;
   // professional: Observable<any>;
+  urlProfile;
 
   constructor(
     private apiRme: RmeService,
     toggler: pagesToggleService,
-    router: Router
+    router: Router,
+    private sanitizer: DomSanitizer
   ) {
     super(toggler, router);
   }
 
   ngOnInit() {
     this.professional = this.apiRme.professional;
+    this.professional.subscribe(res => {
+      const url = `https://proxy.prod.ucchristus.procloudhub.com/AWAPatients/Physicians(${
+        res.id
+      })/GetPicture`;
+      this.urlProfile = this.sanitizer.bypassSecurityTrustUrl(url);
+    });
   }
 }

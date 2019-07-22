@@ -151,7 +151,7 @@ export class RmeService {
         duration: m.duration.value,
         durationUnit: 'Días',
         observation: m.observations,
-        commercialRecommendation: m.commercialRecommendation,
+        commercialRecommendation: (m.commercialRecommendation === false) ? null : m.commercialRecommendation,
         indicationStartDate: dStartAux
       };
       data.indications.push(med);

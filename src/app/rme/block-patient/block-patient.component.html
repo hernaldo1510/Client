@@ -10,10 +10,10 @@
   <ng-template #CardTitle>Paciente</ng-template>
   <ng-template #CardExtraControls></ng-template>
   <div *ngIf="patient && patient != -1">
-    <h4 class="my-0">{{ patient.firstName + ' ' + patient.lastName }}</h4>
+    <h4 class="my-0">{{ (patient.firstName + ' ' + patient.lastName) | titlecase }}</h4>
     <div class="mb-2">
       <span class="badge badge-info m-r-5">{{ patient.run }}</span>
-      <span class="badge badge-info m-r-5">{{ patient.age }} años</span>
+      <span class="badge badge-info m-r-5">{{ patient.age }}</span>
       <span class="badge badge-info">{{ patient.genre }} </span>
     </div>
     <div>

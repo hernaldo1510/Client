@@ -21,7 +21,9 @@ export class BlockProfessionalComponent implements OnInit {
     this.professional$.subscribe(res => {
       if (res) {
         this.professional = res;
-        this.professional.specialitiesSel = res.specialities[0] || {};
+        if (res.specialities) {
+          this.professional.specialitiesSel = res.specialities[0] || {};
+        }
       }
     });
   }

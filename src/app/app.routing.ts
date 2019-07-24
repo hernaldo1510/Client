@@ -29,11 +29,11 @@ export const AppRoutes: Routes = [
     }],
   },
   {
-    path: 'casual',
+    path: 'forbidden',
     data: {
-      breadcrumb: 'Home'
+      breadcrumb: 'Forbidden'
     },
-    component: CasualLayout
+    component: CondensedComponent
   },
   {
     path: 'executive',

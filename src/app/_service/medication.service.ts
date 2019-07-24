@@ -23,18 +23,21 @@ export class MedicationService {
     return (
       this.http
         .get(
-          `${environment.baseUrl}${
-            environment.medication
-          }/${environment.medicationHighFrequency}?professionalId=${id}`
+          `${environment.baseUrl}${environment.medication}/${
+            environment.medicationHighFrequency
+          }?professionalId=${id}`
         )
         .pipe(
           map((res: any) => {
             res.map((m: any) => {
               if (m.composition && m.composition.medicationForm) {
-                if (isObject(m.composition.medicationForm) && !isArray(m.composition.medicationForm)) {
+                if (
+                  isObject(m.composition.medicationForm) &&
+                  !isArray(m.composition.medicationForm)
+                ) {
                   m.composition.medicationForm = [m.composition.medicationForm];
                 }
-                m.composition.medicationForm.map( (mf: any) => {
+                m.composition.medicationForm.map((mf: any) => {
                   mf.desc = this.titleCaseWord(mf.desc);
                 });
               }
@@ -52,9 +55,9 @@ export class MedicationService {
     return (
       this.http
         .get(
-          `${environment.baseUrl}${
-            environment.medication
-          }/${environment.medicationActiveIngredient}?active_ingredient=${name}`
+          `${environment.baseUrl}${environment.medication}/${
+            environment.medicationActiveIngredient
+          }?active_ingredient=${name}`
         )
         .pipe(
           map((res: any) => {
@@ -63,7 +66,7 @@ export class MedicationService {
                 // if (isObject(m.composition.medicationForm)) {
                 //   m.composition.medicationForm = [m.composition.medicationForm];
                 // }
-                m.composition.medicationForm.map( (mf: any) => {
+                m.composition.medicationForm.map((mf: any) => {
                   mf.desc = this.titleCaseWord(mf.desc);
                 });
               }
@@ -81,9 +84,9 @@ export class MedicationService {
     return (
       this.http
         .get(
-          `${environment.baseUrl}${
-            environment.medication
-          }/${environment.medicationComercialName}?comercialName=${name}`
+          `${environment.baseUrl}${environment.medication}/${
+            environment.medicationComercialName
+          }?comercialName=${name}`
         )
         .pipe(
           map((res: any) => {

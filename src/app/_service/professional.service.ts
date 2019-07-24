@@ -15,11 +15,7 @@ export class ProfessionalService {
   public getById$(id: string) {
     return (
       this.http
-        .get(
-          `${environment.baseUrl}/${
-            environment.professional
-          }/${id}`
-        )
+        .get(`${environment.baseUrl}${environment.professional}/${id}`)
         .pipe(
           map((res: any) => {
             // if (!isArray(res.speciality)) {

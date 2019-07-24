@@ -9,7 +9,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 // Routing
@@ -78,6 +78,7 @@ import { BlankCorporateComponent } from './@pages/layouts/blank-corporate/blank-
 import { BlankSimplywhiteComponent } from './@pages/layouts/blank-simplywhite/blank-simplywhite.component';
 import { BlankCasualComponent } from './@pages/layouts/blank-casual/blank-casual.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AuthInterceptorService } from './_service/auth-interceptor.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -148,6 +149,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
     // {
     //   provide: HAMMER_GESTURE_CONFIG,
     //   useClass: AppHammerConfig

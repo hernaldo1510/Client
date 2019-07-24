@@ -13,11 +13,7 @@ export class PatientService {
   public getById$(id: string) {
     return (
       this.http
-        .get(
-          `${environment.baseUrl}/${
-            environment.patient
-          }/${id}`
-        )
+        .get(`${environment.baseUrl}${environment.patient}/${id}`)
         // .pipe(
         //   map((res: any) => {
         //     return res.body;

@@ -28,7 +28,7 @@
             [ngValue]="item"
             *ngFor="let item of professional.specialities"
 
-            >{{ item.name }}</option
+            >{{ item.name | titlecase }}</option
           >
         </select>
       </div>

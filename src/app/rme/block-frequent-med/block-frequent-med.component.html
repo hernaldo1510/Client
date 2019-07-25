@@ -11,23 +11,27 @@
 >
   <ng-template #CardTitle>Medicamentos frecuentes</ng-template>
   <ng-template #CardExtraControls></ng-template>
-  <!-- <div class="card-body"> -->
-  <ul>
-    <li *ngFor="let item of medicationHighFrequency; index as i">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        [(ngModel)]="item.checked"
-        id="fre_{{ i }}"
-      />
-      <label class="form-check-label" for="fre_{{ i }}">
-        {{ item.name | titlecase }}
-      </label>
-    </li>
-  </ul>
-  <button class="btn btn-complete" (click)="addToRme()">
-    <fa-icon [icon]="['fas', 'chevron-left']" class="m-r-5"></fa-icon>
-    Agregar a receta
-  </button>
-  <!-- </div> -->
+  <div *ngIf="medicationHighFrequency && medicationHighFrequency != -1">
+    <ul>
+      <li *ngFor="let item of medicationHighFrequency; index as i">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [(ngModel)]="item.checked"
+          id="fre_{{ i }}"
+        />
+        <label class="form-check-label" for="fre_{{ i }}">
+          {{ item.name | titlecase }}
+        </label>
+      </li>
+    </ul>
+    <button
+      class="btn btn-complete"
+      (click)="addToRme()"
+      *ngIf="medicationHighFrequency"
+    >
+      <fa-icon [icon]="['fas', 'chevron-left']" class="m-r-5"></fa-icon>
+      Agregar a receta
+    </button>
+  </div>
 </pgcard>

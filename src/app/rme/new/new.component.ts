@@ -40,39 +40,44 @@ export class NewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const pro = this.route.snapshot.paramMap.get('pro');
+    // const pro = this.route.snapshot.paramMap.get('pro');
     const pat = this.route.snapshot.paramMap.get('pat');
     const appoId = this.route.snapshot.paramMap.get('appo');
-    const token = this.route.snapshot.paramMap.get('token');
+    // const token = this.route.snapshot.paramMap.get('token');
     if (appoId) {
       this.apiRme.setAppointment(appoId);
     }
-    if (token) {
-      this.auth.setToken(token);
-      this.professional$ = this.apiPro.getById$(pro);
-      this.patient$ = this.apiPat.getById$(pat);
-      this.medFreq$ = this.apiMed.getHighFrequencyByProfessional$(pro);
-      this.professional = this.apiRme.professional;
-      this.professional$.subscribe(
-        res => {
-          this.apiRme.setProfessional(res);
-        },
-        err => {
-          this.apiRme.setProfessional(-1);
-        }
-      );
-      this.patient$.subscribe(
-        res => {
-          this.apiRme.setPatient(res);
-        },
-        err => {
-          this.apiRme.setPatient(-1);
-        }
-      );
-      this.medFreq$.subscribe(res => {
-        this.apiRme.setMedicationHighFrequency(res);
-      }, err => {});
-    }
+    // if (token) {
+    // this.auth.setToken(token);
+    // this.professional$ = this.apiPro.getById$(pro);
+    this.patient$ = this.apiPat.getById$(pat);
+    this.professional = this.apiRme.professional;
+    this.professional.subscribe(res => {
+      this.medFreq$ = this.apiMed.getHighFrequencyByProfessional$(res._run);
+    });
+    // this.apiRme.professional.subscribe(
+    //   res => {
+    //     this.apiRme.setProfessional(res);
+    //     // this.medFreq$ = this.apiMed.getHighFrequencyByProfessional$(res._run);
+    //   },
+    //   err => {
+    //     this.apiRme.setProfessional(-1);
+    //   }
+    // );
+    this.patient$.subscribe(
+      res => {
+        this.apiRme.setPatient(res);
+      },
+      err => {
+        this.apiRme.setPatient(-1);
+      }
+    );
+    this.medFreq$.subscribe(res => {
+      this.apiRme.setMedicationHighFrequency(res);
+    }, err => {
+      this.apiRme.setMedicationHighFrequency(-1);
+    });
+    // }
   }
 
   hasMedications() {

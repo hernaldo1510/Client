@@ -297,7 +297,7 @@ export class CondensedComponent extends RootLayout implements OnInit {
 
   professional: Observable<any>;
   // professional: Observable<any>;
-  urlProfile;
+  urlProfile: any;
 
   constructor(
     private apiRme: RmeService,

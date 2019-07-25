@@ -22,8 +22,4 @@ export class BlockPatientComponent implements OnInit {
       this.patient = res;
     });
   }
-
-  updateEmail(event) {
-    console.log(event);
-  }
 }

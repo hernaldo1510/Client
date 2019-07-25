@@ -4,10 +4,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  token = false;
+  token: any = false;
   constructor() {}
 
   getToken(): any {
+    if (this.token === false) {
+      const tk = localStorage.getItem('token');
+      if (tk !== null) {
+        this.token = tk;
+      }
+    }
     return this.token;
   }
 
@@ -17,5 +23,6 @@ export class AuthService {
 
   setToken(tk: any) {
     this.token = tk;
+    localStorage.setItem('token', tk);
   }
 }

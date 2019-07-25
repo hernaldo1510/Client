@@ -1,4 +1,12 @@
-import { Component, OnInit, OnDestroy, ViewChild, HostListener, AfterViewInit,ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  HostListener,
+  AfterViewInit,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'blank-layouts',
@@ -7,11 +15,8 @@ import { Component, OnInit, OnDestroy, ViewChild, HostListener, AfterViewInit,Vi
   encapsulation: ViewEncapsulation.None
 })
 export class BlankComponent implements OnInit {
-
   @ViewChild('root') root;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

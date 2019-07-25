@@ -15,13 +15,6 @@ import {
 export const AppRoutes: Routes = [
   {
     path: '',
-    data: {
-      breadcrumb: 'Home'
-    },
-    component: CondensedComponent
-  },
-  {
-    path: '',
     component: CondensedComponent,
     children: [{
       path: 'rme',
@@ -29,31 +22,11 @@ export const AppRoutes: Routes = [
     }],
   },
   {
-    path: 'forbidden',
-    data: {
-      breadcrumb: 'Forbidden'
-    },
-    component: CondensedComponent
-  },
-  {
-    path: 'executive',
-    data: {
-      breadcrumb: 'Home'
-    },
-    component: ExecutiveLayout
-  },
-  {
-    path: 'simplywhite',
-    data: {
-      breadcrumb: 'Home'
-    },
-    component: SimplyWhiteLayout
-  },
-  {
-    path: 'corporate',
-    data: {
-      breadcrumb: 'Home'
-    },
-    component: CorporateLayout
+    path: '',
+    component: BlankComponent,
+    children: [{
+      path: 'session',
+      loadChildren: './session/session.module#SessionModule'
+    }],
   }
 ];

@@ -11,7 +11,7 @@ export class BlockProfessionalComponent implements OnInit {
   isLoading = true;
   professional$: Observable<any>;
   professional: any;
-  message = 'No pudimos cargar el paciente';
+  message = 'No pudimos cargar el profesional';
   patEmail: string;
 
   constructor(private apiRme: RmeService) { }

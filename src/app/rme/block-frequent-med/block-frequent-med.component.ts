@@ -11,7 +11,7 @@ export class BlockFrequentMedComponent implements OnInit {
   isLoading = true;
   medicationHighFrequency$: Observable<any>;
   medicationHighFrequency: any;
-  message = 'No pudimos cargar el paciente';
+  message = 'No pudimos cargar los medicamentos frecuentes';
   patEmail: string;
 
   constructor(private apiRme: RmeService) { }
@@ -19,8 +19,8 @@ export class BlockFrequentMedComponent implements OnInit {
   ngOnInit() {
     this.medicationHighFrequency$ = this.apiRme.medicationHighFrequency;
     this.medicationHighFrequency$.subscribe(res => {
+      console.log(res);
       this.isLoading = false;
-      // console.log(res);
       this.medicationHighFrequency = res;
     });
   }

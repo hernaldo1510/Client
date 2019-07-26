@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   token: any = false;
+  professional: any = false;
   constructor() {}
 
   getToken(): any {
@@ -24,5 +25,20 @@ export class AuthService {
   setToken(tk: any) {
     this.token = tk;
     localStorage.setItem('token', tk);
+  }
+
+  setProfessional(pro: any) {
+    this.professional = pro;
+    localStorage.setItem('professional', pro);
+  }
+
+  getProfessional() {
+    if (this.professional === false) {
+      const pro = localStorage.getItem('professional');
+      if (pro !== null) {
+        this.professional = pro;
+      }
+    }
+    return this.professional;
   }
 }

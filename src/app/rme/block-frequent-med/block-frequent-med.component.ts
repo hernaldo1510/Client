@@ -20,8 +20,10 @@ export class BlockFrequentMedComponent implements OnInit {
     this.medicationHighFrequency$ = this.apiRme.medicationHighFrequency;
     this.medicationHighFrequency$.subscribe(res => {
       console.log(res);
-      this.isLoading = false;
-      this.medicationHighFrequency = res;
+      if (res !== false) {
+        this.isLoading = false;
+        this.medicationHighFrequency = res;
+      }
     });
   }
 
@@ -30,7 +32,7 @@ export class BlockFrequentMedComponent implements OnInit {
     // console.log(toAdd);
     toAdd.forEach(res => {
       // console.log(res);
-      this.apiRme.addMedication(res);
+      this.apiRme.addFrecuent(res);
       res.checked = false;
     });
   }

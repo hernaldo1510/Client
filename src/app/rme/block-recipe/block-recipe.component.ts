@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 import { Observable, of } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { mergeMap } from 'rxjs/operators';
@@ -9,7 +16,27 @@ import { RmeService } from '@app/_service/rme.service';
 @Component({
   selector: 'app-block-recipe',
   templateUrl: './block-recipe.component.html',
-  styleUrls: ['./block-recipe.component.scss']
+  styleUrls: ['./block-recipe.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state(
+        'void',
+        style({
+          opacity: 0
+        })
+      ),
+      transition('void <=> *', animate(400))
+    ]),
+    trigger('fadeIn', [
+      state(
+        'void',
+        style({
+          opacity: 0
+        })
+      ),
+      transition('void => *', animate(400))
+    ])
+  ]
 })
 export class BlockRecipeComponent implements OnInit {
   asyncSelected: string;
@@ -18,10 +45,7 @@ export class BlockRecipeComponent implements OnInit {
   dataSource: Observable<any>;
   receta: Observable<Medication[]>;
 
-  constructor(
-    private apiMed: MedicationService,
-    private apiRme: RmeService
-  ) {}
+  constructor(private apiMed: MedicationService, private apiRme: RmeService) {}
 
   ngOnInit() {
     this.receta = this.apiRme.medList;

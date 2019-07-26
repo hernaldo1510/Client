@@ -9,10 +9,10 @@
   ProgressType="bar"
   MinimalHeader="true"
 >
-  <ng-template #CardTitle>Medicamentos frecuentes</ng-template>
+  <ng-template #CardTitle>Indicaciones frecuentes</ng-template>
   <ng-template #CardExtraControls></ng-template>
   <div *ngIf="medicationHighFrequency && medicationHighFrequency != -1">
-    <ul>
+    <ul class="list-unstyled ml-4">
       <li *ngFor="let item of medicationHighFrequency; index as i">
         <input
           class="form-check-input"
@@ -21,7 +21,14 @@
           id="fre_{{ i }}"
         />
         <label class="form-check-label" for="fre_{{ i }}">
-          {{ item.name | titlecase }}
+          <div>
+            <span class="block bold">{{ item.medication.name | titlecase }}</span>
+            <span class="small">
+              <span *ngIf="item.frecuencyType != 'Diario'">{{item.frecuencyType}}: </span>
+              {{item.units + ' ' + item.unitType}} cada {{ item.frecuency + ' ' + item.frecuencyUnit }}
+              <span *ngIf="item.frecuencyType == 'Diario'">por {{item.duration + ' ' + item.durationUnit}}</span>
+            </span>
+          </div>
         </label>
       </li>
     </ul>

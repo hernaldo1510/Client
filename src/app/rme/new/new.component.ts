@@ -50,34 +50,67 @@ export class NewComponent implements OnInit {
     // if (token) {
     // this.auth.setToken(token);
     // this.professional$ = this.apiPro.getById$(pro);
-    this.patient$ = this.apiPat.getById$(pat);
-    this.professional = this.apiRme.professional;
-    this.professional.subscribe(res => {
-      this.medFreq$ = this.apiMed.getHighFrequencyByProfessional$(res._run);
-    });
-    // this.apiRme.professional.subscribe(
-    //   res => {
-    //     this.apiRme.setProfessional(res);
-    //     // this.medFreq$ = this.apiMed.getHighFrequencyByProfessional$(res._run);
-    //   },
-    //   err => {
-    //     this.apiRme.setProfessional(-1);
+    if (this.auth.getProfessional()) {
+      this.patient$ = this.apiPat.getById$(pat);
+      this.professional$ = this.apiPro.getById$(this.auth.getProfessional());
+      this.medFreq$ = this.apiMed.getHighFrequencyByProfessional$(
+        this.auth.getProfessional()
+      );
+
+      this.professional$.subscribe(
+        res => {
+          this.apiRme.setProfessional(res);
+        },
+        err => {
+          this.apiRme.setProfessional(-1);
+        }
+      );
+      this.patient$.subscribe(
+        res => {
+          this.apiRme.setPatient(res);
+        },
+        err => {
+          this.apiRme.setPatient(-1);
+        }
+      );
+      this.medFreq$.subscribe(
+        res => {
+          this.apiRme.setMedicationHighFrequency(res);
+        },
+        err => {
+          this.apiRme.setMedicationHighFrequency(-1);
+        }
+      );
+    }
+    // this.professional$.subscribe(res => {
+    //   console.log('new.professional', res);
+    //   if (res === false) {
+    //     const pro = this.auth.getProfessional();
+    //     console.log('local.professional', pro);
+    //     if (pro !== null && pro !== false) {
+    //       // this.apiRme.setProfessional(pro);
+    //       console.log('cargar pro', pro)
+    //       this.apiPro.getById$(pro).subscribe(res => {
+    //         this.apiRme.setProfessional(res);
+    //         this.medFreq$ = this.apiMed.getHighFrequencyByProfessional$(
+    //           res._run
+    //         );
+    //       });
+    //     } else {
+    //       this.apiRme.setProfessional(-1);
+    //     }
+    //   } else {
+    //     this.medFreq$ = this.apiMed.getHighFrequencyByProfessional$(res._run);
     //   }
-    // );
-    this.patient$.subscribe(
-      res => {
-        this.apiRme.setPatient(res);
-      },
-      err => {
-        this.apiRme.setPatient(-1);
-      }
-    );
-    this.medFreq$.subscribe(res => {
-      this.apiRme.setMedicationHighFrequency(res);
-    }, err => {
-      this.apiRme.setMedicationHighFrequency(-1);
-    });
-    // }
+    //   this.medFreq$.subscribe(
+    //     res => {
+    //       this.apiRme.setMedicationHighFrequency(res);
+    //     },
+    //     err => {
+    //       this.apiRme.setMedicationHighFrequency(-1);
+    //     }
+    //   );
+    // });
   }
 
   hasMedications() {

@@ -3,8 +3,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError as ObservableThrowError, Observable } from 'rxjs';
 import { catchError, delay, map } from 'rxjs/operators';
 import { environment } from 'environments/environment';
-import { isArray } from 'util';
-import { unescapeHtml } from '@angular/platform-browser/src/browser/transfer_state';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +16,6 @@ export class ProfessionalService {
         .get(`${environment.baseUrl}${environment.professional}/${id}`)
         .pipe(
           map((res: any) => {
-            // if (!isArray(res.speciality)) {
-            //   res.specialities = [{ name: res.speciality }];
-            //   delete res.speciality;
-            // }
             res._run = id;
             return res;
           })

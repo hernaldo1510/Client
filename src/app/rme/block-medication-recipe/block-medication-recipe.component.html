@@ -1,10 +1,10 @@
 <li class="list-group-item">
   <div class="d-flex">
     <div class="flex-fill form-inline">
-      <h5 class="mb-0 mt-0 inline">
+      <h4 class="mb-0 mt-0 inline">
         <span class="semi-bold">{{ item.medication.name | titlecase }}</span>
-        <span *ngIf="item.commercialRecommendation" class="m-0 small light"> / {{item.commercialRecommendation.name | titlecase}} <button class="btn btn-rounded btn-xs" (click)="item.commercialRecommendation = false"><fa-icon [icon]="['fas', 'times']"></fa-icon></button></span>
-      </h5>
+        <span *ngIf="item.commercialRecommendation" class="m-0 small light" [@fadeIn]> / {{item.commercialRecommendation.name | titlecase}} <button class="btn btn-rounded btn-xs mt--3" (click)="item.commercialRecommendation = false"><fa-icon [icon]="['fas', 'times']"></fa-icon></button></span>
+      </h4>
       
     </div>
     <div class="ml-1">
@@ -21,7 +21,7 @@
       </button>
     </div>
   </div>
-  <div class="row my-2" *ngIf="!item.commercialRecommendation">
+  <div class="row my-2" *ngIf="!item.commercialRecommendation" [@fadeIn]>
     <div class="col-12">
       <input
         class="form-control form-control-sm input-sm inline w-100"
@@ -59,6 +59,7 @@
           <div class="col-4 pr-1">
             <input
               type="number"
+              min="1"
               class="form-control"
               [(ngModel)]="item.posology.value"
               id="posologyValue"
@@ -86,6 +87,7 @@
         <label for="frecuencyValue">Cada (Horas):</label>
         <input
           type="number"
+          min="1"
           class="form-control"
           [(ngModel)]="item.frecuency.value"
           id="frecuencyValue"
@@ -101,6 +103,7 @@
             <div class="col-3 pr-1" *ngIf="item.duration.unit == 'Diario'">
               <input
                 type="number"
+                min="1"
                 class="form-control"
                 [(ngModel)]="item.duration.value"
                 id="durationValue"

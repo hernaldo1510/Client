@@ -33,8 +33,8 @@ export class CheckComponent implements OnInit {
     const token = this.route.snapshot.paramMap.get('token');
     if (token) {
       this.auth.setToken(token);
+      this.auth.setProfessional(pro);
       this.professional$ = this.apiPro.getById$(pro);
-      // this.professional = this.apiRme.professional;
       this.professional$.subscribe(
         res => {
           console.log(res);

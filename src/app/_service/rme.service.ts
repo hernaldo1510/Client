@@ -21,32 +21,63 @@ export class RmeService {
   posologyType = environment.posologyType;
   appointmentId = false;
 
-  private medList$: BehaviorSubject<Array<Medication>> = new BehaviorSubject(
-    []
-  );
-  public readonly medList: Observable<
-    Array<Medication>
-  > = this.medList$.asObservable();
+  private medList$: BehaviorSubject<Array<Medication>> = new BehaviorSubject([]);
+  public readonly medList: Observable<Array<Medication>> = this.medList$.asObservable();
 
   private professional$: BehaviorSubject<any> = new BehaviorSubject(false);
-  public readonly professional: Observable<
-    Array<Medication>
-  > = this.professional$.asObservable();
+  public readonly professional: Observable<any> = this.professional$.asObservable();
 
   private patient$: BehaviorSubject<any> = new BehaviorSubject(false);
   public readonly patient: Observable<any> = this.patient$.asObservable();
 
-  private medicationHighFrequency$: BehaviorSubject<any> = new BehaviorSubject(
-    false
-  );
-  public readonly medicationHighFrequency: Observable<
-    any
-  > = this.medicationHighFrequency$.asObservable();
+  private medicationHighFrequency$: BehaviorSubject<any> = new BehaviorSubject(false);
+  public readonly medicationHighFrequency: Observable<any> = this.medicationHighFrequency$.asObservable();
 
   constructor(private http: HttpClient) {}
 
   hasMedications() {
     return this.medList$.value.length > 0;
+  }
+
+  addFrecuent(medAux: any) {
+    console.log(medAux);
+    const cpMed = { ...medAux };
+    delete cpMed.checked;
+
+    let formSel: any;
+    if (cpMed.medication.composition.medicationFormSelected !== undefined) {
+      formSel = cpMed.medication.composition.medicationForm.find(
+        (e: any) => e.id === cpMed.medication.composition.medicationFormSelected.id
+      );
+    } else {
+      formSel = cpMed.medication.composition.medicationForm[0];
+    }
+
+    const d = new Date();
+
+    const med: Medication = {
+      medication: cpMed.medication,
+      duration: {
+        unit: cpMed.frecuencyType,
+        value: cpMed.duration ? cpMed.duration : ''
+      },
+      // duration: { unit: this.durationType[0].code, value: '' },
+      frecuency: {
+        unit: this.frecuencyUnit[0],
+        value: cpMed.frecuency ? cpMed.frecuency : ''
+      },
+      posology: {
+        unit: formSel,
+        value: cpMed.units ? cpMed.units : ''
+      },
+      observations: '',
+      commercialRecommendation: cpMed.commercialRecomendation ? cpMed.commercialRecomendation : false,
+      indicationStartDate: d
+    };
+    console.log(med);
+    const currentValue = this.medList$.value;
+    const updatedValue = [...currentValue, med];
+    this.medList$.next(updatedValue);
   }
 
   addMedication(medAux: any) {
@@ -151,7 +182,10 @@ export class RmeService {
         duration: m.duration.value,
         durationUnit: 'Días',
         observation: m.observations,
-        commercialRecommendation: (m.commercialRecommendation === false) ? null : m.commercialRecommendation,
+        commercialRecommendation:
+          m.commercialRecommendation === false
+            ? null
+            : m.commercialRecommendation,
         indicationStartDate: dStartAux
       };
       data.indications.push(med);
@@ -164,10 +198,7 @@ export class RmeService {
         //   `${environment.baseUrl}/${environment.basePath}/${environment.rme}`,
         //   data
         // )
-        .post(
-          `${environment.baseUrl}${environment.rme}`,
-          data
-        )
+        .post(`${environment.baseUrl}${environment.rme}`, data)
         .pipe(
           map((res: any) => {
             return res;

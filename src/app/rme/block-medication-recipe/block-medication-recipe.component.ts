@@ -1,4 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 import { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
@@ -15,7 +22,27 @@ defineLocale('es', esLocale);
 @Component({
   selector: 'app-block-medication-recipe',
   templateUrl: './block-medication-recipe.component.html',
-  styleUrls: ['./block-medication-recipe.component.scss']
+  styleUrls: ['./block-medication-recipe.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state(
+        'void',
+        style({
+          opacity: 0
+        })
+      ),
+      transition('void <=> *', animate(300))
+    ]),
+    trigger('fadeIn', [
+      state(
+        'void',
+        style({
+          opacity: 0
+        })
+      ),
+      transition('void => *', animate(300))
+    ])
+  ]
 })
 export class BlockMedicationRecipeComponent implements OnInit {
   @Input() item: any;

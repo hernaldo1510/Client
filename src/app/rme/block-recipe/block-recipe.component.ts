@@ -25,7 +25,7 @@ import { RmeService } from '@app/_service/rme.service';
           opacity: 0
         })
       ),
-      transition('void <=> *', animate(400))
+      transition('void <=> *', animate(250))
     ]),
     trigger('fadeIn', [
       state(
@@ -34,7 +34,7 @@ import { RmeService } from '@app/_service/rme.service';
           opacity: 0
         })
       ),
-      transition('void => *', animate(400))
+      transition('void => *', animate(250))
     ])
   ]
 })

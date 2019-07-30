@@ -21,17 +21,27 @@ export class RmeService {
   posologyType = environment.posologyType;
   appointmentId = false;
 
-  private medList$: BehaviorSubject<Array<Medication>> = new BehaviorSubject([]);
-  public readonly medList: Observable<Array<Medication>> = this.medList$.asObservable();
+  private medList$: BehaviorSubject<Array<Medication>> = new BehaviorSubject(
+    []
+  );
+  public readonly medList: Observable<
+    Array<Medication>
+  > = this.medList$.asObservable();
 
   private professional$: BehaviorSubject<any> = new BehaviorSubject(false);
-  public readonly professional: Observable<any> = this.professional$.asObservable();
+  public readonly professional: Observable<
+    any
+  > = this.professional$.asObservable();
 
   private patient$: BehaviorSubject<any> = new BehaviorSubject(false);
   public readonly patient: Observable<any> = this.patient$.asObservable();
 
-  private medicationHighFrequency$: BehaviorSubject<any> = new BehaviorSubject(false);
-  public readonly medicationHighFrequency: Observable<any> = this.medicationHighFrequency$.asObservable();
+  private medicationHighFrequency$: BehaviorSubject<any> = new BehaviorSubject(
+    false
+  );
+  public readonly medicationHighFrequency: Observable<
+    any
+  > = this.medicationHighFrequency$.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -43,17 +53,33 @@ export class RmeService {
     console.log(medAux);
     const cpMed = { ...medAux };
     delete cpMed.checked;
+    const d = new Date();
+
+    const afArr: any = [];
+
+    for (const mf of cpMed.medication.composition.medicationForm) {
+      for (const af of mf.administerForm) {
+        const afAux = {
+          desc: af,
+          medicationForm: { ...mf }
+        };
+        delete afAux.medicationForm.administerForm;
+        afArr.push(afAux);
+      }
+    }
+
+    cpMed.medication.composition.administerForm = afArr;
 
     let formSel: any;
     if (cpMed.medication.composition.medicationFormSelected !== undefined) {
-      formSel = cpMed.medication.composition.medicationForm.find(
-        (e: any) => e.id === cpMed.medication.composition.medicationFormSelected.id
+      formSel = cpMed.medication.composition.administerForm.find(
+        (e: any) =>
+          e.desc === cpMed.medication.composition.medicationFormSelected.desc 
+          && e.medicationForm.id === cpMed.medication.composition.medicationFormSelected.medicationForm.id
       );
     } else {
-      formSel = cpMed.medication.composition.medicationForm[0];
+      formSel = cpMed.medication.composition.administerForm[0];
     }
-
-    const d = new Date();
 
     const med: Medication = {
       medication: cpMed.medication,
@@ -71,26 +97,34 @@ export class RmeService {
         value: cpMed.units ? cpMed.units : ''
       },
       observations: '',
-      commercialRecommendation: cpMed.commercialRecomendation ? cpMed.commercialRecomendation : false,
+      commercialRecommendation: cpMed.commercialRecomendation
+        ? cpMed.commercialRecomendation
+        : false,
       indicationStartDate: d
     };
-    console.log(med);
     const currentValue = this.medList$.value;
     const updatedValue = [...currentValue, med];
     this.medList$.next(updatedValue);
   }
 
   addMedication(medAux: any) {
-    let formSel: any;
-    if (medAux.composition.medicationFormSelected !== undefined) {
-      formSel = medAux.composition.medicationForm.find(
-        (e: any) => e.id === medAux.composition.medicationFormSelected.id
-      );
-    } else {
-      formSel = medAux.composition.medicationForm[0];
-    }
-
     delete medAux.checked;
+    const afArr: any = [];
+
+    for (const mf of medAux.composition.medicationForm) {
+      for (const af of mf.administerForm) {
+        const afAux = {
+          desc: af,
+          medicationForm: { ...mf }
+        };
+        delete afAux.medicationForm.administerForm;
+        afArr.push(afAux);
+      }
+    }
+    medAux.composition.administerForm = afArr;
+
+    let formSel: any;
+    formSel = medAux.composition.administerForm[0];
 
     const d = new Date();
 
@@ -106,6 +140,8 @@ export class RmeService {
       commercialRecommendation: false,
       indicationStartDate: d
     };
+
+    console.log(med);
 
     const currentValue = this.medList$.value;
     const updatedValue = [...currentValue, med];

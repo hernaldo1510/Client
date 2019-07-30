@@ -37,14 +37,15 @@ export class CheckComponent implements OnInit {
       this.professional$ = this.apiPro.getById$(pro);
       this.professional$.subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           this.apiRme.setProfessional(res);
           // this.router.navigateByUrl('/session/error');
           this.router.navigate(['rme', 'new', 'pat', pat, 'appo', appoId]);
         },
         err => {
-          console.log(err);
+          // console.log(err);
           this.apiRme.setProfessional(-1);
+          this.router.navigateByUrl('/session/error');
         }
       );
     }

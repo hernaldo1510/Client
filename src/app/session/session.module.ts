@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { ProgressModule } from '@app/_blocks/progress/progress.module';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { CheckComponent } from './check/check.component';
 
@@ -12,6 +13,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [ForbiddenComponent, CheckComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)]
+  imports: [CommonModule, RouterModule.forChild(routes), ProgressModule]
 })
 export class SessionModule {}

@@ -19,7 +19,7 @@ export class BlockFrequentMedComponent implements OnInit {
   ngOnInit() {
     this.medicationHighFrequency$ = this.apiRme.medicationHighFrequency;
     this.medicationHighFrequency$.subscribe(res => {
-      console.log(res);
+      // console.log(res);
       if (res !== false) {
         this.isLoading = false;
         this.medicationHighFrequency = res;

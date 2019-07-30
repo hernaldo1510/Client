@@ -9,8 +9,9 @@ $assets-url: "../../assets" !global;
 @import "icons.scss";
 @import "modules/_typography.scss";
 @import "modules/_buttons.scss";
-@import "modules/_alerts.scss";
+// @import "modules/_alerts.scss";
 @import "modules/_notifications.scss";
+@import "modules/_progress_indicators.scss";
 
 //Cards
 @import "modules/cards.scss";
@@ -19,10 +20,10 @@ $assets-url: "../../assets" !global;
 @import "modules/form_elements.scss";
 
 //Login
-@import "modules/login.scss";
+// @import "modules/login.scss";
 
 //Lock screen
-@import "modules/lock_screen.scss";
+// @import "modules/lock_screen.scss";
 
 //Error
 @import "modules/_error.scss";

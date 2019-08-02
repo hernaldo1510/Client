@@ -74,8 +74,10 @@ export class RmeService {
     if (cpMed.medication.composition.medicationFormSelected !== undefined) {
       formSel = cpMed.medication.composition.administerForm.find(
         (e: any) =>
-          e.desc === cpMed.medication.composition.medicationFormSelected.desc 
-          && e.medicationForm.id === cpMed.medication.composition.medicationFormSelected.medicationForm.id
+          e.desc === cpMed.medication.composition.medicationFormSelected.desc &&
+          e.medicationForm.id ===
+            cpMed.medication.composition.medicationFormSelected.medicationForm
+              .id
       );
     } else {
       formSel = cpMed.medication.composition.administerForm[0];

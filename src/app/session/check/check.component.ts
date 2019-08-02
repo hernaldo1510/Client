@@ -40,7 +40,13 @@ export class CheckComponent implements OnInit {
           // console.log(res);
           this.apiRme.setProfessional(res);
           // this.router.navigateByUrl('/session/error');
-          this.router.navigate(['rme', 'new', 'pat', pat, 'appo', appoId]);
+          if (appoId) {
+            console.log('con appo');
+            this.router.navigate(['rme', 'new', 'pat', pat, 'appo', appoId]);
+          } else {
+            console.log('sin appo');
+            this.router.navigate(['rme', 'new', 'pat', pat]);
+          }
         },
         err => {
           // console.log(err);

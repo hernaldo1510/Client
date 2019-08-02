@@ -195,6 +195,7 @@ export class RmeService {
 
     data.professional.specialities = [data.professional.specialitiesSel];
     delete data.professional.specialitiesSel;
+    delete data.professional._run;
 
     if (!this.appointmentId) {
       delete data.appointmentId;

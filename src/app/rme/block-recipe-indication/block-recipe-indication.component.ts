@@ -21,9 +21,9 @@ import { FormGroup } from '@angular/forms';
 defineLocale('es', esLocale);
 
 @Component({
-  selector: 'app-block-medication-recipe',
-  templateUrl: './block-medication-recipe.component.html',
-  styleUrls: ['./block-medication-recipe.component.scss'],
+  selector: 'app-block-recipe-indication',
+  templateUrl: './block-recipe-indication.component.html',
+  styleUrls: ['./block-recipe-indication.component.scss'],
   animations: [
     trigger('fadeInOut', [
       state(
@@ -45,8 +45,7 @@ defineLocale('es', esLocale);
     ])
   ]
 })
-export class BlockMedicationRecipeComponent implements OnInit {
-  @Input() item: any;
+export class BlockRecipeIndicationComponent implements OnInit {
   @Input() index: number;
   @Input() indForm: FormGroup;
 
@@ -66,12 +65,13 @@ export class BlockMedicationRecipeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.indForm);
     this.localeService.use('es');
     this.frecuencyUnit = this.apiRme.frecuencyUnit;
     this.durationType = this.apiRme.durationType;
     this.posologyType = this.apiRme.posologyType;
     this.dataSourceRecommendation = Observable.create((observer: any) => {
-      observer.next(this.asyncSelectedRecommendation);
+      observer.next(this.indForm.controls.commercialRecommendationForm.value);
     }).pipe(
       mergeMap((token: string) => this.apiMed.getByComercialName$(token))
     );
@@ -82,8 +82,8 @@ export class BlockMedicationRecipeComponent implements OnInit {
   }
 
   typeaheadOnSelectRecommendation(e: TypeaheadMatch): void {
-    this.asyncSelectedRecommendation = '';
-    this.apiRme.setComercialRecommendation(this.index, e.item);
+    this.indForm.controls.commercialRecommendationForm.setValue('');
+    this.indForm.controls.commercialRecommendation.setValue(e.item);
   }
 
   changeTypeaheadNoResultsRecommendation(event: boolean): void {

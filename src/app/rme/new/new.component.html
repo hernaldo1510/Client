@@ -1,56 +1,17 @@
-<!-- <pg-container>
-  <div class="row">
-    <div class="col-12">
-      <div *ngIf="professional | async as professional">
-        <div class="alert alert-danger" role="alert" *ngIf="professional == -1">
-          No pudimos cargar el profesional
-        </div>
-        <ul
-          class="list-inline bg-complete-lighter p-2"
-          *ngIf="professional != -1"
-        >
-          <li class="list-inline-item">
-            <span class="bold">Profesional:</span>
-            {{ professional?.firstName + ' ' + professional.lastName }}
-          </li>
-          <li class="list-inline-item">
-            <span class="bold">Especialidad:</span>
-            <div class="inline ml-1" style="width: 200px">
-              <select
-                name="especialidad"
-                id="especialidad"
-                class="custom-select custom-select-sm"
-              >
-                <option
-                  value="{{ item.name }}"
-                  *ngFor="let item of professional.specialities"
-                  >{{ item.name }}</option
-                >
-              </select>
-            </div>
-          </li>
-          <li class="list-inline-item">
-            <span class="bold">Correo:</span> {{ professional.email }}
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</pg-container> -->
 <pg-container>
-  <div class="row mt-2">
+  <div class="row">
     <div class="col-8 mb-4">
       <app-block-recipe></app-block-recipe>
-      <div class="mt-2" *ngIf="hasMedications()">
+      <!-- <div class="mt-2" *ngIf="hasMedications()">
         <button class="btn btn-complete mr-2" (click)="save(true)">
           Vista previa
         </button>
         <button class="btn btn-primary" (click)="save(false)">
           Firmar y Enviar
         </button>
-      </div>
+      </div> -->
     </div>
-    <div class="col-4 pb-3">
+    <div class="col-4 pb-3 pt-2">
       <app-block-professional></app-block-professional>
       <app-block-patient></app-block-patient>
       <app-block-frequent-med></app-block-frequent-med>
@@ -58,66 +19,3 @@
   </div>
 </pg-container>
 
-<div
-  class="modal fade stick-up"
-  bsModal
-  #modalRme="bs-modal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="modal-resumen"
->
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left inline">Receta Médica Electrónica</h4>
-        <button
-          type="button"
-          class="close pull-right"
-          aria-label="Close"
-          (click)="modalRme.hide()"
-        >
-          <span aria-hidden="true">
-            <fa-icon [icon]="['fas', 'times']" size="xs"></fa-icon>
-          </span>
-        </button>
-      </div>
-      <div class="modal-body p-l-0 p-r-0 p-b-0" style="height: 500px">
-        <div *ngIf="isLoadingModal" class="padding-50">
-          <pg-progress
-            type="circle"
-            indeterminate="true"
-            color="complete"
-            thick="true"
-          ></pg-progress>
-        </div>
-        <div
-          role="alert"
-          class="alert alert-danger block m-4"
-          *ngIf="!showPdf && !isLoadingModal"
-        >
-          <p>
-            Algo sali&oacute; mal, por favor, int&eacute;ntelo nuevamente en
-            unos minutos.
-          </p>
-        </div>
-        <iframe
-          [src]="this.pdfRme"
-          frameborder="0"
-          *ngIf="showPdf && !isLoadingModal"
-          class="full-width full-height"
-        ></iframe>
-      </div>
-      <div class="modal-footer py-2" *ngIf="preview">
-        <div class="w-100 d-flex flex-row">
-          <button
-            class="btn btn-primary"
-            (click)="save(false)"
-            [disabled]="isLoadingModal"
-          >
-            Firmar y Enviar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

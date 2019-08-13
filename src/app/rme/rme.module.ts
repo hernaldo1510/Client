@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   ButtonsModule,
@@ -21,12 +21,16 @@ import { BlockPatientComponent } from './block-patient/block-patient.component';
 import { pgCardModule } from '@app/@pages/components/card/card.module';
 import { BlockProfessionalComponent } from './block-professional/block-professional.component';
 import { BlockMedicationRecipeComponent } from './block-medication-recipe/block-medication-recipe.component';
+import { ByAppointmentComponent } from './list/by-appointment/by-appointment.component';
+import { ByPatientComponent } from './list/by-patient/by-patient.component';
+import { BlockRecipeIndicationComponent } from './block-recipe-indication/block-recipe-indication.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RmeRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     TypeaheadModule.forRoot(),
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),
@@ -42,7 +46,10 @@ import { BlockMedicationRecipeComponent } from './block-medication-recipe/block-
     BlockFrequentMedComponent,
     BlockPatientComponent,
     BlockProfessionalComponent,
-    BlockMedicationRecipeComponent
+    BlockMedicationRecipeComponent,
+    ByAppointmentComponent,
+    ByPatientComponent,
+    BlockRecipeIndicationComponent
   ]
 })
 export class RmeModule {}

@@ -5,12 +5,16 @@ import {
   throwError as ObservableThrowError
 } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
+import { FormArray, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Medication } from '@app/_model/medication';
 import { environment } from 'environments/environment';
 import { map, catchError } from 'rxjs/operators';
 import { isObject } from 'rxjs/internal/util/isObject';
 import { isUndefined } from 'util';
+import { RmeForm } from '@app/_model/rme-form';
+import { Rme } from '@app/_model/rme';
+import { IndicationForm } from '@app/_model/indication-form';
+import { Indication } from '@app/_model/indication';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +32,11 @@ export class RmeService {
     Array<Medication>
   > = this.medList$.asObservable();
 
+  private rmeForm$: BehaviorSubject<
+    FormGroup | undefined
+  > = new BehaviorSubject(this.fb.group(new RmeForm(new Rme())));
+  public readonly rmeForm: Observable<FormGroup> = this.rmeForm$.asObservable();
+
   private professional$: BehaviorSubject<any> = new BehaviorSubject(false);
   public readonly professional: Observable<
     any
@@ -43,7 +52,7 @@ export class RmeService {
     any
   > = this.medicationHighFrequency$.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private fb: FormBuilder) {}
 
   hasMedications() {
     return this.medList$.value.length > 0;
@@ -145,9 +154,28 @@ export class RmeService {
 
     console.log(med);
 
+    const ind = new Indication({
+      medication: medAux,
+      duration: { unit: this.durationType[0].code, value: '' },
+      frecuency: { unit: this.frecuencyUnit[0], value: '' },
+      posology: {
+        unit: formSel,
+        value: ''
+      },
+      observations: '',
+      commercialRecommendation: false,
+      indicationStartDate: d
+    });
+
     const currentValue = this.medList$.value;
     const updatedValue = [...currentValue, med];
     this.medList$.next(updatedValue);
+
+    const currentRme = this.rmeForm$.getValue();
+    const currentIndications = currentRme.get('indications') as FormArray;
+    currentIndications.push(
+      this.fb.group(new IndicationForm(ind))
+    );
   }
 
   delMedication(i: number) {
@@ -174,6 +202,82 @@ export class RmeService {
 
   setAppointment(appoId: any) {
     this.appointmentId = appoId;
+  }
+
+  saveNew(pw = false) {
+    // const d = new Date();
+    // const creationDateAux =
+    //   ('0' + d.getDate()).slice(-2) +
+    //   '/' +
+    //   ('0' + (d.getMonth() + 1)).slice(-2) +
+    //   '/' +
+    //   d.getFullYear();
+
+    // const data = {
+    //   id: '' + Date.now(),
+    //   preview: pw,
+    //   appointmentId: this.appointmentId,
+    //   creation_day: creationDateAux,
+    //   patient: this.patient$.getValue(),
+    //   professional: { ...this.professional$.getValue() },
+    //   indications: []
+    // };
+
+    const data = new Rme(...this.professional$.getValue(), ...this.patient$.getValue());
+
+    data.professional.specialities = [data.professional.specialitiesSel];
+    delete data.professional.specialitiesSel;
+    delete data.professional._run;
+
+    if (!this.appointmentId) {
+      delete data.appointmentId;
+    }
+
+    console.log('data', data);
+
+    console.log('indications', this.rmeForm$.getValue().controls.indications.value);
+
+    this.rmeForm$.getValue().controls.indications.value.forEach((m: any) => {
+      console.log('ind', m);
+      m.medication.composition.medicationFormSelected = m.posology.unit;
+      const dStartAux =
+        ('0' + m.indicationStartDate.getDate()).slice(-2) +
+        '/' +
+        ('0' + (m.indicationStartDate.getMonth() + 1)).slice(-2) +
+        '/' +
+        m.indicationStartDate.getFullYear();
+      const med = {
+        medication: m.medication,
+        units: m.posology.value,
+        unitType: m.posology.unit.desc,
+        frecuencyType: m.duration.unit,
+        frecuency: m.frecuency.value,
+        frecuencyUnit: 'Horas',
+        duration: m.duration.value,
+        durationUnit: 'Días',
+        observation: m.observations,
+        commercialRecommendation:
+          m.commercialRecommendation === false
+            ? null
+            : m.commercialRecommendation,
+        indicationStartDate: dStartAux
+      };
+      data.indications.push(med);
+    });
+    return (
+      this.http
+        // .post(
+        //   `${environment.baseUrl}/${environment.basePath}/${environment.rme}`,
+        //   data
+        // )
+        .post(`${environment.baseUrl}${environment.rme}`, data)
+        .pipe(
+          map((res: any) => {
+            return res;
+          })
+        )
+        .pipe(catchError(error => this._handleError(error)))
+    );
   }
 
   save(pw = false) {

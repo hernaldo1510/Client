@@ -6,6 +6,7 @@
   Refresh="false"
   ProgressType="bar"
   MinimalHeader="true"
+  AdditionalClasses="mb-2"
 >
   <ng-template #CardTitle>Profesional</ng-template>
   <ng-template #CardExtraControls></ng-template>
@@ -28,7 +29,7 @@
             [ngValue]="item"
             *ngFor="let item of professional.specialities"
 
-            >{{ item.name | titlecase }}</option
+            >{{ item?.name | titlecase }}</option
           >
         </select>
       </div>

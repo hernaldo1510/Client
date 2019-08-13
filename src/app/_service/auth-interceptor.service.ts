@@ -33,18 +33,18 @@ export class AuthInterceptorService implements HttpInterceptor {
             // console.log(err);
             this.auth.removeToken();
             if (err.status === 401) {
-              this.router.navigateByUrl('/session/error');
+              // this.router.navigateByUrl('/session/error');
             } else if (err.status === 403) {
-              this.router.navigateByUrl('/session/error');
+              // this.router.navigateByUrl('/session/error');
             } else {
-              this.router.navigateByUrl('/session/error');
+              // this.router.navigateByUrl('/session/error');
             }
           }
         )
       );
     } else {
       // console.log('no token');
-      this.router.navigateByUrl('/session/error');
+      // this.router.navigateByUrl('/session/error');
       // return next.handle(req.clone());
     }
   }

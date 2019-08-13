@@ -43,11 +43,11 @@
     ></app-block-recipe-indication>
   </ul>
 </div>
-<div class="mt-2">
+<div class="mt-2" *ngIf="hasMedications()">
   <button class="btn btn-complete mr-2" [disabled]="rmeForm.invalid" (click)="save(true)">
     Vista previa
   </button>
-  <button class="btn btn-primary" (click)="save(false)">
+  <button class="btn btn-primary" [disabled]="rmeForm.invalid" (click)="save(false)">
     Firmar y Enviar
   </button>
 </div>

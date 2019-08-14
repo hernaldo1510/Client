@@ -23,10 +23,11 @@ export class IndicationForm {
     this.commercialRecommendationForm = new FormControl();
     this.duration = this.fb.group({
       unit: new FormControl(ind.duration.unit),
-      value: new FormControl(ind.duration.value, {
-        validators: [Validators.required]
-      })
+      value: new FormControl(ind.duration.value)
     });
+    if (ind.duration.unit === 'Diario') {
+      this.duration.get('value').setValidators([Validators.required]);
+    }
     this.frecuency = this.fb.group({
       unit: new FormControl(ind.frecuency.unit),
       value: new FormControl(ind.frecuency.value, {

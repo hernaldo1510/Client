@@ -50,6 +50,6 @@ export class IndicationForm {
         this.duration.get('value').setValidators([]);
       }
       this.duration.get('value').updateValueAndValidity();
-    })
+    });
   }
 }

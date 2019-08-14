@@ -11,6 +11,7 @@ export class ProfessionalService {
   constructor(private http: HttpClient) {}
 
   public getById$(id: string) {
+    id = id.replace('-', '').replace(/\./g, '');
     return (
       this.http
         .get(`${environment.baseUrl}${environment.professional}/${id}`)

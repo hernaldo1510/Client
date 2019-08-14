@@ -20,6 +20,7 @@ export class MedicationService {
   }
 
   public getHighFrequencyByProfessional$(id: string) {
+    id = id.replace('-', '').replace(/\./g, '');
     return (
       this.http
         .get(

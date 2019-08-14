@@ -79,7 +79,7 @@ export class CheckComponent implements OnInit {
       case 'list':
         if (appoId) {
           console.log('rme list by appo');
-          this.router.navigate(['rme', 'list', 'appo', appoId]);
+          this.router.navigate(['rme', 'list', 'pat', pat, 'appo', appoId]);
         } else if (pat) {
           console.log('rme list by pat');
           this.router.navigate(['rme', 'list', 'pat', pat]);

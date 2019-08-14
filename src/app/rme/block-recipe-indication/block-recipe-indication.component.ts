@@ -91,6 +91,6 @@ export class BlockRecipeIndicationComponent implements OnInit {
   }
 
   delMedication() {
-    this.apiRme.delMedication(this.index);
+    this.apiRme.delMedicationNew(this.index);
   }
 }

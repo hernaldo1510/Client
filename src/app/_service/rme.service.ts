@@ -55,7 +55,10 @@ export class RmeService {
   constructor(private http: HttpClient, private fb: FormBuilder) {}
 
   hasMedications() {
-    return this.medList$.value.length > 0;
+    const currentValue = this.rmeForm$.getValue();
+    const currentIndications = currentValue.get('indications') as FormArray;
+    return currentIndications.length > 0;
+    // return this.medList$.value.length > 0;
   }
 
   addFrecuent(medAux: any) {
@@ -78,7 +81,7 @@ export class RmeService {
     }
 
     cpMed.medication.composition.administerForm = afArr;
-
+    console.log(cpMed);
     let formSel: any;
     if (cpMed.medication.composition.medicationFormSelected !== undefined) {
       formSel = cpMed.medication.composition.administerForm.find(
@@ -92,13 +95,37 @@ export class RmeService {
       formSel = cpMed.medication.composition.administerForm[0];
     }
 
-    const med: Medication = {
+    // const med: Medication = {
+    //   medication: cpMed.medication,
+    //   duration: {
+    //     unit: cpMed.frecuencyType,
+    //     value: cpMed.duration ? cpMed.duration : ''
+    //   },
+    //   // duration: { unit: this.durationType[0].code, value: '' },
+    //   frecuency: {
+    //     unit: this.frecuencyUnit[0],
+    //     value: cpMed.frecuency ? cpMed.frecuency : ''
+    //   },
+    //   posology: {
+    //     unit: formSel,
+    //     value: cpMed.units ? cpMed.units : ''
+    //   },
+    //   observations: '',
+    //   commercialRecommendation: cpMed.commercialRecomendation
+    //     ? cpMed.commercialRecomendation
+    //     : false,
+    //   indicationStartDate: d
+    // };
+    // const currentValue = this.medList$.value;
+    // const updatedValue = [...currentValue, med];
+    // this.medList$.next(updatedValue);
+
+    const ind = new Indication({
       medication: cpMed.medication,
       duration: {
         unit: cpMed.frecuencyType,
         value: cpMed.duration ? cpMed.duration : ''
       },
-      // duration: { unit: this.durationType[0].code, value: '' },
       frecuency: {
         unit: this.frecuencyUnit[0],
         value: cpMed.frecuency ? cpMed.frecuency : ''
@@ -112,10 +139,13 @@ export class RmeService {
         ? cpMed.commercialRecomendation
         : false,
       indicationStartDate: d
-    };
-    const currentValue = this.medList$.value;
-    const updatedValue = [...currentValue, med];
-    this.medList$.next(updatedValue);
+    });
+
+    const currentRme = this.rmeForm$.getValue();
+    const currentIndications = currentRme.get('indications') as FormArray;
+    currentIndications.push(
+      this.fb.group(new IndicationForm(ind))
+    );
   }
 
   addMedication(medAux: any) {
@@ -167,9 +197,9 @@ export class RmeService {
       indicationStartDate: d
     });
 
-    const currentValue = this.medList$.value;
-    const updatedValue = [...currentValue, med];
-    this.medList$.next(updatedValue);
+    // const currentValue = this.medList$.value;
+    // const updatedValue = [...currentValue, med];
+    // this.medList$.next(updatedValue);
 
     const currentRme = this.rmeForm$.getValue();
     const currentIndications = currentRme.get('indications') as FormArray;
@@ -182,6 +212,13 @@ export class RmeService {
     const currentValue = this.medList$.value;
     const deleted = currentValue.splice(i, 1);
     this.medList$.next(currentValue);
+  }
+
+  delMedicationNew(i: number) {
+    const currentValue = this.rmeForm$.getValue();
+    const currentIndications = currentValue.get('indications') as FormArray;
+    currentIndications.removeAt(i);
+    this.rmeForm$.next(currentValue);
   }
 
   setComercialRecommendation(i: number, r: any) {
@@ -205,25 +242,7 @@ export class RmeService {
   }
 
   saveNew(pw = false) {
-    // const d = new Date();
-    // const creationDateAux =
-    //   ('0' + d.getDate()).slice(-2) +
-    //   '/' +
-    //   ('0' + (d.getMonth() + 1)).slice(-2) +
-    //   '/' +
-    //   d.getFullYear();
-
-    // const data = {
-    //   id: '' + Date.now(),
-    //   preview: pw,
-    //   appointmentId: this.appointmentId,
-    //   creation_day: creationDateAux,
-    //   patient: this.patient$.getValue(),
-    //   professional: { ...this.professional$.getValue() },
-    //   indications: []
-    // };
-
-    const data = new Rme(...this.professional$.getValue(), ...this.patient$.getValue());
+    const data = new Rme({...this.professional$.getValue()}, {...this.patient$.getValue()});
 
     data.professional.specialities = [data.professional.specialitiesSel];
     delete data.professional.specialitiesSel;
@@ -233,12 +252,12 @@ export class RmeService {
       delete data.appointmentId;
     }
 
-    console.log('data', data);
+    // console.log('data', data);
 
-    console.log('indications', this.rmeForm$.getValue().controls.indications.value);
+    // console.log('indications', this.rmeForm$.getValue().controls.indications.value);
 
     this.rmeForm$.getValue().controls.indications.value.forEach((m: any) => {
-      console.log('ind', m);
+      // console.log('ind', m);
       m.medication.composition.medicationFormSelected = m.posology.unit;
       const dStartAux =
         ('0' + m.indicationStartDate.getDate()).slice(-2) +
@@ -266,10 +285,6 @@ export class RmeService {
     });
     return (
       this.http
-        // .post(
-        //   `${environment.baseUrl}/${environment.basePath}/${environment.rme}`,
-        //   data
-        // )
         .post(`${environment.baseUrl}${environment.rme}`, data)
         .pipe(
           map((res: any) => {

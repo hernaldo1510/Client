@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'check/rme/new/pro/:pro/pat/:pat/bdup/:bdup/token/:token', component: CheckComponent },
   { path: 'check/rme/new/pro/:pro/pat/:pat/appo/:appo/token/:token', component: CheckComponent },
   { path: 'check/rme/list/pro/:pro/pat/:pat/bdup/:bdup/appo/:appo/token/:token', component: CheckComponent },
-  { path: 'check/rme/list/pro/:pro/pat/:pat/bdup/:bdup/token/:token', component: CheckComponent }
+  { path: 'check/rme/list/pro/:pro/pat/:pat/bdup/:bdup/token/:token', component: CheckComponent },
   { path: 'check/rme/list/pro/:pro/pat/:pat/token/:token', component: CheckComponent }
 ];
 

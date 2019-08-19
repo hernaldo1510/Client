@@ -4,6 +4,8 @@ import { ObserversModule } from '@angular/cdk/observers';
 import { HttpModule} from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { SecondarySidebarComponent } from './secondary-sidebar/secondary-sidebar.component';
 
 import { QuickviewService} from './quickview/quickview.service';
@@ -40,7 +42,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ObserversModule,
     TypeaheadModule.forRoot(),
     PerfectScrollbarModule,
-    RouterModule
+    RouterModule,
+    FontAwesomeModule
   ],
   declarations: [
   SecondarySidebarComponent,

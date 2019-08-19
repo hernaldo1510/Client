@@ -9,6 +9,7 @@ import { PatientService } from '@app/_service/patient.service';
 export class BlockPatientInfoComponent implements OnInit {
   @Input() patId: any;
   patient: any;
+  message = 'No pudimos cargar el paciente';
 
   constructor(private apiPat: PatientService) {}
 

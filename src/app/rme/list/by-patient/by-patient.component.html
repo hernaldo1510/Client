@@ -32,7 +32,7 @@
         <ngx-datatable
           #tableDynamic
           class="table table-hover table-condensed table-stripped"
-          [columnMode]="columnModeSetting"
+          [columnMode]="'flex'"
           [scrollbarH]="scrollBarHorizontal"
           [headerHeight]="50"
           [footerHeight]="50"
@@ -40,22 +40,22 @@
           [limit]="10"
           [rows]="rmeList"
         >
-          <ngx-datatable-column name="Fecha" prop="creation_day" [maxWidth]="120" [minWidth]="120">
+          <ngx-datatable-column name="Fecha" prop="creation_day" [flexGrow]="1">
             <ng-template let-value="value" ngx-datatable-cell-template>
               {{ value }}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Profesional" prop="professional.lastName">
+          <ngx-datatable-column name="Profesional" prop="professional.lastName" [flexGrow]="2">
             <ng-template let-row="row" ngx-datatable-cell-template>
               {{ (row.professional.firstName + ' ' + row.professional.lastName) | titlecase }}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Especialidad" prop="row.professional.specialities[0].name">
+          <ngx-datatable-column name="Especialidad" prop="row.professional.specialities[0].name" [flexGrow]="2">
             <ng-template let-row="row" ngx-datatable-cell-template>
               {{ row.professional.specialities[0].name | titlecase }}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Medicamentos" prop="professional.lastName" [sortable]="false">
+          <ngx-datatable-column name="Medicamentos" [sortable]="false" [flexGrow]="3">
             <ng-template let-row="row" ngx-datatable-cell-template>
                 <span *ngFor="let item of row.indications; let i=index">
                   <span *ngIf="i<2">{{ (item.medication.name) | titlecase }}</span>
@@ -63,7 +63,7 @@
                 <span *ngIf="row.indications.length > 2">...</span>
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Acciones" prop="id" [sortable]="false" [maxWidth]="110" [minWidth]="110">
+          <ngx-datatable-column name="Acciones" prop="id" [sortable]="false" [flexGrow]="1">
             <ng-template let-value="value" ngx-datatable-cell-template>
               <div class="btn-group btn-group-sm">
                 <a class="btn btn-default" tooltip="Ver Receta" (click)="showRme(value)">

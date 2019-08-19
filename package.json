@@ -4,11 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --aot",
+    "build-prd": "ng build --prod --aot",
+    "build-qa": "ng build --configuration=qa --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "aws s3 sync ./dist/rme s3://rme-front-dev --delete"
+    "deploy-dev": "aws s3 sync ./dist/rme s3://rme-front-dev --delete --profile rme-dev",
+    "deploy-qa": "aws s3 sync ./dist/rme s3://rme-front-qa --delete --profile rme-qa",
+    "deploy-prd": "aws s3 sync ./dist/rme s3://rme-front-prd --delete --profile rme-prd"
   },
   "private": true,
   "dependencies": {

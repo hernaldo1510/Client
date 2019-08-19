@@ -58,7 +58,7 @@ import {
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrashAlt, faWindowClose, faFileAlt } from '@fortawesome/free-regular-svg-icons';
+import { faTrashAlt, faWindowClose, faFileAlt, faFolder } from '@fortawesome/free-regular-svg-icons';
 import { faTimes, faChevronLeft, faNotesMedical, faPlus } from '@fortawesome/free-solid-svg-icons';
 library.add(
   faTrashAlt,
@@ -67,7 +67,8 @@ library.add(
   faWindowClose,
   faNotesMedical,
   faFileAlt,
-  faPlus
+  faPlus,
+  faFolder
 );
 
 // Pages Globaly required Components - Optional

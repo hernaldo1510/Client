@@ -25,20 +25,20 @@ import { AuthService } from '@app/_service/auth.service';
 })
 export class CondensedComponent extends RootLayout implements OnInit {
   menuLinks = [
-    {
-      label: 'Nueva Receta',
-      // details: '234 New Emails',
-      routerLink: 'rme/new',
-      iconType: 'pg',
-      iconName: 'plus',
-      thumbNailClass: 'bg-primary'
-    },
+    // {
+    //   label: 'Nueva Receta',
+    //   // details: '234 New Emails',
+    //   routerLink: '/rme/new',
+    //   iconType: 'pg',
+    //   iconName: 'plus',
+    //   thumbNailClass: 'bg-primary'
+    // },
     {
       label: 'Mis Recetas',
       // details: '12 New Updates',
-      routerLink: 'rme/list',
-      iconType: 'fa',
-      iconName: 'files-o'
+      routerLink: '/rme/list',
+      iconType: 'far',
+      iconName: 'folder'
       // thumbNailClass: 'bg-success'
     }
     // ,{

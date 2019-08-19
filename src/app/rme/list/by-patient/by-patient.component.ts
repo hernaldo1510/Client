@@ -4,7 +4,6 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { PatientService } from '@app/_service/patient.service';
 import { RmeService } from '@app/_service/rme.service';
 import { isUndefined } from 'util';
-import { Observable } from 'rxjs';
 import {
   trigger,
   state,

@@ -81,8 +81,8 @@
           [formGroup]="indForm.controls.posology"
           [ngClass]="{
             'has-error':
-              indForm.controls.posology.controls['value'].errors &&
-              indForm.controls.posology.controls['value'].touched
+              indForm.get('posology').get('value').errors &&
+              indForm.get('posology').get('value').touched
           }"
         >
           <label for="posologiaValue" class="control-label">Posología:</label>
@@ -102,7 +102,7 @@
                 <option
                   [ngValue]="item"
                   *ngFor="
-                    let item of indForm.controls.medication.value.composition
+                    let item of indForm.controls['medication'].value.composition
                       .administerForm
                   "
                   >{{ item.desc + ' / ' + item.medicationForm.desc }}</option
@@ -118,8 +118,8 @@
           [formGroup]="indForm.controls.frecuency"
           [ngClass]="{
             'has-error':
-              indForm.controls.frecuency.controls['value'].errors &&
-              indForm.controls.frecuency.controls['value'].touched
+              indForm.get('frecuency').get('value').errors &&
+              indForm.get('frecuency').get('value').touched
           }"
         >
           <label for="frecuencyValue" class="control-label"
@@ -141,8 +141,8 @@
           [formGroup]="indForm.controls.duration"
           [ngClass]="{
             'has-error':
-              indForm.controls.duration.controls['value'].errors &&
-              indForm.controls.duration.controls['value'].touched
+              indForm.get('duration').get('value').errors &&
+              indForm.get('duration').get('value').touched
           }"
         >
           <label for="durationValue" class="control-label">Duración:</label>
@@ -151,7 +151,7 @@
               <div
                 class="col-3 pr-1"
                 *ngIf="
-                  indForm.controls.duration.controls.unit.value == 'Diario'
+                  indForm.get('duration').get('unit').value == 'Diario'
                 "
               >
                 <input
@@ -166,9 +166,9 @@
               <div
                 [ngClass]="{
                   'col-9 pl-1':
-                    indForm.controls.duration.controls.unit.value == 'Diario',
+                    indForm.get('duration').get('unit').value == 'Diario',
                   'col-12':
-                    indForm.controls.duration.controls.unit.value != 'Diario'
+                    indForm.get('duration').get('unit').value != 'Diario'
                 }"
               >
                 <div

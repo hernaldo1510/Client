@@ -1,6 +1,5 @@
-
 <ng-container [ngSwitch]="IconType">
-    <svg
+  <svg
     class="feather"
     fill="none"
     stroke="currentColor"
@@ -8,11 +7,19 @@
     stroke-linecap="round"
     stroke-linejoin="round"
     *ngSwitchCase="'fi'"
-    >
-        <use attr.xlink:href="assets/fonts/feather/feather-sprite.svg#{{IconName}}"/>
-    </svg>
-    <ng-container *ngSwitchCase="'letter'">
-        {{IconName}}
-    </ng-container>
-    <i *ngSwitchDefault class="{{IconType}} {{IconType}}-{{IconName}}"></i>
+  >
+    <use
+      attr.xlink:href="assets/fonts/feather/feather-sprite.svg#{{ IconName }}"
+    />
+  </svg>
+  <ng-container *ngSwitchCase="'letter'">
+    {{ IconName }}
+  </ng-container>
+  <ng-container *ngSwitchCase="'far'">
+    <fa-icon [icon]="['far', IconName]"></fa-icon>
+  </ng-container>
+  <ng-container *ngSwitchCase="'fas'">
+    <fa-icon [icon]="['fas', IconName]"></fa-icon>
+  </ng-container>
+  <i *ngSwitchDefault class="{{ IconType }} {{ IconType }}-{{ IconName }}"></i>
 </ng-container>

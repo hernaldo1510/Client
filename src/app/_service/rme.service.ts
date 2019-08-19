@@ -244,7 +244,22 @@ export class RmeService {
         `${environment.baseUrl}${environment.rme}/${
           environment.rmeFindByPatient
         }?patientId=${id}`
-        // 'assets/data/findByPatient.json'
+      )
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      )
+      .pipe(catchError(error => this._handleError(error)));
+  }
+
+  public findByProfessional(id: string) {
+    id = id.replace('-', '').replace(/\./g, '');
+    return this.http
+      .get(
+        `${environment.baseUrl}${environment.rme}/${
+          environment.rmeFindByProfessional
+        }?professionalId=${id}`
       )
       .pipe(
         map((res: any) => {

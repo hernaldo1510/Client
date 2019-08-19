@@ -58,9 +58,17 @@ import {
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrashAlt, faWindowClose } from '@fortawesome/free-regular-svg-icons';
-import { faTimes, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-library.add(faTrashAlt, faTimes, faChevronLeft, faWindowClose);
+import { faTrashAlt, faWindowClose, faFileAlt } from '@fortawesome/free-regular-svg-icons';
+import { faTimes, faChevronLeft, faNotesMedical, faPlus } from '@fortawesome/free-solid-svg-icons';
+library.add(
+  faTrashAlt,
+  faTimes,
+  faChevronLeft,
+  faWindowClose,
+  faNotesMedical,
+  faFileAlt,
+  faPlus
+);
 
 // Pages Globaly required Components - Optional
 import { pgTabsModule } from './@pages/components/tabs/tabs.module';

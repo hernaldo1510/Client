@@ -143,9 +143,7 @@ export class RmeService {
 
     const currentRme = this.rmeForm$.getValue();
     const currentIndications = currentRme.get('indications') as FormArray;
-    currentIndications.push(
-      this.fb.group(new IndicationForm(ind))
-    );
+    currentIndications.push(this.fb.group(new IndicationForm(ind)));
   }
 
   addMedication(medAux: any) {
@@ -203,9 +201,7 @@ export class RmeService {
 
     const currentRme = this.rmeForm$.getValue();
     const currentIndications = currentRme.get('indications') as FormArray;
-    currentIndications.push(
-      this.fb.group(new IndicationForm(ind))
-    );
+    currentIndications.push(this.fb.group(new IndicationForm(ind)));
   }
 
   delMedication(i: number) {
@@ -241,8 +237,65 @@ export class RmeService {
     this.appointmentId = appoId;
   }
 
+  public findByPatient(id: string) {
+    id = id.replace('-', '').replace(/\./g, '');
+    return this.http
+      .get(
+        `${environment.baseUrl}${environment.rme}/${
+          environment.rmeFindByPatient
+        }?patientId=${id}`
+        // 'assets/data/findByPatient.json'
+      )
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      )
+      .pipe(catchError(error => this._handleError(error)));
+  }
+
+  public findByAppointment(id: string, patId: string) {
+    id = id.replace('-', '').replace(/\./g, '');
+    patId = patId.replace('-', '').replace(/\./g, '');
+    return this.http
+      .get(
+        `${environment.baseUrl}${environment.rme}/${
+          environment.rmeFindByAppointment
+        }?appointmentId=${id}`
+      )
+      .pipe(
+        map((res: any) => {
+          return res.filter(d=> {
+            return (d.patient.run.replace('-', '').replace(/\./g, '') === patId)
+          });
+        })
+      )
+      .pipe(catchError(error => this._handleError(error)));
+  }
+
+  public getById(id: string) {
+    id = id.replace('-', '').replace(/\./g, '');
+    return this.http
+      .get(
+        `${environment.baseUrl}${environment.rme}/${
+          environment.rmeGetPdf
+        }?rmeId=${id}`
+      )
+      .pipe(
+        map((res: any) => {
+          return res.base64;
+        })
+      )
+      .pipe(catchError(error => this._handleError(error)));
+  }
+
   saveNew(pw = false) {
-    const data = new Rme({...this.professional$.getValue()}, {...this.patient$.getValue()});
+    console.log(pw);
+    const data = new Rme(
+      { ...this.professional$.getValue() },
+      { ...this.patient$.getValue() },
+      pw
+    );
 
     data.professional.specialities = [data.professional.specialitiesSel];
     delete data.professional.specialitiesSel;
@@ -250,6 +303,8 @@ export class RmeService {
 
     if (!this.appointmentId) {
       delete data.appointmentId;
+    } else {
+      data.appointmentId = this.appointmentId;
     }
 
     // console.log('data', data);
@@ -283,16 +338,17 @@ export class RmeService {
       };
       data.indications.push(med);
     });
-    return (
-      this.http
-        .post(`${environment.baseUrl}${environment.rme}`, data)
-        .pipe(
-          map((res: any) => {
-            return res;
-          })
-        )
-        .pipe(catchError(error => this._handleError(error)))
-    );
+
+    console.log('data', data);
+
+    return this.http
+      .post(`${environment.baseUrl}${environment.rme}`, data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      )
+      .pipe(catchError(error => this._handleError(error)));
   }
 
   save(pw = false) {

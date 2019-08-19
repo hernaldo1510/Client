@@ -1,0 +1,71 @@
+<pgcard
+  Maximize="false"
+  Refresh="false"
+  ProgressType="bar"
+  Close="false"
+  Toggle="false"
+  AdditionalClasses="mb-2"
+>
+  <ng-template #CardTitle
+    >
+    <!-- {{ data.patient.firstName + ' ' + data.patient.lastName }} | -->
+    {{ data.creation_day }} | 
+    {{ data.professional.firstName + ' ' + data.professional.lastName }} |
+    {{ data.professional.specialities[0].name }}
+  </ng-template>
+  <ng-template #CardExtraControls>
+    <button class="btn btn-sm" (click)="showRme(data.id)"><fa-icon [icon]="['far', 'file-alt']" class="mr-1"></fa-icon> Ver Receta</button>
+  </ng-template>
+  <div *ngIf="data">
+    <!-- <h4 class="my-0">{{ (data.patient.firstName + ' ' + data.patient.lastName) | titlecase }}</h4> -->
+    <!-- <div class="mb-2">
+      <span class="badge badge-info m-r-5">{{ data.patient.run }}</span>
+      <span class="badge badge-info m-r-5">{{ data.patient.age }}</span>
+      <span class="badge badge-info">{{ data.patient.genre }} </span>
+    </div> -->
+    <!-- <div class="row">
+      <div class="col-6">
+        <h4 class="my-0">Paciente</h4>
+        <h5 class="my-0">
+          {{ data.patient.firstName + ' ' + data.patient.lastName | titlecase }}
+        </h5>
+      </div>
+      <div class="col-6">
+        <h4 class="my-0">Profesional</h4>
+        <h5 class="my-0">
+          {{
+            data.professional.firstName + ' ' + data.professional.lastName
+              | titlecase
+          }}
+        </h5>
+      </div>
+    </div> -->
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let item of data.indications; index as i" class="list-group-item px-1 py-1">
+        <label class="form-check-label" for="fre_{{ i }}">
+          <div>
+            <h5 class="block my-0 py-0"
+              >{{ item.medication.name | titlecase }}
+              <span class="small" *ngIf="item.commercialRecommendation">{{
+                ' / ' + item.commercialRecommendation.name
+              }}</span></h5
+            >
+            <span class="small block">
+              <span *ngIf="item.frecuencyType != 'Diario'"
+                >{{ item.frecuencyType }}:
+              </span>
+              {{ item.units + ' ' + item.unitType }} cada
+              {{ item.frecuency + ' ' + item.frecuencyUnit }}
+              <span *ngIf="item.frecuencyType == 'Diario'"
+                >por {{ item.duration + ' ' + item.durationUnit }}</span
+              >
+            </span>
+            <span class="small block">
+              {{ item.observation }}
+            </span>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </div>
+</pgcard>

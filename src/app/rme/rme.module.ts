@@ -10,6 +10,8 @@ import {
 } from 'ngx-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 import { ProgressModule } from '@app/_blocks/progress/progress.module';
 
 import { NewComponent } from './new/new.component';
@@ -24,6 +26,10 @@ import { BlockMedicationRecipeComponent } from './block-medication-recipe/block-
 import { ByAppointmentComponent } from './list/by-appointment/by-appointment.component';
 import { ByPatientComponent } from './list/by-patient/by-patient.component';
 import { BlockRecipeIndicationComponent } from './block-recipe-indication/block-recipe-indication.component';
+import { BlockRecipeListComponent } from './block-recipe-list/block-recipe-list.component';
+import { ModalRecipeComponent } from './modal-recipe/modal-recipe.component';
+import { ByProfessionalComponent } from './list/by-professional/by-professional.component';
+import { BlockPatientInfoComponent } from './block-patient-info/block-patient-info.component';
 
 @NgModule({
   imports: [
@@ -38,7 +44,8 @@ import { BlockRecipeIndicationComponent } from './block-recipe-indication/block-
     SharedModule,
     pgCardModule,
     ProgressModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxDatatableModule
   ],
   declarations: [
     NewComponent,
@@ -49,7 +56,12 @@ import { BlockRecipeIndicationComponent } from './block-recipe-indication/block-
     BlockMedicationRecipeComponent,
     ByAppointmentComponent,
     ByPatientComponent,
-    BlockRecipeIndicationComponent
-  ]
+    BlockRecipeIndicationComponent,
+    BlockRecipeListComponent,
+    ModalRecipeComponent,
+    ByProfessionalComponent,
+    BlockPatientInfoComponent
+  ],
+  entryComponents: [ModalRecipeComponent]
 })
 export class RmeModule {}

@@ -14,6 +14,8 @@ import { RmeService } from '@app/_service/rme.service';
 import { Router } from '@angular/router';
 import { pagesToggleService } from '@app/@pages/services/toggler.service';
 import { Observable } from 'rxjs';
+import { ProfessionalService } from '@app/_service/professional.service';
+import { AuthService } from '@app/_service/auth.service';
 
 @Component({
   selector: 'condensed-layout',
@@ -295,12 +297,14 @@ export class CondensedComponent extends RootLayout implements OnInit {
     // }
   ];
 
-  professional: Observable<any>;
+  professional: any;
   // professional: Observable<any>;
   urlProfile: any;
 
   constructor(
     private apiRme: RmeService,
+    private apiPro: ProfessionalService,
+    private auth: AuthService,
     toggler: pagesToggleService,
     router: Router,
     private sanitizer: DomSanitizer
@@ -309,8 +313,8 @@ export class CondensedComponent extends RootLayout implements OnInit {
   }
 
   ngOnInit() {
-    this.professional = this.apiRme.professional;
-    this.professional.subscribe(res => {
+    this.apiPro.getById$(this.auth.getProfessional()).subscribe(res => {
+      this.professional = res;
       const url = `https://proxy.prod.ucchristus.procloudhub.com/AWAPatients/Physicians(${
         res.id
       })/GetPicture`;

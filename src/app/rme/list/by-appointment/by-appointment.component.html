@@ -1,3 +1,21 @@
 <pg-container>
-  <h4 class="">Recetas para la cita <span class="semi-bold">{{appoId}}</span></h4>
+  <h4 class="">
+    Recetas para la cita <span class="semi-bold">{{ appoId }}</span>
+  </h4>
+  <div class="row">
+    <div class="col-8 mb-4">
+      <div *ngIf="rmeList.length == 0 && !loading" class="alert alert-info" [@fadeIn]>
+        <p>{{msg}}</p>
+      </div>
+      <app-block-recipe-list
+        *ngFor="let item of rmeList"
+        [data]="item"
+        [@fadeIn]
+        class="mb-2"
+      ></app-block-recipe-list>
+    </div>
+    <div class="col-4">
+      <app-block-patient-info [patId]="patId"></app-block-patient-info>
+    </div>
+  </div>
 </pg-container>

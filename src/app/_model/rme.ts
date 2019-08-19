@@ -10,13 +10,14 @@ export class Rme {
   creation_day: any;
   indications: any[];
 
-  constructor(pro?: any, pat?: any) {
+  constructor(pro?: any, pat?: any, pw?: boolean) {
     this.professional = pro || false;
     this.patient = pat || false;
     this.creation_day = this.getCreationDate();
     this.id = '' + Date.now();
-    this.preview = true;
+    this.preview = pw;
     this.indications = [];
+    console.log(this);
   }
 
   getCreationDate() {

@@ -11,22 +11,23 @@
   <ng-template #CardTitle>Paciente</ng-template>
   <ng-template #CardExtraControls></ng-template>
   <div *ngIf="patient && patient != -1">
-    <h4 class="my-0">{{ (patient.firstName + ' ' + patient.lastName) | titlecase }}</h4>
+    <h4 class="my-0">
+      {{ patient.firstName + ' ' + patient.lastName | titlecase }}
+    </h4>
     <div class="mb-2">
       <span class="badge badge-info m-r-5">{{ patient.run }}</span>
       <span class="badge badge-info m-r-5">{{ patient.age }}</span>
       <span class="badge badge-info">{{ patient.genre }} </span>
     </div>
     <div>
-      <input
-        type="email"
-        class="form-control input-sm mt-1"
-        name="correo"
-        [(ngModel)]="patient.email"
-        placeholder="Email"
-      />
-    </div>
-    <div class="mt-2">
+      <button
+        class="btn btn-sm mr-1"
+        [routerLink]="['/rme/new/pat/', patient.run]"
+        routerLinkActive="router-link-active"
+      >
+        <fa-icon [icon]="['fas', 'plus']" class="mr-1"></fa-icon>
+        Nueva Receta
+      </button>
       <button
         class="btn btn-sm"
         [routerLink]="['/rme/list/pat/', patient.run]"

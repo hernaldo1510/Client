@@ -41,4 +41,9 @@ export class AuthService {
     }
     return this.professional;
   }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('professional');
+  }
 }

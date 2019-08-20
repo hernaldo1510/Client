@@ -34,10 +34,13 @@ export class AuthInterceptorService implements HttpInterceptor {
             this.auth.removeToken();
             if (err.status === 401) {
               // this.router.navigateByUrl('/session/error');
+              this.goToError();
             } else if (err.status === 403) {
               // this.router.navigateByUrl('/session/error');
+              this.goToError();
             } else {
               // this.router.navigateByUrl('/session/error');
+              this.goToError();
             }
           }
         )
@@ -45,7 +48,13 @@ export class AuthInterceptorService implements HttpInterceptor {
     } else {
       // console.log('no token');
       // this.router.navigateByUrl('/session/error');
+      this.goToError();
       // return next.handle(req.clone());
     }
+  }
+
+  goToError() {
+    this.auth.logout();
+    this.router.navigateByUrl('/session/error');
   }
 }

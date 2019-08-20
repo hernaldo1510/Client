@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfessionalService } from '@app/_service/professional.service';
-import { PatientService } from '@app/_service/patient.service';
 import { RmeService } from '@app/_service/rme.service';
-import { MedicationService } from '@app/_service/medication.service';
 import { AuthService } from '@app/_service/auth.service';
 import { Observable } from 'rxjs';
 
@@ -19,9 +17,7 @@ export class CheckComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiPro: ProfessionalService,
-    private apiPat: PatientService,
     private apiRme: RmeService,
-    private apiMed: MedicationService,
     private auth: AuthService,
     private router: Router
   ) {}
@@ -48,15 +44,16 @@ export class CheckComponent implements OnInit {
           }
         },
         err => {
-          // console.log(err);
-          // this.goToError();
-          this.goToRme();
+          // console.log('err', err);
+          this.goToError();
+          // this.goToRme();
         }
       );
     }
   }
 
   goToError() {
+    this.auth.logout();
     this.apiRme.setProfessional(-1);
     this.router.navigateByUrl('/session/error');
   }

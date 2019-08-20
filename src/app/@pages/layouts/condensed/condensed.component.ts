@@ -16,6 +16,7 @@ import { pagesToggleService } from '@app/@pages/services/toggler.service';
 import { Observable } from 'rxjs';
 import { ProfessionalService } from '@app/_service/professional.service';
 import { AuthService } from '@app/_service/auth.service';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'condensed-layout',
@@ -315,7 +316,7 @@ export class CondensedComponent extends RootLayout implements OnInit {
   ngOnInit() {
     this.apiPro.getById$(this.auth.getProfessional()).subscribe(res => {
       this.professional = res;
-      const url = `https://proxy.prod.ucchristus.procloudhub.com/AWAPatients/Physicians(${
+      const url = `${environment.prmUrl}/AWAPatients/Physicians(${
         res.id
       })/GetPicture`;
       this.urlProfile = this.sanitizer.bypassSecurityTrustUrl(url);

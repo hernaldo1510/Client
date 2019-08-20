@@ -2,6 +2,7 @@ export const environment = {
   production: false,
   basePath: 'qa',
   baseUrl: 'https://r4zfbcsvw7.execute-api.us-east-1.amazonaws.com/rme-qa-sec/',
+  prmUrl: 'https://proxy.qa.ucchristus.procloudhub.com',
   professional: 'professional',
   patient: 'patient',
   rme: 'rme',

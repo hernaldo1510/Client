@@ -62,7 +62,7 @@ export class RmeService {
   }
 
   addFrecuent(medAux: any) {
-    console.log(medAux);
+    // console.log(medAux);
     const cpMed = { ...medAux };
     delete cpMed.checked;
     const d = new Date();
@@ -81,7 +81,7 @@ export class RmeService {
     }
 
     cpMed.medication.composition.administerForm = afArr;
-    console.log(cpMed);
+    // console.log(cpMed);
     let formSel: any;
     if (cpMed.medication.composition.medicationFormSelected !== undefined) {
       formSel = cpMed.medication.composition.administerForm.find(
@@ -180,7 +180,7 @@ export class RmeService {
       indicationStartDate: d
     };
 
-    console.log(med);
+    // console.log(med);
 
     const ind = new Indication({
       medication: medAux,
@@ -305,7 +305,7 @@ export class RmeService {
   }
 
   saveNew(pw = false) {
-    console.log(pw);
+    // console.log(pw);
     const data = new Rme(
       { ...this.professional$.getValue() },
       { ...this.patient$.getValue() },
@@ -317,7 +317,7 @@ export class RmeService {
     delete data.professional._run;
 
     if (!this.appointmentId) {
-      delete data.appointmentId;
+      data.appointmentId = null;
     } else {
       data.appointmentId = this.appointmentId;
     }
@@ -354,12 +354,15 @@ export class RmeService {
       data.indications.push(med);
     });
 
-    console.log('data', data);
+    // console.log('data', data);
 
     return this.http
       .post(`${environment.baseUrl}${environment.rme}`, data)
       .pipe(
         map((res: any) => {
+          if (res.code === '200' && pw === false) {
+            this.rmeForm$.next(this.fb.group(new RmeForm(new Rme())));
+          }
           return res;
         })
       )
@@ -420,13 +423,8 @@ export class RmeService {
       data.indications.push(med);
     });
 
-    // console.log(JSON.stringify(data));
     return (
       this.http
-        // .post(
-        //   `${environment.baseUrl}/${environment.basePath}/${environment.rme}`,
-        //   data
-        // )
         .post(`${environment.baseUrl}${environment.rme}`, data)
         .pipe(
           map((res: any) => {

@@ -1,9 +1,8 @@
 export const environment = {
   production: true,
-  basePath: 'Dev',
-  // baseUrl: 'https://r4zfbcsvw7.execute-api.us-east-1.amazonaws.com',
-  // baseUrl: 'https://3mcqzhr3x4.execute-api.us-east-1.amazonaws.com/rme-dev/',
-  baseUrl: 'https://3mcqzhr3x4.execute-api.us-east-1.amazonaws.com/rme-dev-sec/',
+  basePath: 'Prd',
+  baseUrl: 'https://7yllt4drud.execute-api.us-east-1.amazonaws.com/rme-prd-sec/',
+  prmUrl: 'https://proxy.prod.ucchristus.procloudhub.com',
   professional: 'professional',
   patient: 'patient',
   rme: 'rme',

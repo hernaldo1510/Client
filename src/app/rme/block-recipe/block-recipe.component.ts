@@ -70,7 +70,6 @@ export class BlockRecipeComponent implements OnInit {
     );
 
     this.rmeFormSub = this.apiRme.rmeForm.subscribe((res: any) => {
-      console.log(res);
       this.rmeForm = res;
       this.indications = this.rmeForm.get('indications') as FormArray;
     });
@@ -103,7 +102,6 @@ export class BlockRecipeComponent implements OnInit {
     this.modalRme.show();
     this.preview = preview;
     this.apiRme.saveNew(preview).subscribe(res => {
-      // console.log(res);
       this.isLoadingModal = false;
       if (res.code === '200') {
         this.pdfRme = this.sanitizer.bypassSecurityTrustResourceUrl(res.url);

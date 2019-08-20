@@ -17,7 +17,7 @@ export class Rme {
     this.id = '' + Date.now();
     this.preview = pw;
     this.indications = [];
-    console.log(this);
+    // console.log(this);
   }
 
   getCreationDate() {

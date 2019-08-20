@@ -11,6 +11,7 @@ import {
   BlankCorporateComponent,
   BlankSimplywhiteComponent
 } from './@pages/layouts';
+import { AuthGuardService } from './_service/auth-guard.service';
 
 export const AppRoutes: Routes = [
   {
@@ -20,6 +21,7 @@ export const AppRoutes: Routes = [
       path: 'rme',
       loadChildren: './rme/rme.module#RmeModule'
     }],
+    canActivate: [AuthGuardService]
   },
   {
     path: '',

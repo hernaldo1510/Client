@@ -280,8 +280,8 @@ export class RmeService {
       )
       .pipe(
         map((res: any) => {
-          return res.filter(d=> {
-            return (d.patient.run.replace('-', '').replace(/\./g, '') === patId)
+          return res.filter(d => {
+            return d.patient.run.replace('-', '').replace(/\./g, '') === patId;
           });
         })
       )
@@ -423,16 +423,14 @@ export class RmeService {
       data.indications.push(med);
     });
 
-    return (
-      this.http
-        .post(`${environment.baseUrl}${environment.rme}`, data)
-        .pipe(
-          map((res: any) => {
-            return res;
-          })
-        )
-        .pipe(catchError(error => this._handleError(error)))
-    );
+    return this.http
+      .post(`${environment.baseUrl}${environment.rme}`, data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      )
+      .pipe(catchError(error => this._handleError(error)));
   }
 
   private _handleError(err: HttpErrorResponse | any): Observable<any> {

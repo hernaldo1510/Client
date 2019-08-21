@@ -45,11 +45,17 @@ export class ModalRecipeComponent implements OnInit {
   ngOnInit() {
     this.apiRme.getById(this.id).subscribe(
       res => {
-        this.loading = false;
-        this.showPdf = true;
-        this.pdfRme = this.sanitizer.bypassSecurityTrustResourceUrl(
-          'data:application/pdf;base64,' + res
-        );
+        if (res !== false) {
+          this.loading = false;
+          this.showPdf = true;
+          this.pdfRme = this.sanitizer.bypassSecurityTrustResourceUrl(
+            'data:application/pdf;base64,' + res
+          );
+        } else {
+          this.loading = false;
+          this.showPdf = false;
+          this.msg = 'No pudimos cargar la receta, por favor intente nuevamente';
+        }
       },
       err => {
         this.loading = false;

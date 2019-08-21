@@ -51,7 +51,7 @@ export class ViewComponent implements OnInit {
         } else {
           this.loading = false;
           this.showPdf = false;
-          this.msg = 'No pudimos cargar la receta, por favor intente nuevamente';  
+          this.msg = 'No pudimos cargar la receta, por favor intente nuevamente';
         }
       },
       err => {

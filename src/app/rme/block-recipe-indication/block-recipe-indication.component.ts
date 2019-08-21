@@ -65,7 +65,7 @@ export class BlockRecipeIndicationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.indForm);
+    // console.log(this.indForm);
     this.localeService.use('es');
     this.frecuencyUnit = this.apiRme.frecuencyUnit;
     this.durationType = this.apiRme.durationType;

@@ -10,7 +10,7 @@ export class ForbiddenComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('ForbiddenComponent');
+    // console.log('ForbiddenComponent');
   }
 
 }

@@ -1,7 +1,8 @@
 export const environment = {
   production: false,
   basePath: 'dev',
-  baseUrl: 'https://3mcqzhr3x4.execute-api.us-east-1.amazonaws.com/rme-dev-sec/',
+  baseUrl:
+    'https://3mcqzhr3x4.execute-api.us-east-1.amazonaws.com/rme-dev-sec/',
   prmUrl: 'https://proxy.qa.ucchristus.procloudhub.com',
   professional: 'professional',
   patient: 'patient',
@@ -15,6 +16,14 @@ export const environment = {
   medicationComercialName: 'findByComercialName',
   medicationActiveIngredient: 'findByActiveIngredient',
   frecuencyUnit: ['Horas'],
-  durationType: [{code: 'Diario', label: 'Dias'}, {code: 'Permanente', label: 'Permanente'}, {code: 'SOS', label: 'SOS'}],
-  posologyType: ['Comprimidos', 'Gotas', 'MG']
+  durationType: [
+    { code: 'Diario', label: 'Dias' },
+    { code: 'Permanente', label: 'Permanente' },
+    { code: 'SOS', label: 'SOS' }
+  ],
+  posologyType: ['Comprimidos', 'Gotas', 'MG'],
+  tableMsg: {
+    emptyMessage: 'No hay recetas para mostrar',
+    totalMessage: 'total'
+  }
 };

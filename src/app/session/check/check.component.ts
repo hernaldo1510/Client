@@ -31,9 +31,7 @@ export class CheckComponent implements OnInit {
       this.professional$ = this.apiPro.getById$(pro);
       this.professional$.subscribe(
         res => {
-          // console.log(res);
           this.apiRme.setProfessional(res);
-          // this.router.navigateByUrl('/session/error');
           switch (this.route.snapshot.url[1].path) {
             case 'rme':
               this.goToRme();
@@ -44,11 +42,11 @@ export class CheckComponent implements OnInit {
           }
         },
         err => {
-          // console.log('err', err);
           this.goToError();
-          // this.goToRme();
         }
       );
+    } else {
+      this.goToError();
     }
   }
 
@@ -59,26 +57,26 @@ export class CheckComponent implements OnInit {
   }
 
   goToRme() {
-    console.log('goToRme');
+    // console.log('goToRme');
     const pat = this.route.snapshot.paramMap.get('pat');
     const appoId = this.route.snapshot.paramMap.get('appo');
     const bdup = this.route.snapshot.paramMap.get('bdup');
     switch (this.route.snapshot.url[2].path) {
       case 'new':
         if (appoId) {
-          console.log('rme new con appo');
+          // console.log('rme new con appo');
           this.router.navigate(['rme', 'new', 'pat', pat, 'appo', appoId]);
         } else {
-          console.log('rme new sin appo');
+          // console.log('rme new sin appo');
           this.router.navigate(['rme', 'new', 'pat', pat]);
         }
         break;
       case 'list':
         if (appoId) {
-          console.log('rme list by appo');
+          // console.log('rme list by appo');
           this.router.navigate(['rme', 'list', 'pat', pat, 'appo', appoId]);
         } else if (pat) {
-          console.log('rme list by pat');
+          // console.log('rme list by pat');
           this.router.navigate(['rme', 'list', 'pat', pat]);
         }
         break;

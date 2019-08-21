@@ -30,5 +30,13 @@ export const AppRoutes: Routes = [
       path: 'session',
       loadChildren: './session/session.module#SessionModule'
     }],
+  },
+  {
+    path: '',
+    component: BlankComponent,
+    children: [{
+      path: 'view',
+      loadChildren: './view/view.module#ViewModule'
+    }],
   }
 ];

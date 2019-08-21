@@ -13,6 +13,7 @@ import {
 } from '@angular/animations';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalRecipeComponent } from '@app/rme/modal-recipe/modal-recipe.component';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-by-patient',
@@ -42,6 +43,8 @@ import { ModalRecipeComponent } from '@app/rme/modal-recipe/modal-recipe.compone
 export class ByPatientComponent implements OnInit {
   bsModalRef: BsModalRef;
   pat: string;
+  loadingIndicator = true;
+  tableMsg = environment.tableMsg;
   rmeList = [];
   temp = [];
 
@@ -62,6 +65,7 @@ export class ByPatientComponent implements OnInit {
       this.apiRme.findByPatient(this.pat).subscribe((res: any) => {
         this.rmeList = res;
         this.temp = [...res];
+        this.loadingIndicator = false;
       });
     }
   }

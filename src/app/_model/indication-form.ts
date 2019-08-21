@@ -43,7 +43,7 @@ export class IndicationForm {
     this.observations = new FormControl(ind.observations);
     this.indicationStartDate = new FormControl(ind.indicationStartDate);
     this.duration.get('unit').valueChanges.subscribe(res => {
-      console.log(res);
+      // console.log(res);
       if (res === 'Diario') {
         this.duration.get('value').setValidators([Validators.required]);
       } else {

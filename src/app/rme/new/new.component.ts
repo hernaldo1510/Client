@@ -46,6 +46,8 @@ export class NewComponent implements OnInit {
     // const token = this.route.snapshot.paramMap.get('token');
     if (appoId) {
       this.apiRme.setAppointment(appoId);
+    } else {
+      this.apiRme.setAppointment(false);
     }
     // if (token) {
     // this.auth.setToken(token);

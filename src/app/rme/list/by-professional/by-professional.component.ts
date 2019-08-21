@@ -12,6 +12,7 @@ import {
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalRecipeComponent } from '@app/rme/modal-recipe/modal-recipe.component';
 import { AuthService } from '@app/_service/auth.service';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-by-professional',
@@ -40,6 +41,8 @@ import { AuthService } from '@app/_service/auth.service';
 })
 export class ByProfessionalComponent implements OnInit {
   bsModalRef: BsModalRef;
+  loadingIndicator = true;
+  tableMsg = environment.tableMsg;
   rmeList = [];
   temp = [];
 
@@ -58,6 +61,7 @@ export class ByProfessionalComponent implements OnInit {
     this.apiRme.findByProfessional(this.auth.getProfessional()).subscribe((res: any) => {
       this.rmeList = res;
       this.temp = [...res];
+      this.loadingIndicator = false;
     });
   }
 

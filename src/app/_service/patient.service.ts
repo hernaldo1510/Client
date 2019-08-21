@@ -28,7 +28,7 @@ export class PatientService {
 
   private _handleError(err: HttpErrorResponse | any): Observable<any> {
     const errorMsg = err.message || 'Error: No se pudo completar la petición';
-    console.log(errorMsg);
+    // console.log(errorMsg);
     return ObservableThrowError(errorMsg);
   }
 }

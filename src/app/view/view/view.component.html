@@ -1,0 +1,29 @@
+<div class="error-page" *ngIf="!showPdf">
+  <div
+    class="d-flex justify-content-center full-height full-width align-items-center"
+  >
+    <div class="error-container text-center">
+      <img class="mb-3" src="/assets/img/logo-red-salud-full.svg" />
+      <pg-progress
+        type="circle"
+        indeterminate="true"
+        color="primary"
+        *ngIf="loading"
+      ></pg-progress>
+      <div
+        role="alert"
+        class="alert alert-danger block m-4"
+        *ngIf="!loading"
+        [@fadeIn]
+      >
+        <p>{{ msg }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<iframe
+  [src]="this.pdfRme"
+  frameborder="0"
+  *ngIf="showPdf && !loading"
+  class="full-width full-height"
+></iframe>

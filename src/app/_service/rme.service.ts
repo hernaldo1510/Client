@@ -298,7 +298,11 @@ export class RmeService {
       )
       .pipe(
         map((res: any) => {
-          return res.base64;
+          if (res.base64) {
+            return res.base64;
+          } else {
+            return false;
+          }
         })
       )
       .pipe(catchError(error => this._handleError(error)));

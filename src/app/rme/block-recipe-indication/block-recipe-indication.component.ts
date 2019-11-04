@@ -7,14 +7,13 @@ import {
   transition
 } from '@angular/animations';
 import { Observable } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { esLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 
 import { MedicationService } from '@app/_service/medication.service';
-import { Medication } from '@app/_model/medication';
 import { RmeService } from '@app/_service/rme.service';
 import { FormGroup } from '@angular/forms';
 
@@ -73,7 +72,9 @@ export class BlockRecipeIndicationComponent implements OnInit {
     this.dataSourceRecommendation = Observable.create((observer: any) => {
       observer.next(this.indForm.controls.commercialRecommendationForm.value);
     }).pipe(
-      mergeMap((token: string) => this.apiMed.getByComercialName$(token))
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap((token: string) => this.apiMed.getByComercialName$(token))
     );
   }
 

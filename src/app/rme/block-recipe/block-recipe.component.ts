@@ -6,9 +6,9 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import { Observable, of, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
-import { mergeMap } from 'rxjs/operators';
+import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MedicationService } from '@app/_service/medication.service';
 import { Medication } from '@app/_model/medication';
 import { RmeService } from '@app/_service/rme.service';
@@ -66,7 +66,9 @@ export class BlockRecipeComponent implements OnInit {
     this.dataSource = Observable.create((observer: any) => {
       observer.next(this.asyncSelected);
     }).pipe(
-      mergeMap((token: string) => this.apiMed.getByActiveIngredient$(token))
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap((token: string) => this.apiMed.getByActiveIngredient$(token))
     );
 
     this.rmeFormSub = this.apiRme.rmeForm.subscribe((res: any) => {

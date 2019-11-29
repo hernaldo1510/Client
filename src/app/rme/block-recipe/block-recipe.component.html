@@ -1,27 +1,10 @@
 <h4 class="">Busque el medicamento o principio activo</h4>
-<input
-  class="form-control input-lg"
-  placeholder="medicamento o principio activo"
-  [(ngModel)]="asyncSelected"
-  [typeaheadAsync]="true"
-  [typeahead]="dataSource"
-  (typeaheadOnSelect)="typeaheadOnSelect($event)"
-  (typeaheadLoading)="changeTypeaheadLoading($event)"
-  (typeaheadNoResults)="changeTypeaheadNoResults($event)"
-  [typeaheadScrollable]="true"
-  [typeaheadOptionsInScrollableView]="5"
-  [typeaheadHideResultsOnBlur]="false"
-  typeaheadMinLength="3"
-  typeaheadWaitMs="1000"
-  typeaheadOptionField="name"
-/>
-<pg-progress
-  type="bar"
-  indeterminate="false"
-  color="complete"
-  class="m-0 mt--3"
-  *ngIf="typeaheadLoading"
-></pg-progress>
+<input class="form-control input-lg" placeholder="medicamento o principio activo" [(ngModel)]="asyncSelected"
+  [typeaheadAsync]="true" [typeahead]="dataSource" (typeaheadOnSelect)="typeaheadOnSelect($event)"
+  (typeaheadLoading)="changeTypeaheadLoading($event)" (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+  [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="5" [typeaheadHideResultsOnBlur]="false"
+  typeaheadMinLength="3" typeaheadWaitMs="1000" typeaheadOptionField="name" />
+<pg-progress type="bar" indeterminate="false" color="complete" class="m-0 mt--3" *ngIf="typeaheadLoading"></pg-progress>
 <div class="alert alert-warning" *ngIf="typeaheadNoResults">
   No encontramos resultados
 </div>
@@ -34,13 +17,8 @@
       [@fadeIn]
       class="mb-2"
     ></app-block-medication-recipe> -->
-    <app-block-recipe-indication
-      *ngFor="let item of indications?.controls; index as i"
-      [indForm]="item"
-      [index]="i"
-      [@fadeIn]
-      class="mb-2"
-    ></app-block-recipe-indication>
+    <app-block-recipe-indication *ngFor="let item of indications?.controls; index as i" [indForm]="item" [index]="i"
+      [@fadeIn] class="mb-2"></app-block-recipe-indication>
   </ul>
 </div>
 <div class="mt-2" *ngIf="hasMedications()">
@@ -53,24 +31,13 @@
 </div>
 <!-- <div class="p-2">
 </div> -->
-<div
-  class="modal fade stick-up"
-  bsModal
-  #modalRme="bs-modal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="modal-resumen"
->
+<div class="modal fade stick-up" bsModal #modalRme="bs-modal" tabindex="-1" role="dialog"
+  aria-labelledby="modal-resumen">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header py-2">
         <h4 class="modal-title pull-left inline">Receta Médica Electrónica</h4>
-        <button
-          type="button"
-          class="close pull-right"
-          aria-label="Close"
-          (click)="modalRme.hide()"
-        >
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRme.hide()">
           <span aria-hidden="true">
             <fa-icon [icon]="['fas', 'times']" size="xs"></fa-icon>
           </span>
@@ -78,37 +45,28 @@
       </div>
       <div class="modal-body p-l-0 p-r-0 p-b-0" style="height: 500px">
         <div *ngIf="isLoadingModal" class="padding-50">
-          <pg-progress
-            type="circle"
-            indeterminate="true"
-            color="complete"
-            thick="true"
-          ></pg-progress>
+          <pg-progress type="circle" indeterminate="true" color="complete" thick="true"></pg-progress>
         </div>
-        <div
-          role="alert"
-          class="alert alert-danger block m-4"
-          *ngIf="!showPdf && !isLoadingModal"
-        >
+        <div role="alert" class="alert alert-danger block m-4" *ngIf="!showPdf && !isLoadingModal">
           <p>
             Algo sali&oacute; mal, por favor, int&eacute;ntelo nuevamente en
             unos minutos.
           </p>
         </div>
-        <iframe
+        <!-- <iframe
           [src]="this.pdfRme"
           frameborder="0"
           *ngIf="showPdf && !isLoadingModal"
           class="full-width full-height"
-        ></iframe>
+        ></iframe> -->
+        <ngx-extended-pdf-viewer [src]="this.pdfRme" backgroundColor="#414141" [height]="'90vh'"
+          [useBrowserLocale]="true" [handTool]="false" [showHandToolButton]="true" [showPrintButton]="true"
+          [showOpenFileButton]="false" [showFindButton]="false" *ngIf="showPdf && !isLoadingModal" [@fadeIn]>
+        </ngx-extended-pdf-viewer>
       </div>
       <div class="modal-footer py-2" *ngIf="preview">
         <div class="w-100 d-flex flex-row">
-          <button
-            class="btn btn-primary"
-            (click)="save(false)"
-            [disabled]="isLoadingModal"
-          >
+          <button class="btn btn-primary" (click)="save(false)" [disabled]="isLoadingModal">
             Firmar y Enviar
           </button>
         </div>

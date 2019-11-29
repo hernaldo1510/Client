@@ -70,6 +70,7 @@ library.add(
   faPlus,
   faFolder
 );
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 // Pages Globaly required Components - Optional
 import { pgTabsModule } from './@pages/components/tabs/tabs.module';
@@ -150,7 +151,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     pgSwitchModule,
     QuillModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    NgxExtendedPdfViewerModule
   ],
   providers: [
     QuickviewService,

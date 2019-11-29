@@ -3,6 +3,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { RmeService } from '@app/_service/rme.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { DomSanitizer } from '@angular/platform-browser';
+import { defaultOptions } from 'ngx-extended-pdf-viewer';
 
 @Component({
   selector: 'app-modal-recipe',
@@ -40,7 +41,9 @@ export class ModalRecipeComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private apiRme: RmeService,
     private sanitizer: DomSanitizer
-  ) {}
+  ) {
+    defaultOptions.workerSrc = './assets/pdf.worker-es5.js';
+  }
 
   ngOnInit() {
     this.apiRme.getById(this.id).subscribe(
@@ -48,9 +51,10 @@ export class ModalRecipeComponent implements OnInit {
         if (res !== false) {
           this.loading = false;
           this.showPdf = true;
-          this.pdfRme = this.sanitizer.bypassSecurityTrustResourceUrl(
-            'data:application/pdf;base64,' + res
-          );
+          this.pdfRme = res;
+          // this.pdfRme = this.sanitizer.bypassSecurityTrustResourceUrl(
+          //   'data:application/pdf;base64,' + res
+          // );
         } else {
           this.loading = false;
           this.showPdf = false;

@@ -11,6 +11,7 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 import { ProgressModule } from '@app/_blocks/progress/progress.module';
 
@@ -45,7 +46,8 @@ import { BlockPatientInfoComponent } from './block-patient-info/block-patient-in
     pgCardModule,
     ProgressModule,
     FontAwesomeModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    NgxExtendedPdfViewerModule
   ],
   declarations: [
     NewComponent,

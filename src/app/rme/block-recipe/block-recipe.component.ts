@@ -15,6 +15,7 @@ import { RmeService } from '@app/_service/rme.service';
 import { FormGroup, FormArray } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap';
 import { DomSanitizer } from '@angular/platform-browser';
+import { defaultOptions } from 'ngx-extended-pdf-viewer';
 
 @Component({
   selector: 'app-block-recipe',
@@ -59,7 +60,9 @@ export class BlockRecipeComponent implements OnInit {
   pdfRme: any;
   preview = true;
 
-  constructor(private apiMed: MedicationService, private apiRme: RmeService, private sanitizer: DomSanitizer) {}
+  constructor(private apiMed: MedicationService, private apiRme: RmeService, private sanitizer: DomSanitizer) {
+    defaultOptions.workerSrc = './assets/pdf.worker-es5.js';
+  }
 
   ngOnInit() {
     this.receta = this.apiRme.medList;
@@ -106,7 +109,9 @@ export class BlockRecipeComponent implements OnInit {
     this.apiRme.saveNew(preview).subscribe(res => {
       this.isLoadingModal = false;
       if (res.code === '200') {
-        this.pdfRme = this.sanitizer.bypassSecurityTrustResourceUrl(res.url);
+        // this.pdfRme = this.sanitizer.bypassSecurityTrustResourceUrl(res.url);
+        console.log(res.url);
+        this.pdfRme = res.url;
         this.showPdf = true;
       } else {
         this.showPdf = false;

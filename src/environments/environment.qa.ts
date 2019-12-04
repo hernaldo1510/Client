@@ -17,6 +17,8 @@ export const environment = {
   frecuencyUnit: ['Horas'],
   durationType: [
     { code: 'Diario', label: 'Dias' },
+    { code: 'Semanal', label: 'Semanas' },
+    { code: 'Mensual', label: 'Meses' },
     { code: 'Permanente', label: 'Permanente' },
     { code: 'SOS', label: 'SOS' }
   ],

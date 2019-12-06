@@ -347,7 +347,7 @@ export class RmeService {
         frecuency: m.frecuency.value,
         frecuencyUnit: 'Horas',
         duration: m.duration.value,
-        durationUnit: 'Días',
+        durationUnit: m.duration.unit,
         observation: m.observations,
         commercialRecommendation:
           m.commercialRecommendation === false

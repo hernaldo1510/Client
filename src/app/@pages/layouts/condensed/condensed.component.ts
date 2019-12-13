@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { pagesToggleService } from '@app/@pages/services/toggler.service';
 import { Observable } from 'rxjs';
 import { ProfessionalService } from '@app/_service/professional.service';
+import { FloatingHelpComponent } from '@app/floating-help/floating-help.component';
 import { AuthService } from '@app/_service/auth.service';
 import { environment } from 'environments/environment';
 

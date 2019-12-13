@@ -20,11 +20,11 @@ import { AppComponent } from './app.component';
 import {
   CondensedComponent,
   BlankComponent,
-  RootLayout,
-  CorporateLayout,
-  SimplyWhiteLayout,
-  ExecutiveLayout,
-  CasualLayout
+  RootLayout
+  // CorporateLayout,
+  // SimplyWhiteLayout,
+  // ExecutiveLayout,
+  // CasualLayout
 } from './@pages/layouts';
 
 // Layout Service - Required
@@ -59,7 +59,7 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrashAlt, faWindowClose, faFileAlt, faFolder } from '@fortawesome/free-regular-svg-icons';
-import { faTimes, faChevronLeft, faNotesMedical, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faChevronLeft, faNotesMedical, faPlus, faQuestion } from '@fortawesome/free-solid-svg-icons';
 library.add(
   faTrashAlt,
   faTimes,
@@ -68,7 +68,8 @@ library.add(
   faNotesMedical,
   faFileAlt,
   faPlus,
-  faFolder
+  faFolder,
+  faQuestion
 );
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
@@ -108,10 +109,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     AppComponent,
     CondensedComponent,
-    CorporateLayout,
-    SimplyWhiteLayout,
-    ExecutiveLayout,
-    CasualLayout,
+    // CorporateLayout,
+    // SimplyWhiteLayout,
+    // ExecutiveLayout,
+    // CasualLayout,
     SidebarComponent,
     QuickviewComponent,
     SearchOverlayComponent,
@@ -119,9 +120,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HorizontalMenuComponent,
     BlankComponent,
     RootLayout,
-    BlankCorporateComponent,
-    BlankSimplywhiteComponent,
-    BlankCasualComponent,
+    // BlankCorporateComponent,
+    // BlankSimplywhiteComponent,
+    // BlankCasualComponent,
     FloatingHelpComponent
   ],
   imports: [

@@ -2,14 +2,14 @@ import { Routes } from '@angular/router';
 // Layouts
 import {
   CondensedComponent,
-  BlankComponent,
-  CorporateLayout,
-  SimplyWhiteLayout,
-  ExecutiveLayout,
-  CasualLayout,
-  BlankCasualComponent,
-  BlankCorporateComponent,
-  BlankSimplywhiteComponent
+  BlankComponent
+  // CorporateLayout,
+  // SimplyWhiteLayout,
+  // ExecutiveLayout,
+  // CasualLayout,
+  // BlankCasualComponent,
+  // BlankCorporateComponent,
+  // BlankSimplywhiteComponent
 } from './@pages/layouts';
 import { AuthGuardService } from './_service/auth-guard.service';
 

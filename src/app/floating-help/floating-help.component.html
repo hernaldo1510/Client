@@ -1,3 +1,8 @@
-<p>
-  floating-help works!
-</p>
+<div class="bg-white shadow-lg rounded-lg floatingForm p-3" *ngIf="isShowForm" [@fadeInOut]>
+  lala
+  laslsl
+  laalsl
+</div>
+<button class="btn btn-primary floatingHelp p-3 shadow-lg rounded-circle" (click)="showForm()" [@fadeIn]>
+  <fa-icon [icon]="['fas', 'question']" size="2x" [fixedWidth]="true"></fa-icon>
+</button>

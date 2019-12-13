@@ -89,6 +89,7 @@ import { BlankSimplywhiteComponent } from './@pages/layouts/blank-simplywhite/bl
 import { BlankCasualComponent } from './@pages/layouts/blank-casual/blank-casual.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AuthInterceptorService } from './_service/auth-interceptor.service';
+import { FloatingHelpComponent } from './floating-help/floating-help.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -120,7 +121,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RootLayout,
     BlankCorporateComponent,
     BlankSimplywhiteComponent,
-    BlankCasualComponent
+    BlankCasualComponent,
+    FloatingHelpComponent
   ],
   imports: [
     BrowserModule,

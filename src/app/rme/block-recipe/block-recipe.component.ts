@@ -110,7 +110,7 @@ export class BlockRecipeComponent implements OnInit {
       this.isLoadingModal = false;
       if (res.code === '200') {
         // this.pdfRme = this.sanitizer.bypassSecurityTrustResourceUrl(res.url);
-        console.log(res.url);
+        // console.log(res.url);
         this.pdfRme = res.url;
         this.showPdf = true;
       } else {

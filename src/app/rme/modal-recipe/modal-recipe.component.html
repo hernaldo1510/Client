@@ -13,13 +13,7 @@
   <div role="alert" class="alert alert-danger block m-4" *ngIf="!loading && !showPdf" [@fadeIn]>
     <p>{{ msg }}</p>
   </div>
-  <!-- <iframe
-    [src]="this.pdfRme"
-    frameborder="0"
-    *ngIf="showPdf && !loading"
-    class="full-width full-height"
-  ></iframe> -->
-  <ngx-extended-pdf-viewer [base64Src]="this.pdfRme" backgroundColor="#414141" [height]="'90vh'" [useBrowserLocale]="true"
+  <ngx-extended-pdf-viewer [base64Src]="this.pdfRme" backgroundColor="#414141" [height]="'100%'" [useBrowserLocale]="true"
     [handTool]="false" [showHandToolButton]="true" [showPrintButton]="true" [showOpenFileButton]="false" [showFindButton]="false" *ngIf="showPdf && !loading" [@fadeIn]>
   </ngx-extended-pdf-viewer>
 </div>

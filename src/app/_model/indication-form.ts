@@ -18,6 +18,7 @@ export class IndicationForm {
   fb = new FormBuilder();
 
   constructor(ind: Indication) {
+    // console.log(ind);
     this.medication = ind.medication;
     this.commercialRecommendation = new FormControl(ind.commercialRecommendation);
     this.commercialRecommendationForm = new FormControl();
@@ -25,7 +26,7 @@ export class IndicationForm {
       unit: new FormControl(ind.duration.unit),
       value: new FormControl(ind.duration.value)
     });
-    if (ind.duration.unit === 'Diario') {
+    if (ind.duration.unit === 'Diario' || ind.duration.unit === 'Mensual' || ind.duration.unit === 'Semanal') {
       this.duration.get('value').setValidators([Validators.required]);
     }
     this.frecuency = this.fb.group({
@@ -44,7 +45,7 @@ export class IndicationForm {
     this.indicationStartDate = new FormControl(ind.indicationStartDate);
     this.duration.get('unit').valueChanges.subscribe(res => {
       // console.log(res);
-      if (res === 'Diario') {
+      if (res === 'Diario' || res === 'Mensual' || res === 'Semanal') {
         this.duration.get('value').setValidators([Validators.required]);
       } else {
         this.duration.get('value').setValidators([]);

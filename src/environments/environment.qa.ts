@@ -22,6 +22,13 @@ export const environment = {
     { code: 'Permanente', label: 'Permanente' },
     { code: 'SOS', label: 'SOS' }
   ],
+  durationUnit: {
+    Diario: 'Dias',
+    Semanal: 'Semanas',
+    Mensual: 'Meses',
+    Permanente: 'Permanente',
+    SOS: 'SOS'
+  },
   posologyType: ['Comprimidos', 'Gotas', 'MG'],
   tableMsg: {
     emptyMessage: 'No hay recetas para mostrar',

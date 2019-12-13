@@ -347,7 +347,7 @@ export class RmeService {
         frecuency: m.frecuency.value,
         frecuencyUnit: 'Horas',
         duration: m.duration.value,
-        durationUnit: m.duration.unit,
+        durationUnit: environment.durationUnit[m.duration.unit],
         observation: m.observations,
         commercialRecommendation:
           m.commercialRecommendation === false

@@ -44,13 +44,34 @@ export const environment = {
   medicationComercialName: 'findByComercialName',
   medicationActiveIngredient: 'findByActiveIngredient',
   frecuencyUnit: ['Horas'],
-  durationType: [
-    { code: 'Diario', label: 'Dias' },
-    { code: 'Semanal', label: 'Semanas' },
-    { code: 'Mensual', label: 'Meses' },
-    { code: 'Permanente', label: 'Permanente' },
-    { code: 'SOS', label: 'SOS' }
+  durationType: [{
+      code: 'Diario',
+      label: 'Dias'
+    },
+    {
+      code: 'Semanal',
+      label: 'Semanas'
+    },
+    {
+      code: 'Mensual',
+      label: 'Meses'
+    },
+    {
+      code: 'Permanente',
+      label: 'Permanente'
+    },
+    {
+      code: 'SOS',
+      label: 'SOS'
+    }
   ],
+  durationUnit: {
+    Diario: 'Dias',
+    Semanal: 'Semanas',
+    Mensual: 'Meses',
+    Permanente: 'Permanente',
+    SOS: 'SOS'
+  },
   posologyType: ['Comprimidos', 'Gotas', 'MG'],
   tableMsg: {
     emptyMessage: 'No hay recetas para mostrar',

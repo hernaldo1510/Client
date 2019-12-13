@@ -53,18 +53,12 @@
             unos minutos.
           </p>
         </div>
-        <!-- <iframe
-          [src]="this.pdfRme"
-          frameborder="0"
-          *ngIf="showPdf && !isLoadingModal"
-          class="full-width full-height"
-        ></iframe> -->
-        <ngx-extended-pdf-viewer [src]="this.pdfRme" backgroundColor="#414141" [height]="'90vh'"
+        <ngx-extended-pdf-viewer [src]="this.pdfRme" backgroundColor="#414141" [height]="'100%'"
           [useBrowserLocale]="true" [handTool]="false" [showHandToolButton]="true" [showPrintButton]="true"
           [showOpenFileButton]="false" [showFindButton]="false" *ngIf="showPdf && !isLoadingModal" [@fadeIn]>
         </ngx-extended-pdf-viewer>
       </div>
-      <div class="modal-footer py-2" *ngIf="preview">
+      <div class="modal-footer p-2" *ngIf="preview">
         <div class="w-100 d-flex flex-row">
           <button class="btn btn-primary" (click)="save(false)" [disabled]="isLoadingModal">
             Firmar y Enviar

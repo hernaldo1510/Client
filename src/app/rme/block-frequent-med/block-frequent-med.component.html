@@ -25,9 +25,9 @@
           <div>
             <span class="block bold">{{ item.medication.name | titlecase }}</span>
             <span class="small">
-              <span *ngIf="item.frecuencyType != 'Diario'">{{item.frecuencyType}}: </span>
+              <span *ngIf="item.frecuencyType != 'Diario' && item.frecuencyType != 'Semanal' && item.frecuencyType != 'Mensual'">{{item.frecuencyType}}: </span>
               {{item.units + ' ' + item.unitType}} cada {{ item.frecuency + ' ' + item.frecuencyUnit }}
-              <span *ngIf="item.frecuencyType == 'Diario'">por {{item.duration + ' ' + item.durationUnit}}</span>
+              <span *ngIf="item.frecuencyType == 'Diario' || item.frecuencyType != 'Semanal' || item.frecuencyType != 'Mensual'">por {{item.duration + ' ' + item.durationUnit}}</span>
             </span>
           </div>
         </label>

@@ -29,6 +29,7 @@ export const environment = {
     Permanente: 'Permanente',
     SOS: 'SOS'
   },
+  messageReasons: ['Pregunta', 'Sugerencia', 'Error', 'Felicitación', 'Otro'],
   posologyType: ['Comprimidos', 'Gotas', 'MG'],
   tableMsg: {
     emptyMessage: 'No hay recetas para mostrar',

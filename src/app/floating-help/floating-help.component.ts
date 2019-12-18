@@ -9,6 +9,14 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import {
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import {
+  environment
+} from 'environments/environment';
 
 @Component({
   selector: 'app-floating-help',
@@ -36,14 +44,53 @@ import {
   ]
 })
 export class FloatingHelpComponent implements OnInit {
-  public isShowForm: boolean;
+  public isShowForm = false;
+  public isSent = false;
+  public loading = false;
+  public motivos = environment.messageReasons;
+  contactForm: FormGroup;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.contactForm = new FormGroup({
+      reason: new FormControl(this.motivos[0]),
+      message: new FormControl('', {
+        validators: [Validators.required]
+      })
+    });
+  }
 
   showForm() {
     this.isShowForm = !this.isShowForm;
+    if (this.isShowForm) {
+      this.loading = false;
+    }
   }
 
+  changeReason(e) {
+    this.contactForm.controls.reason.setValue(e.target.value, {
+      onlySelf: true
+    });
+  }
+
+  onSubmit({
+    value,
+    valid
+  }: {
+    value;valid: boolean
+  }) {
+    console.log(value);
+    this.loading = true;
+    this.isSent = false;
+    this.isShowForm = false;
+    setTimeout(() => {
+      this.isSent = true;
+      this.loading = false;
+      setTimeout(() => {
+        this.contactForm.controls.message.setValue('');
+        this.isSent = false;
+      }, 2000);
+    }, 1000);
+  }
 }

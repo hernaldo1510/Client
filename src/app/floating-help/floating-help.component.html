@@ -1,8 +1,33 @@
-<div class="bg-white shadow-lg rounded-lg floatingForm p-3" *ngIf="isShowForm" [@fadeInOut]>
-  lala
-  laslsl
-  laalsl
+<div class="bg-white shadow-lg rounded-lg floatingForm p-3" *ngIf="isShowForm && !loading" [@fadeInOut]>
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm)" *ngIf="!loading">
+    <div class="form-group">
+      <label for="mensaje">Motivo</label>
+      <select class="custom-select" formControlName="reason" (change)="changeReason($event)">
+        <option *ngFor="
+            let item of motivos
+          " value="{{item}}">{{ item }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="mensaje">Mensaje</label>
+      <textarea class="form-control" id="mensaje" rows="8" formControlName="message"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="contactForm.invalid || loading">Enviar</button>
+  </form>
+  <!-- <div *ngIf="loading" class="py-5 text-center text-primary">
+    <pg-progress type="circle" indeterminate="false" color="complete" class="m-0 mt--3" *ngIf="!isSent"></pg-progress>
+    <fa-icon [icon]="['fas', 'check']" size="2x" [fixedWidth]="true" *ngIf="isSent"></fa-icon>
+  </div> -->
 </div>
-<button class="btn btn-primary floatingHelp p-3 shadow-lg rounded-circle" (click)="showForm()" [@fadeIn]>
-  <fa-icon [icon]="['fas', 'question']" size="2x" [fixedWidth]="true"></fa-icon>
+<button class="btn btn-complete floatingHelp p-3 shadow-lg rounded-lg" (click)="showForm()" [@fadeIn] [ngClass]="{'btn-complete': !isShowForm && !isSent || loading, 'btn-default': isShowForm && !isSent, 'btn-success': isSent}">
+  <!-- <div *ngIf="!loading"> -->
+    <fa-icon [icon]="['fas', 'question']" size="lg" [fixedWidth]="true" *ngIf="!isShowForm && !isSent && !loading"></fa-icon>
+    <fa-icon [icon]="['fas', 'times']" size="lg" [fixedWidth]="true" *ngIf="isShowForm && !isSent && !loading"></fa-icon>
+    <fa-icon [icon]="['fas', 'paper-plane']" size="lg" [fixedWidth]="true" *ngIf="loading"></fa-icon>
+    <fa-icon [icon]="['fas', 'check']" size="lg" [fixedWidth]="true" *ngIf="isSent && !loading"></fa-icon>
+  <!-- </div> -->
+  <!-- <div *ngIf="loading">
+    <fa-icon [icon]="['fas', 'spinner']" size="lg" [fixedWidth]="true" [spin]="true" *ngIf="!isSent"></fa-icon>
+    <fa-icon [icon]="['fas', 'spinner']" size="lg" [fixedWidth]="true" [spin]="true" *ngIf="!isSent"></fa-icon>
+  </div> -->
 </button>

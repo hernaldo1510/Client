@@ -30,7 +30,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         tap(
           succ => {},
           err => {
-            // console.log(err);
+            console.log(err);
             this.auth.removeToken();
             if (err.status === 401) {
               // this.router.navigateByUrl('/session/error');
@@ -46,7 +46,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         )
       );
     } else {
-      // console.log('no token');
+      console.log('no token');
       // this.router.navigateByUrl('/session/error');
       this.goToError();
       // return next.handle(req.clone());

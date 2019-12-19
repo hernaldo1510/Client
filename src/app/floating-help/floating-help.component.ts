@@ -18,6 +18,7 @@ import {
   environment
 } from 'environments/environment';
 import { AuthService } from '@app/_service/auth.service';
+import { EmailService } from '@app/_service/email.service';
 
 @Component({
   selector: 'app-floating-help',
@@ -51,7 +52,7 @@ export class FloatingHelpComponent implements OnInit {
   public motivos = environment.messageReasons;
   contactForm: FormGroup;
 
-  constructor(private apiAuth: AuthService) {}
+  constructor(private apiAuth: AuthService, private apiEmail: EmailService) {}
 
   ngOnInit() {
     this.contactForm = new FormGroup({
@@ -83,6 +84,9 @@ export class FloatingHelpComponent implements OnInit {
   }) {
     console.log(value);
     const pro = this.apiAuth.getProfessionalData();
+    this.apiEmail.sendEmail('lala').subscribe(res => {
+      console.log(res);
+    });
     console.log(pro);
     this.loading = true;
     this.isSent = false;

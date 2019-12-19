@@ -43,6 +43,7 @@ export const environment = {
   medicationHighFrequency: 'findHighFrequencyByProfessional',
   medicationComercialName: 'findByComercialName',
   medicationActiveIngredient: 'findByActiveIngredient',
+  sendEmail: 'util/sendEmail',
   frecuencyUnit: ['Horas'],
   durationType: [{
       code: 'Diario',

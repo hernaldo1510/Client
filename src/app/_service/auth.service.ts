@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   token: any = false;
   professional: any = false;
+  professionalData: any;
+
   constructor() {}
 
   getToken(): any {
@@ -30,6 +32,14 @@ export class AuthService {
   setProfessional(pro: any) {
     this.professional = pro;
     localStorage.setItem('professional', pro);
+  }
+
+  setProfessionalData(data: any) {
+    this.professionalData = data;
+  }
+
+  getProfessionalData() {
+    return this.professionalData;
   }
 
   getProfessional() {

@@ -62,6 +62,7 @@ export class NewComponent implements OnInit {
       this.professional$.subscribe(
         res => {
           this.apiRme.setProfessional(res);
+          this.auth.setProfessionalData(res);
         },
         err => {
           this.apiRme.setProfessional(-1);
@@ -119,20 +120,20 @@ export class NewComponent implements OnInit {
     return this.apiRme.hasMedications();
   }
 
-  save(preview = false) {
-    this.showPdf = false;
-    this.isLoadingModal = true;
-    this.modalRme.show();
-    this.preview = preview;
-    this.apiRme.save(preview).subscribe(res => {
-      // console.log(res);
-      this.isLoadingModal = false;
-      if (res.code === '200') {
-        this.pdfRme = this.sanitizer.bypassSecurityTrustResourceUrl(res.url);
-        this.showPdf = true;
-      } else {
-        this.showPdf = false;
-      }
-    });
-  }
+  // save(preview = false) {
+  //   this.showPdf = false;
+  //   this.isLoadingModal = true;
+  //   this.modalRme.show();
+  //   this.preview = preview;
+  //   this.apiRme.save(preview).subscribe(res => {
+  //     // console.log(res);
+  //     this.isLoadingModal = false;
+  //     if (res.code === '200') {
+  //       this.pdfRme = this.sanitizer.bypassSecurityTrustResourceUrl(res.url);
+  //       this.showPdf = true;
+  //     } else {
+  //       this.showPdf = false;
+  //     }
+  //   });
+  // }
 }

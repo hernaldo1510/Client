@@ -16,16 +16,15 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { ProgressModule } from '@app/_blocks/progress/progress.module';
 
 import { NewComponent } from './new/new.component';
-import { BlockRecipeComponent } from './block-recipe/block-recipe.component';
-import { BlockFrequentMedComponent } from './block-frequent-med/block-frequent-med.component';
 import { RmeRoutingModule } from './rme-routing.module';
 import { SharedModule } from '@app/@pages/components/shared.module';
 import { BlockPatientComponent } from './block-patient/block-patient.component';
 import { pgCardModule } from '@app/@pages/components/card/card.module';
-import { BlockProfessionalComponent } from './block-professional/block-professional.component';
-import { BlockMedicationRecipeComponent } from './block-medication-recipe/block-medication-recipe.component';
 import { ByAppointmentComponent } from './list/by-appointment/by-appointment.component';
 import { ByPatientComponent } from './list/by-patient/by-patient.component';
+import { BlockRecipeComponent } from './block-recipe/block-recipe.component';
+import { BlockFrequentMedComponent } from './block-frequent-med/block-frequent-med.component';
+import { BlockProfessionalComponent } from './block-professional/block-professional.component';
 import { BlockRecipeIndicationComponent } from './block-recipe-indication/block-recipe-indication.component';
 import { BlockRecipeListComponent } from './block-recipe-list/block-recipe-list.component';
 import { ModalRecipeComponent } from './modal-recipe/modal-recipe.component';
@@ -55,7 +54,6 @@ import { BlockPatientInfoComponent } from './block-patient-info/block-patient-in
     BlockFrequentMedComponent,
     BlockPatientComponent,
     BlockProfessionalComponent,
-    BlockMedicationRecipeComponent,
     ByAppointmentComponent,
     ByPatientComponent,
     BlockRecipeIndicationComponent,

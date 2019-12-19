@@ -9,7 +9,7 @@
   AdditionalClasses="mb-2"
 >
   <ng-template #CardTitle>Paciente</ng-template>
-  <ng-template #CardExtraControls></ng-template>
+  <!-- <ng-template #CardExtraControls></ng-template> -->
   <div *ngIf="patient && patient != -1">
     <h4 class="my-0">
       {{ patient.firstName + ' ' + patient.lastName | titlecase }}

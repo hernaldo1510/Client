@@ -86,7 +86,7 @@ export class ByProfessionalComponent implements OnInit {
     const initialState = { id: idRme };
     this.bsModalRef = this.modalService.show(ModalRecipeComponent, {
       initialState,
-      class: 'stick-up modal-lg'
+      class: 'stick-up modal-xl'
     });
   }
 }

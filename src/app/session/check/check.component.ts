@@ -32,6 +32,7 @@ export class CheckComponent implements OnInit {
       this.professional$.subscribe(
         res => {
           this.apiRme.setProfessional(res);
+          this.auth.setProfessionalData(res);
           switch (this.route.snapshot.url[1].path) {
             case 'rme':
               this.goToRme();

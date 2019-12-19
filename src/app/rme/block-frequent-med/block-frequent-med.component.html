@@ -1,45 +1,29 @@
-<pgcard
-  [Loading]="isLoading"
-  [ShowMessage]="
+<pgcard [Loading]="isLoading" [ShowMessage]="
     !isLoading && (medicationHighFrequency && medicationHighFrequency == -1)
-  "
-  [Message]="message"
-  Maximize="false"
-  Refresh="false"
-  ProgressType="bar"
-  MinimalHeader="true"
-  AdditionalClasses="mb-2"
->
+  " [Message]="message" Maximize="false" Close="false" Refresh="false" ProgressType="bar"
+  AdditionalClasses="mb-2">
   <ng-template #CardTitle>Indicaciones frecuentes</ng-template>
   <ng-template #CardExtraControls></ng-template>
-  <div *ngIf="medicationHighFrequency && medicationHighFrequency != -1">
-    <ul class="list-unstyled ml-4">
-      <li *ngFor="let item of medicationHighFrequency; index as i">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          [(ngModel)]="item.checked"
-          id="fre_{{ i }}"
-        />
-        <label class="form-check-label" for="fre_{{ i }}">
-          <div>
-            <span class="block bold">{{ item.medication.name | titlecase }}</span>
-            <span class="small">
-              <span *ngIf="item.frecuencyType != 'Diario' && item.frecuencyType != 'Semanal' && item.frecuencyType != 'Mensual'">{{item.frecuencyType}}: </span>
-              {{item.units + ' ' + item.unitType}} cada {{ item.frecuency + ' ' + item.frecuencyUnit }}
-              <span *ngIf="item.frecuencyType == 'Diario' || item.frecuencyType != 'Semanal' || item.frecuencyType != 'Mensual'">por {{item.duration + ' ' + item.durationUnit}}</span>
+  <div *ngIf="medicationHighFrequency && medicationHighFrequency != -1" perfectScrollbar class="scrollable"
+    style="height: 200px;">
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let item of medicationHighFrequency; index as i" class="d-flex list-group-item px-0 py-1">
+        <button class="btn btn-info btn-sm mr-2" (click)="addIndToRme(item)">
+          <fa-icon [icon]="['fas', 'chevron-left']" [fixedWidth]="true"></fa-icon>
+        </button>
+        <div>
+          <span class="block bold" style="line-height: 16px;">{{ item.medication.name | titlecase }}</span>
+          <span class="small" style="line-height: 16px;">
+            <span
+              *ngIf="item.frecuencyType != 'Diario' && item.frecuencyType != 'Semanal' && item.frecuencyType != 'Mensual'">{{item.frecuencyType}}:
             </span>
-          </div>
-        </label>
+            {{item.units + ' ' + item.unitType}} cada {{ item.frecuency + ' ' + item.frecuencyUnit }}
+            <span
+              *ngIf="item.frecuencyType == 'Diario' || item.frecuencyType == 'Semanal' || item.frecuencyType == 'Mensual'">por
+              {{item.duration + ' ' + item.durationUnit}}</span>
+          </span>
+        </div>
       </li>
     </ul>
-    <button
-      class="btn btn-complete"
-      (click)="addToRme()"
-      *ngIf="medicationHighFrequency"
-    >
-      <fa-icon [icon]="['fas', 'chevron-left']" class="m-r-5"></fa-icon>
-      Agregar a receta
-    </button>
   </div>
 </pgcard>

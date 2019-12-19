@@ -3,9 +3,9 @@
   [ShowMessage]="patient && patient == -1"
   [Message]="message"
   Maximize="false"
+  Close="false"
   Refresh="false"
   ProgressType="bar"
-  MinimalHeader="true"
   AdditionalClasses="mb-2"
 >
   <ng-template #CardTitle>Paciente</ng-template>
@@ -28,7 +28,7 @@
     </div>
     <div class="mt-2">
       <button
-        class="btn btn-sm"
+        class="btn btn-info btn-sm"
         [routerLink]="['/rme/list/pat/', patient.run]"
         routerLinkActive="router-link-active"
       >

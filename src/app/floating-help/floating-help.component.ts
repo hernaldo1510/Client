@@ -17,6 +17,7 @@ import {
 import {
   environment
 } from 'environments/environment';
+import { AuthService } from '@app/_service/auth.service';
 
 @Component({
   selector: 'app-floating-help',
@@ -50,7 +51,7 @@ export class FloatingHelpComponent implements OnInit {
   public motivos = environment.messageReasons;
   contactForm: FormGroup;
 
-  constructor() {}
+  constructor(private apiAuth: AuthService) {}
 
   ngOnInit() {
     this.contactForm = new FormGroup({
@@ -78,9 +79,11 @@ export class FloatingHelpComponent implements OnInit {
     value,
     valid
   }: {
-    value;valid: boolean
+    value; valid: boolean
   }) {
     console.log(value);
+    const pro = this.apiAuth.getProfessionalData();
+    console.log(pro);
     this.loading = true;
     this.isSent = false;
     this.isShowForm = false;

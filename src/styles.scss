@@ -6,6 +6,7 @@
 .dropdown-menu {
   min-width: 100% !important;
 }
+
 typeahead-container {
   width: 100% !important;
 }
@@ -22,12 +23,18 @@ typeahead-container {
   border-color: #ccc;
 }
 
+.modal-xl {
+  width: 800px !important;
+  max-width: 800px;
+}
+
 .btn-primary,
 .btn-primary:focus {
   color: #ffffff !important;
   background-color: #8b52a0;
   border-color: #8b52a0;
 }
+
 .btn-primary-outline {
   background-color: transparent;
   color: #8b52a0 !important;
@@ -40,7 +47,7 @@ typeahead-container {
 .btn-primary-outline:focus,
 .btn-primary-outline:active,
 .btn-primary-outline.active,
-.open > .dropdown-toggle.btn-primary-outline {
+.open>.dropdown-toggle.btn-primary-outline {
   color: #fff !important;
   background-color: #8b52a0;
   border-color: #8b52a0;
@@ -48,13 +55,13 @@ typeahead-container {
 
 .btn-primary:active:hover,
 .btn-primary.active:hover,
-.open > .dropdown-toggle.btn-primary:hover,
+.open>.dropdown-toggle.btn-primary:hover,
 .btn-primary:active:focus,
 .btn-primary.active:focus,
-.open > .dropdown-toggle.btn-primary:focus,
+.open>.dropdown-toggle.btn-primary:focus,
 .btn-primary:active.focus,
 .btn-primary.active.focus,
-.open > .dropdown-toggle.btn-primary.focus {
+.open>.dropdown-toggle.btn-primary.focus {
   color: #fff !important;
   background-color: #584b8d !important;
   border-color: #584b8d !important;

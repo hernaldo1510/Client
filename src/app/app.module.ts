@@ -87,9 +87,9 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 // Sample Blank Pages - Optional
-import { BlankCorporateComponent } from './@pages/layouts/blank-corporate/blank-corporate.component';
-import { BlankSimplywhiteComponent } from './@pages/layouts/blank-simplywhite/blank-simplywhite.component';
-import { BlankCasualComponent } from './@pages/layouts/blank-casual/blank-casual.component';
+// import { BlankCorporateComponent } from './@pages/layouts/blank-corporate/blank-corporate.component';
+// import { BlankSimplywhiteComponent } from './@pages/layouts/blank-simplywhite/blank-simplywhite.component';
+// import { BlankCasualComponent } from './@pages/layouts/blank-casual/blank-casual.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AuthInterceptorService } from './_service/auth-interceptor.service';
 import { FloatingHelpComponent } from './floating-help/floating-help.component';

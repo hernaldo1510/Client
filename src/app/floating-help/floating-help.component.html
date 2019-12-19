@@ -14,20 +14,11 @@
     </div>
     <button type="submit" class="btn btn-primary btn-block" [disabled]="contactForm.invalid || loading">Enviar</button>
   </form>
-  <!-- <div *ngIf="loading" class="py-5 text-center text-primary">
-    <pg-progress type="circle" indeterminate="false" color="complete" class="m-0 mt--3" *ngIf="!isSent"></pg-progress>
-    <fa-icon [icon]="['fas', 'check']" size="2x" [fixedWidth]="true" *ngIf="isSent"></fa-icon>
-  </div> -->
 </div>
-<button class="btn btn-complete floatingHelp p-3 shadow-lg rounded-lg" (click)="showForm()" [@fadeIn] [ngClass]="{'btn-complete': !isShowForm && !isSent || loading, 'btn-default': isShowForm && !isSent, 'btn-success': isSent}">
+<button class="btn btn-complete floatingHelp p-3 shadow-lg rounded-lg" (click)="showForm()" [@fadeIn] [ngClass]="{'btn-complete': !isShowForm && !isSent && !loading, 'btn-default': isShowForm && !isSent, 'btn-success': isSent, 'btn-primary': loading}">
   <!-- <div *ngIf="!loading"> -->
     <fa-icon [icon]="['fas', 'question']" size="lg" [fixedWidth]="true" *ngIf="!isShowForm && !isSent && !loading"></fa-icon>
     <fa-icon [icon]="['fas', 'times']" size="lg" [fixedWidth]="true" *ngIf="isShowForm && !isSent && !loading"></fa-icon>
     <fa-icon [icon]="['fas', 'paper-plane']" size="lg" [fixedWidth]="true" *ngIf="loading"></fa-icon>
     <fa-icon [icon]="['fas', 'check']" size="lg" [fixedWidth]="true" *ngIf="isSent && !loading"></fa-icon>
-  <!-- </div> -->
-  <!-- <div *ngIf="loading">
-    <fa-icon [icon]="['fas', 'spinner']" size="lg" [fixedWidth]="true" [spin]="true" *ngIf="!isSent"></fa-icon>
-    <fa-icon [icon]="['fas', 'spinner']" size="lg" [fixedWidth]="true" [spin]="true" *ngIf="!isSent"></fa-icon>
-  </div> -->
 </button>

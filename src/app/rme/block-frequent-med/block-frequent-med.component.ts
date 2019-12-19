@@ -27,6 +27,10 @@ export class BlockFrequentMedComponent implements OnInit {
     });
   }
 
+  addIndToRme(ind: any) {
+    this.apiRme.addFrecuent(ind);
+  }
+
   addToRme() {
     const toAdd = this.medicationHighFrequency.filter(res => res.checked);
     // console.log(toAdd);

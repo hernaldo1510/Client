@@ -8,32 +8,23 @@
 <div class="alert alert-warning" *ngIf="typeaheadNoResults">
   No encontramos resultados
 </div>
-<div class="p-2">
+<div class="p-2 pt-3">
   <ul class="list-group list-group-flush">
-    <!-- <app-block-medication-recipe
-      *ngFor="let item of receta | async; index as i"
-      [item]="item"
-      [index]="i"
-      [@fadeIn]
-      class="mb-2"
-    ></app-block-medication-recipe> -->
     <app-block-recipe-indication *ngFor="let item of indications?.controls; index as i" [indForm]="item" [index]="i"
-      [@fadeIn] class="mb-2"></app-block-recipe-indication>
+      [@fadeIn] class="mb-3"></app-block-recipe-indication>
   </ul>
 </div>
 <div class="mt-2" *ngIf="hasMedications()">
-  <button class="btn btn-complete mr-2" [disabled]="rmeForm.invalid" (click)="save(true)">
+  <button class="btn btn-complete btn-lg mr-2" [disabled]="rmeForm.invalid" (click)="save(true)">
     Vista previa
   </button>
-  <button class="btn btn-primary" [disabled]="rmeForm.invalid" (click)="save(false)">
+  <button class="btn btn-primary btn-lg" [disabled]="rmeForm.invalid" (click)="save(false)">
     Firmar y Enviar
   </button>
 </div>
-<!-- <div class="p-2">
-</div> -->
 <div class="modal fade stick-up" bsModal #modalRme="bs-modal" tabindex="-1" role="dialog"
   aria-labelledby="modal-resumen">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header py-2">
         <h4 class="modal-title pull-left inline">Receta Médica Electrónica</h4>
@@ -54,8 +45,7 @@
           </p>
         </div>
         <ngx-extended-pdf-viewer [src]="this.pdfRme" backgroundColor="#414141" [height]="'100%'"
-          [useBrowserLocale]="true" [handTool]="false" [showHandToolButton]="true" [showPrintButton]="true"
-          [showOpenFileButton]="false" [showFindButton]="false" *ngIf="showPdf && !isLoadingModal" [@fadeIn]>
+          [useBrowserLocale]="true" [handTool]="false" [showHandToolButton]="true" [showPrintButton]="true" [showBookmarkButton]="false" [showOpenFileButton]="false" [showFindButton]="false" *ngIf="showPdf && !isLoadingModal" [@fadeIn]>
         </ngx-extended-pdf-viewer>
       </div>
       <div class="modal-footer p-2" *ngIf="preview">

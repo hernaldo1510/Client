@@ -1,53 +1,31 @@
 <pg-container>
-  <h4 class="">Mis Recetas</h4>
+    <h4 class="">Mis Recetas</h4>
 </pg-container>
 <pg-container extraHorizontalClass="p-l-0 p-r-0" extraClass="sm-p-l-0 sm-p-r-0">
-  <div class="card card-default">
-    <div class="card-header">
-      <div class="d-flex">
-        <div class="flex-grow-1">
-          <input
-            type="text"
-            class="form-control pull-right"
-            placeholder="Buscar"
-            (keyup)="updateFilter($event)"
-          />
+    <div class="card card-default">
+        <div class="card-header">
+            <div class="d-flex">
+                <div class="flex-grow-1">
+                    <input type="text" class="form-control pull-right" placeholder="Buscar" (keyup)="updateFilter($event)" />
+                </div>
+            </div>
+            <div class="clearfix"></div>
         </div>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <ngx-datatable
-          #tableDynamic
-          class="table table-hover table-condensed table-stripped"
-          [columnMode]="'flex'"
-          [scrollbarH]="scrollBarHorizontal"
-          [headerHeight]="50"
-          [footerHeight]="50"
-          [loadingIndicator]="loadingIndicator"
-          [messages]="tableMsg"
-          [rowHeight]="'auto'"
-          [limit]="10"
-          [rows]="rmeList"
-        >
-          <ngx-datatable-column
-            name="Fecha"
-            prop="creation_day"
-            [flexGrow]="1"
-          >
-            <ng-template let-value="value" ngx-datatable-cell-template>
-              {{ value }}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Paciente" prop="patient.lastName" [flexGrow]="2">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              {{
-                row.patient.firstName + ' ' + row.patient.lastName | titlecase
-              }}
-            </ng-template>
-          </ngx-datatable-column>
-          <!-- <ngx-datatable-column
+        <div class="card-body">
+            <div class="table-responsive">
+                <ngx-datatable #tableDynamic class="table table-hover table-condensed table-stripped" [columnMode]="'flex'" [scrollbarH]="scrollBarHorizontal" [headerHeight]="50" [footerHeight]="50" [loadingIndicator]="loadingIndicator" [messages]="tableMsg" [rowHeight]="'auto'"
+                    [limit]="10" [rows]="rmeList">
+                    <ngx-datatable-column name="Fecha" prop="creation_day" [flexGrow]="1">
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            {{ value }}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Paciente" prop="patient.lastName" [flexGrow]="2">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{ row.patient.firstName + ' ' + row.patient.lastName | titlecase }}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <!-- <ngx-datatable-column
             name="Especialidad"
             prop="row.professional.specialities[0].name"
             [flexGrow]="3"
@@ -56,54 +34,33 @@
               {{ row.professional.specialities[0].name | titlecase }}
             </ng-template>
           </ngx-datatable-column> -->
-          <ngx-datatable-column
-            name="Medicamentos"
-            [sortable]="false"
-            [flexGrow]="3"
-          >
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              <span *ngFor="let item of row.indications; let i = index">
+                    <ngx-datatable-column name="Medicamentos" [sortable]="false" [flexGrow]="3">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            <span *ngFor="let item of row.indications; let i = index">
                 <span *ngIf="i < 2">{{
                   item.medication.name | titlecase
                 }}</span>
-              </span>
-              <span *ngIf="row.indications.length > 2">...</span>
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column
-            name="Acciones"
-            prop="id"
-            [sortable]="false"
-            [flexGrow]="1"
-          >
-            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
-              <div class="btn-group btn-group-sm">
-                <a
-                  class="btn btn-default"
-                  tooltip="Ver Receta"
-                  [routerLink]="['/rme/new/pat/', row.patient.run]" routerLinkActive="router-link-active" 
-                >
-                  <fa-icon [icon]="['fas', 'plus']"></fa-icon>
-                </a>
-                <a
-                  class="btn btn-default"
-                  tooltip="Ver Todas"
-                  [routerLink]="['/rme/list/pat/', row.patient.run]" routerLinkActive="router-link-active" 
-                >
-                  <fa-icon [icon]="['far', 'folder']"></fa-icon>
-                </a>
-                <a
-                  class="btn btn-default"
-                  tooltip="Ver Receta"
-                  (click)="showRme(value)"
-                >
-                  <fa-icon [icon]="['far', 'file-alt']"></fa-icon>
-                </a>
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-        </ngx-datatable>
-      </div>
+                            </span>
+                            <span *ngIf="row.indications.length > 2">...</span>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Acciones" prop="id" [sortable]="false" [flexGrow]="1">
+                        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                            <div class="btn-group btn-group-sm">
+                                <a class="btn btn-default" tooltip="Ver Receta" [routerLink]="['/rme/new/pat/', row.patient.run]" routerLinkActive="router-link-active">
+                                    <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+                                </a>
+                                <a class="btn btn-default" tooltip="Ver Todas" [routerLink]="['/rme/list/pat/', row.patient.run]" routerLinkActive="router-link-active">
+                                    <fa-icon [icon]="['far', 'folder']"></fa-icon>
+                                </a>
+                                <a class="btn btn-default" tooltip="Ver Receta" (click)="showRme(value)">
+                                    <fa-icon [icon]="['far', 'file-alt']"></fa-icon>
+                                </a>
+                            </div>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </div>
     </div>
-  </div>
 </pg-container>

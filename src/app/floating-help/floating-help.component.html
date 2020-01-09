@@ -1,21 +1,35 @@
 <div class="bg-white shadow-lg rounded-lg floatingForm p-3" *ngIf="isShowForm && !loading" [@fadeInOut]>
-  <form [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm)" *ngIf="!loading">
-    <div class="form-group">
-      <label for="mensaje">Motivo</label>
-      <select class="custom-select" formControlName="reason" (change)="changeReason($event)">
+
+
+
+    <!--     <body>
+      <div id="capture" style="padding: 10px; background: #f5da55">
+          <h4 style="color: #000; ">Hello world!</h4>
+      </div>
+      <button (click)="screenshot()">Capturar</button>
+  </body>
+ -->
+
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm)" *ngIf="!loading">
+        <div class="form-group">
+
+            <label for="mensaje">Motivo</label>
+            <select class="custom-select" formControlName="reason" (change)="changeReason($event)">
         <option *ngFor="
             let item of motivos
           " value="{{item}}">{{ item }}</option>
       </select>
-    </div>
-    <div class="form-group">
-      <label for="mensaje">Mensaje</label>
-      <textarea class="form-control" id="mensaje" rows="8" formControlName="message"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary btn-block" [disabled]="contactForm.invalid || loading">Enviar</button>
-  </form>
+        </div>
+        <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea class="form-control" id="mensaje" rows="8" name="mensaje" formControlName="message"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="contactForm.invalid || loading">Enviar</button>
+    </form>
 </div>
-<button class="btn btn-complete floatingHelp p-3 shadow-lg rounded-lg" (click)="showForm()" [@fadeIn] [ngClass]="{'btn-complete': !isShowForm && !isSent && !loading, 'btn-default': isShowForm && !isSent, 'btn-success': isSent, 'btn-primary': loading}">
+<div id="hello"></div>
+<button class="btn btn-complete floatingHelp p-3 shadow-lg rounded-lg" (click)="showForm();screenshot()" [@fadeIn] [ngClass]="{'btn-complete': !isShowForm && !isSent && !loading, 'btn-default': isShowForm && !isSent, 'btn-success': isSent, 'btn-primary': loading}">
   <!-- <div *ngIf="!loading"> -->
     <fa-icon [icon]="['fas', 'question']" size="lg" [fixedWidth]="true" *ngIf="!isShowForm && !isSent && !loading"></fa-icon>
     <fa-icon [icon]="['fas', 'times']" size="lg" [fixedWidth]="true" *ngIf="isShowForm && !isSent && !loading"></fa-icon>

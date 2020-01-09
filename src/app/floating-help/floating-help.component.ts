@@ -19,6 +19,8 @@ import {
 } from 'environments/environment';
 import { AuthService } from '@app/_service/auth.service';
 import { EmailService } from '@app/_service/email.service';
+import { values } from 'd3';
+declare const capture: any;
 
 @Component({
   selector: 'app-floating-help',
@@ -52,6 +54,9 @@ export class FloatingHelpComponent implements OnInit {
   public motivos = environment.messageReasons;
   contactForm: FormGroup;
 
+
+
+
   constructor(private apiAuth: AuthService, private apiEmail: EmailService) {}
 
   ngOnInit() {
@@ -75,6 +80,7 @@ export class FloatingHelpComponent implements OnInit {
       onlySelf: true
     });
   }
+
 
   onSubmit({
     value,
@@ -100,4 +106,8 @@ export class FloatingHelpComponent implements OnInit {
       }, 2000);
     }, 1000);
   }
+  screenshot() {
+    capture();
+  }
+
 }

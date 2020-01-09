@@ -42,7 +42,15 @@ export class CondensedComponent extends RootLayout implements OnInit {
       iconType: 'far',
       iconName: 'folder'
       // thumbNailClass: 'bg-success'
-    }
+    },
+    {
+      label: 'Receta Sin Reserva',
+      // details: '12 New Updates',
+      routerLink: '/rme/search',
+      iconType: 'far',
+      iconName: 'file-alt'
+      // thumbNailClass: 'bg-success'
+    },
     // ,{
     //   label: 'Social',
     //   routerLink: 'social',

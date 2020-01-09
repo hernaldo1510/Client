@@ -1,202 +1,205 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "rme": {
-      "root": "",
-      "sourceRoot": "src",
-      "projectType": "application",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/rme",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "polyfills": "src/polyfills.ts",
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/app/@pages/styles",
-                "src/pages_ui/scss"
-              ]
-            },
-            "assets": [
-              "src/assets",
-              "src/favicon.ico",
-              {
-                "glob": "**/*",
-                "input": "node_modules/ngx-extended-pdf-viewer/assets/locale",
-                "output": "/assets/locale/"
-              },
-              {
-                "glob": "**/*",
-                "input": "node_modules/ngx-extended-pdf-viewer/assets/images",
-                "output": "/assets/images/"
-              },
-              {
-                "glob": "**/pdf.worker*.js",
-                "input": "node_modules/ngx-extended-pdf-viewer/assets",
-                "output": "/assets/"
-              }
-            ],
-            "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/assets/plugins/bootstrap/css/bootstrap.min.css",
-              "src/assets/plugins/font-awesome/css/font-awesome.min.css",
-              "src/assets/plugins/codrops-stepsform/css/component.css",
-              "src/styles.scss"
-            ],
-            "scripts": [
-              "node_modules/ngx-extended-pdf-viewer/assets/pdf-es5.js",
-              "node_modules/ngx-extended-pdf-viewer/assets/viewer-es5.js",
-              "node_modules/scrollreveal/dist/scrollreveal.js",
-              "node_modules/echarts/dist/echarts.min.js",
-              "src/app/@pages/assets/javascript/pages.js",
-              "node_modules/masonry-layout/dist/masonry.pkgd.min.js",
-              "node_modules/isotope-layout/dist/isotope.pkgd.min.js",
-              "node_modules/imagesloaded/imagesloaded.pkgd.js",
-              "src/assets/plugins/modernizr.custom.js",
-              "src/assets/plugins/codrops-stepsform/js/classie.js",
-              "src/assets/plugins/codrops-stepsform/js/stepsForm.js",
-              "src/assets/plugins/skycons/skycons.js"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [{
-                "type": "initial",
-                "maximumWarning": "2mb",
-                "maximumError": "5mb"
-              }]
-            },
-            "qa": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.qa.ts"
-              }],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [{
-                "type": "initial",
-                "maximumWarning": "2mb",
-                "maximumError": "5mb"
-              }]
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "rme": {
+            "root": "",
+            "sourceRoot": "src",
+            "projectType": "application",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/rme",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "tsConfig": "src/tsconfig.app.json",
+                        "polyfills": "src/polyfills.ts",
+                        "stylePreprocessorOptions": {
+                            "includePaths": [
+                                "src/app/@pages/styles",
+                                "src/pages_ui/scss"
+                            ]
+                        },
+                        "assets": [
+                            "src/assets",
+                            "src/favicon.ico",
+                            {
+                                "glob": "**/*",
+                                "input": "node_modules/ngx-extended-pdf-viewer/assets/locale",
+                                "output": "/assets/locale/"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "node_modules/ngx-extended-pdf-viewer/assets/images",
+                                "output": "/assets/images/"
+                            },
+                            {
+                                "glob": "**/pdf.worker*.js",
+                                "input": "node_modules/ngx-extended-pdf-viewer/assets",
+                                "output": "/assets/"
+                            }
+                        ],
+                        "styles": [
+                            "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+                            "src/assets/plugins/bootstrap/css/bootstrap.min.css",
+                            "src/assets/plugins/font-awesome/css/font-awesome.min.css",
+                            "src/assets/plugins/codrops-stepsform/css/component.css",
+                            "src/styles.scss"
+                        ],
+                        "scripts": [
+                            "node_modules/ngx-extended-pdf-viewer/assets/pdf-es5.js",
+                            "node_modules/ngx-extended-pdf-viewer/assets/viewer-es5.js",
+                            "node_modules/scrollreveal/dist/scrollreveal.js",
+                            "node_modules/echarts/dist/echarts.min.js",
+                            "src/app/@pages/assets/javascript/pages.js",
+                            "node_modules/masonry-layout/dist/masonry.pkgd.min.js",
+                            "node_modules/isotope-layout/dist/isotope.pkgd.min.js",
+                            "node_modules/imagesloaded/imagesloaded.pkgd.js",
+                            "src/assets/plugins/modernizr.custom.js",
+                            "src/assets/plugins/codrops-stepsform/js/classie.js",
+                            "src/assets/plugins/codrops-stepsform/js/stepsForm.js",
+                            "src/assets/plugins/skycons/skycons.js",
+                            "src/assets/plugins/capturar/capturar.js",
+                            "src/assets/plugins/capturar/html2canvas.min.js",
+                            "src/assets/plugins/capturar/canvas2image.js"
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.prod.ts"
+                            }],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [{
+                                "type": "initial",
+                                "maximumWarning": "2mb",
+                                "maximumError": "5mb"
+                            }]
+                        },
+                        "qa": {
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.qa.ts"
+                            }],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [{
+                                "type": "initial",
+                                "maximumWarning": "2mb",
+                                "maximumError": "5mb"
+                            }]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "rme:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "rme:build:production"
+                        },
+                        "qa": {
+                            "browserTarget": "rme:build:qa"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "rme:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "src/test.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "src/tsconfig.spec.json",
+                        "karmaConfig": "src/karma.conf.js",
+                        "styles": [
+                            "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+                            "src/styles.scss"
+                        ],
+                        "scripts": [],
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ]
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "src/tsconfig.app.json",
+                            "src/tsconfig.spec.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                }
             }
-          }
         },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "rme:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "rme:build:production"
-            },
-            "qa": {
-              "browserTarget": "rme:build:qa"
+        "rme-e2e": {
+            "root": "e2e/",
+            "projectType": "application",
+            "prefix": "",
+            "architect": {
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "e2e/protractor.conf.js",
+                        "devServerTarget": "rme:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "rme:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": "e2e/tsconfig.e2e.json",
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                }
             }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "rme:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
-      }
     },
-    "rme-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "rme:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "rme:serve:production"
-            }
-          }
+    "defaultProject": "rme",
+    "schematics": {
+        "@schematics/angular:component": {
+            "prefix": "app",
+            "styleext": "scss"
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
+        "@schematics/angular:directive": {
+            "prefix": "app"
         }
-      }
     }
-  },
-  "defaultProject": "rme",
-  "schematics": {
-    "@schematics/angular:component": {
-      "prefix": "app",
-      "styleext": "scss"
-    },
-    "@schematics/angular:directive": {
-      "prefix": "app"
-    }
-  }
 }

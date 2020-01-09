@@ -1,12 +1,12 @@
 <li class="list-group-item shadow-sm">
-  <div [formGroup]="indForm">
-    <div class="d-flex">
-      <div class="flex-fill form-inline">
-        <h4 class="mb-0 mt-0 inline">
-          <span class="semi-bold">{{
+    <div [formGroup]="indForm">
+        <div class="d-flex">
+            <div class="flex-fill form-inline">
+                <h4 class="mb-0 mt-0 inline">
+                    <span class="semi-bold">{{
             indForm.controls.medication.value.name | titlecase
           }}</span>
-          <span *ngIf="indForm.controls.commercialRecommendation.value" class="m-0 small light" [@fadeIn]>
+                    <span *ngIf="indForm.controls.commercialRecommendation.value" class="m-0 small light" [@fadeIn]>
             /
             {{
               indForm.controls.commercialRecommendation.value.name | titlecase
@@ -15,89 +15,81 @@
               (click)="indForm.controls.commercialRecommendation.value = false">
               <fa-icon [icon]="['fas', 'times']"></fa-icon>
             </button></span>
-        </h4>
-      </div>
-      <div class="ml-1">
-        <button type="button" class="close" aria-label="Close" (click)="delMedication()" class="btn btn-rounded">
+                </h4>
+            </div>
+            <div class="ml-1">
+                <button type="button" class="close" aria-label="Close" (click)="delMedication()" class="btn btn-rounded">
           <span aria-hidden="true">
             <fa-icon [icon]="['far', 'trash-alt']"></fa-icon>
           </span>
         </button>
-      </div>
-    </div>
-    <div class="row my-2" *ngIf="!indForm.controls.commercialRecommendation.value" [@fadeIn]>
-      <div class="col-12">
-        <input class="form-control form-control-sm input-sm inline w-100" placeholder="Recomendación Comercial"
-          formControlName="commercialRecommendationForm" [typeaheadAsync]="true" [typeahead]="dataSourceRecommendation"
-          (typeaheadOnSelect)="typeaheadOnSelectRecommendation($event, i)"
-          (typeaheadLoading)="changeTypeaheadLoadingRecommendation($event)"
-          (typeaheadNoResults)="changeTypeaheadNoResultsRecommendation($event)" [typeaheadScrollable]="true"
-          [typeaheadOptionsInScrollableView]="5" [typeaheadHideResultsOnBlur]="false" typeaheadMinLength="3"
-          typeaheadWaitMs="1000" typeaheadOptionField="name" />
-        <pg-progress type="bar" indeterminate="false" color="complete" class="m-0 mt--3"
-          *ngIf="typeaheadLoadingRecommendation"></pg-progress>
-        <div class="alert alert-warning" *ngIf="typeaheadNoResultsRecommendation">
-          No encontramos resultados
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-5">
-        <div class="form-group" [formGroup]="indForm.controls.posology" [ngClass]="{
+        <div class="row my-2" *ngIf="!indForm.controls.commercialRecommendation.value" [@fadeIn]>
+            <div class="col-12">
+                <input class="form-control form-control-sm input-sm inline w-100" placeholder="Recomendación Comercial" formControlName="commercialRecommendationForm" [typeaheadAsync]="true" [typeahead]="dataSourceRecommendation" (typeaheadOnSelect)="typeaheadOnSelectRecommendation($event, i)"
+                    (typeaheadLoading)="changeTypeaheadLoadingRecommendation($event)" (typeaheadNoResults)="changeTypeaheadNoResultsRecommendation($event)" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="5" [typeaheadHideResultsOnBlur]="false"
+                    typeaheadMinLength="3" typeaheadWaitMs="1000" typeaheadOptionField="name" />
+                <pg-progress type="bar" indeterminate="false" color="complete" class="m-0 mt--3" *ngIf="typeaheadLoadingRecommendation"></pg-progress>
+                <div class="alert alert-warning" *ngIf="typeaheadNoResultsRecommendation">
+                    No encontramos resultados
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                <div class="form-group" [formGroup]="indForm.controls.posology" [ngClass]="{
             'has-error':
               indForm.get('posology').get('value').errors &&
               indForm.get('posology').get('value').touched
           }">
-          <label for="posologiaValue" class="control-label">Posología:</label>
-          <div class="row">
-            <div class="col-3 pr-1">
-              <input type="number" min="0" class="form-control" formControlName="value" id="posologyValue"
-                name="posologyValue" />
-            </div>
-            <div class="col-9 pl-1">
-              <select class="custom-select" formControlName="unit">
+                    <label for="posologiaValue" class="control-label">Posología:</label>
+                    <div class="row">
+                        <div class="col-3 pr-1">
+                            <input type="number" min="0" class="form-control" formControlName="value" id="posologyValue" name="posologyValue" />
+                        </div>
+                        <div class="col-9 pl-1">
+                            <select class="custom-select" formControlName="unit">
                 <option [ngValue]="item" *ngFor="
                     let item of indForm.controls['medication'].value.composition
                       .administerForm
                   ">{{ item.desc + ' / ' + item.medicationForm.desc }}</option>
               </select>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-2">
-        <div class="form-group" [formGroup]="indForm.controls.frecuency" [ngClass]="{
+            <div class="col-2">
+                <div class="form-group" [formGroup]="indForm.controls.frecuency" [ngClass]="{
             'has-error':
               indForm.get('frecuency').get('value').errors &&
               indForm.get('frecuency').get('value').touched
           }">
-          <label for="frecuencyValue" class="control-label">Cada (Horas):</label>
-          <input type="number" min="0" class="form-control" formControlName="value" id="frecuencyValue"
-            name="frecuencyValue" />
-        </div>
-      </div>
-      <div class="col-5">
-        <div class="form-group" [formGroup]="indForm.controls.duration" [ngClass]="{
+                    <label for="frecuencyValue" class="control-label">Cada (Horas):</label>
+                    <input type="number" min="0" class="form-control" formControlName="value" id="frecuencyValue" name="frecuencyValue" />
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="form-group" [formGroup]="indForm.controls.duration" [ngClass]="{
             'has-error':
               indForm.get('duration').get('value').errors &&
               indForm.get('duration').get('value').touched
           }">
-          <label for="durationValue" class="control-label">Duración:</label>
-          <div class="">
-            <div class="row">
-              <div class="col-3 pr-1" *ngIf="
+                    <label for="durationValue" class="control-label">Duración:</label>
+                    <div class="">
+                        <div class="row">
+                            <div class="col-3 pr-1" *ngIf="
                   indForm.get('duration').get('unit').value != 'Permanente' && indForm.get('duration').get('unit').value != 'SOS'
                 ">
-                <input type="number" min="1" class="form-control" formControlName="value" id="durationValue"
-                  name="durationValue" />
-              </div>
-              <div [ngClass]="{
+                                <input type="number" min="1" class="form-control" formControlName="value" id="durationValue" name="durationValue" />
+                            </div>
+                            <div [ngClass]="{
                   'col-9 pl-1':
                   indForm.get('duration').get('unit').value != 'Permanente' && indForm.get('duration').get('unit').value != 'SOS',
                   'col-12':
                     indForm.get('duration').get('unit').value == 'Permanente' || indForm.get('duration').get('unit').value == 'SOS'
                 }">
-                <!-- <div
+                                <!-- <div
                   class="btn-group full-width"
                   btnRadioGroup
                   formControlName="unit"
@@ -111,35 +103,33 @@
                     >{{ item.label }}</label
                   >
                 </div> -->
-                <select name="unit" id="unit" formControlName="unit" class="custom-select">
+                                <select name="unit" id="unit" formControlName="unit" class="custom-select">
                   <option value="{{item.code}}" *ngFor="let item of durationType">{{item.label}}</option>
                 </select>
-              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-3">
-        <div class="form-group">
-          <label for="dateStart">Inicio Tratamiento:</label>
-          <input class="form-control" #datepickerMDY="bsDatepicker" bsDatepicker formControlName="indicationStartDate"
-            [minDate]="minDate" [bsConfig]="{
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="dateStart">Inicio Tratamiento:</label>
+                    <input class="form-control" #datepickerMDY="bsDatepicker" bsDatepicker formControlName="indicationStartDate" [minDate]="minDate" [bsConfig]="{
               dateInputFormat: 'DD/MM/YYYY',
               containerClass: 'theme-dark-blue',
               showWeekNumbers: false,
               selectFromOtherMonth: true
             }" />
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="form-group">
+                    <label for="observations">Observaciones:</label>
+                    <input type="text" class="form-control" formControlName="observations" id="observations" name="observations" />
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-9">
-        <div class="form-group">
-          <label for="observations">Observaciones:</label>
-          <input type="text" class="form-control" formControlName="observations" id="observations"
-            name="observations" />
-        </div>
-      </div>
     </div>
-  </div>
 </li>

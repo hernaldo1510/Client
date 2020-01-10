@@ -14,6 +14,7 @@ import {
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalRecipeComponent } from '@app/rme/modal-recipe/modal-recipe.component';
 import { environment } from 'environments/environment';
+import { id } from '@swimlane/ngx-datatable/release/utils';
 
 @Component({
   selector: 'app-by-patient',
@@ -93,5 +94,14 @@ export class ByPatientComponent implements OnInit {
       initialState,
       class: 'stick-up modal-xl'
     });
+  }
+
+  editRecipe(idRme: any) {
+    const initialState = { id: idRme };
+    alert('Editar RME: ' + idRme);
+  }
+  deleteRecipe(idRme: any) {
+    const initialState = { id: idRme };
+    alert('Eliminar RME: ' + idRme);
   }
 }

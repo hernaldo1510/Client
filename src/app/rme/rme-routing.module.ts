@@ -5,7 +5,7 @@ import { NewComponent } from './new/new.component';
 import { ByAppointmentComponent } from './list/by-appointment/by-appointment.component';
 import { ByPatientComponent } from './list/by-patient/by-patient.component';
 import { ByProfessionalComponent } from './list/by-professional/by-professional.component';
-/* import { BySearchComponent } from './list/by-search/by-search.component'; */
+import { BySearchComponent } from './list/by-search/by-search.component';
 
 const routes: Routes = [
   { path: 'new', component: NewComponent },
@@ -21,7 +21,9 @@ const routes: Routes = [
   { path: 'list/pat/:pat/bdup/:bdup/appo/:appo', component: ByAppointmentComponent },
   { path: 'list/pat/:pat', component: ByPatientComponent },
   { path: 'list/pat/:pat/bdup/:bdup', component: ByPatientComponent },
- /*  { path: 'search', component: BySearchComponent } */
+  { path: 'search', component: BySearchComponent },
+
+
 
 ];
 

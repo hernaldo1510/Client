@@ -1,0 +1,60 @@
+<pg-container>
+    <h4 *ngIf="patient && patient != -1 && patient.firstName == Undefined" class="">Buscar Paciente</h4>
+</pg-container>
+<pg-container extraHorizontalClass="p-l-0 p-r-0" extraClass="sm-p-l-0 sm-p-r-0">
+    <div *ngIf="patient && patient != -1 && patient.firstName == Undefined" class="card card-default">
+        <div class="card-header">
+            <form #userUpdateForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <input name="pat" type="text" [(ngModel)]="pat" class="form-control pull-right" placeholder="Ingrese Rut" required />
+                    </div>
+                    <br>
+                    <!-- <div *ngIf="patient && patient != -1 && patient.firstName == Undefined" class="alert alert-danger" role="alert">
+                        Paciente no existe!
+                    </div> -->
+                    <div class="ml-2">
+                        <button class="btn btn-primary btn-cons mr-0" routerLinkActive="router-link-active">
+                      <fa-icon [icon]="['fas', 'plus']" class="mr-1"></fa-icon> Nueva Receta
+                    </button>
+                    </div>
+                </div>
+            </form>
+            <div *ngIf="alertMessage">
+                <div class="alert alert-danger">
+                    {{alertMessage}}
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+</pg-container>
+
+
+<!--
+<pg-container>
+  <h4 class="">Buscar Paciente</h4>
+</pg-container>
+<pg-container extraHorizontalClass="p-l-0 p-r-0" extraClass="sm-p-l-0 sm-p-r-0">
+  <div class="card card-default">
+      <div class="card-header">
+          <form class="" #formArtist="ngForm" (ngSubmit)="searchPatient()">
+              <div class="d-flex">
+                  <div class="flex-grow-1">
+                      <input type="text" class="form-control pull-right" placeholder="Ingrese Rut" />
+                  </div>
+                  <div class="ml-2">
+                      <button class="btn btn-primary btn-cons mr-0" [routerLink]="['/rme/new/pat/', pat]" routerLinkActive="router-link-active" type="submit">
+                    <fa-icon [icon]="['fas', 'plus']" class="mr-1"></fa-icon> Buscar Paciente
+                  </button>
+                  </div>
+              </div>
+          </form>
+
+          <div class="clearfix"></div>
+      </div>
+
+  </div>
+</pg-container> -->

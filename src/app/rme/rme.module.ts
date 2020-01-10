@@ -30,6 +30,7 @@ import { BlockRecipeListComponent } from './block-recipe-list/block-recipe-list.
 import { ModalRecipeComponent } from './modal-recipe/modal-recipe.component';
 import { ByProfessionalComponent } from './list/by-professional/by-professional.component';
 import { BlockPatientInfoComponent } from './block-patient-info/block-patient-info.component';
+import { BySearchComponent } from './list/by-search/by-search.component';
 
 @NgModule({
   imports: [
@@ -60,7 +61,8 @@ import { BlockPatientInfoComponent } from './block-patient-info/block-patient-in
     BlockRecipeListComponent,
     ModalRecipeComponent,
     ByProfessionalComponent,
-    BlockPatientInfoComponent
+    BlockPatientInfoComponent,
+    BySearchComponent
   ],
   entryComponents: [ModalRecipeComponent]
 })

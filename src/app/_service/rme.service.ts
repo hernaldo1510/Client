@@ -238,6 +238,7 @@ export class RmeService {
   }
 
   public findByPatient(id: string) {
+    alert('Id:' + id);
     id = id.replace('-', '').replace(/\./g, '');
     return this.http
       .get(
@@ -247,6 +248,7 @@ export class RmeService {
       )
       .pipe(
         map((res: any) => {
+          alert(res);
           return res;
         })
       )

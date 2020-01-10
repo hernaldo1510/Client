@@ -16,6 +16,7 @@ import { FormGroup, FormArray } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap';
 import { DomSanitizer } from '@angular/platform-browser';
 import { defaultOptions } from 'ngx-extended-pdf-viewer';
+import { PatientService } from '@app/_service/patient.service';
 
 @Component({
   selector: 'app-block-recipe',
@@ -53,6 +54,8 @@ export class BlockRecipeComponent implements OnInit {
   rmeFormSub: Subscription;
   formInvalid = false;
   indications: FormArray;
+  patient$: Observable<any>;
+  patient: any;
 
   @ViewChild('modalRme') modalRme: ModalDirective;
   showPdf: boolean;
@@ -60,11 +63,16 @@ export class BlockRecipeComponent implements OnInit {
   pdfRme: any;
   preview = true;
 
+
   constructor(private apiMed: MedicationService, private apiRme: RmeService, private sanitizer: DomSanitizer) {
     defaultOptions.workerSrc = './assets/pdf.worker-es5.js';
   }
 
   ngOnInit() {
+    this.patient$ = this.apiRme.patient;
+    this.patient$.subscribe(res => {
+      this.patient = res;
+    });
     this.receta = this.apiRme.medList;
     this.dataSource = Observable.create((observer: any) => {
       observer.next(this.asyncSelected);

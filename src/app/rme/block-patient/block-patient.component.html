@@ -1,7 +1,7 @@
 <pgcard [Loading]="!patient" [ShowMessage]="patient && patient == -1" [Message]="message" Maximize="false" Close="false" Refresh="false" ProgressType="bar" AdditionalClasses="mb-2">
     <ng-template #CardTitle>Paciente</ng-template>
     <ng-template #CardExtraControls></ng-template>
-    <div *ngIf="patient && patient != -1">
+    <div *ngIf="patient && patient != -1 && patient.firstName != Undefined">
         <h4 class="my-0">{{ (patient.firstName + ' ' + patient.lastName) | titlecase }}</h4>
         <div class="mb-2">
             <span class="badge badge-info m-r-5">{{ patient.run }}</span>
@@ -16,13 +16,6 @@
         <fa-icon [icon]="['far', 'folder']" class="mr-1"></fa-icon>
         Ver Recetas
       </button>
-        </div>
-        <div class="mt-2">
-            <button class="btn btn-info btn-sm" [routerLink]="['/rme/new/pat/', patient.run]" routerLinkActive="router-link-active">
-               <fa-icon [icon]="['far', 'folder']" class="mr-1"></fa-icon>
-               Receta sin reserva
-            </button>
-
         </div>
     </div>
 </pgcard>

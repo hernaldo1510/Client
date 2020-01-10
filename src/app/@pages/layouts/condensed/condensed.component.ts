@@ -44,9 +44,10 @@ export class CondensedComponent extends RootLayout implements OnInit {
       // thumbNailClass: 'bg-success'
     },
     {
-      label: 'Receta Sin Reserva',
+      label: 'RME Sin Reserva',
       // details: '12 New Updates',
-      routerLink: '/rme/search',
+       routerLink: '/rme/new/pat/\', pat',
+     /*  routerLink: '(click)="modalRme.hide()"', */
       iconType: 'far',
       iconName: 'file-alt'
       // thumbNailClass: 'bg-success'
